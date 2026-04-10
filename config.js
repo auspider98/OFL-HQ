@@ -197,7 +197,7 @@ const SITE_CONFIG = {
         "webm": "",
         "fallback": "",
         "transitionIn": "crossfade",
-        "objectPosition": "center right",
+        "objectPosition": "center center",
         "playbackRate": 1,
         "startTime": 0,
         "playDuration": 0
@@ -208,7 +208,7 @@ const SITE_CONFIG = {
         "fallback": "images/hero-bkground-01.jpg",
         "transitionIn": "crossfade",
         "objectPosition": "center center",
-        "playbackRate": 1,
+        "playbackRate": 0.25,
         "startTime": 0,
         "playDuration": 0
       },
@@ -218,7 +218,7 @@ const SITE_CONFIG = {
         "fallback": "",
         "transitionIn": "crossfade",
         "objectPosition": "center left",
-        "playbackRate": 1.5,
+        "playbackRate": 0.25,
         "startTime": 0,
         "playDuration": 0
       }
@@ -1346,8 +1346,6 @@ const SITE_CONFIG = {
       ]
     }
   ],
-  "heroPrimaryDest": "contact",
-  "heroSecondaryDest": "services",
   "homeSections": [
     {
       "type": "feature-cards",
@@ -1390,10 +1388,12 @@ const SITE_CONFIG = {
       "primarySource": false
     }
   ],
-  "footerBio": "Where Legends Are Made & Legacies Are Settled",
   "aboutBio3": "She is a member of the Alabama Bar Association, the American Academy of Adoption Attorneys (AAAA), and has been recognized as a Super Lawyer in Alabama Family Law for eight consecutive years. She is admitted to practice in all Alabama courts and regularly handles cases in Jefferson, Shelby, St. Clair, and Cullman counties.",
   "aboutBio4": "When she's not advocating for families in court, Amy volunteers with the Alabama Foster Care Association and speaks at community workshops on adoption awareness.",
-  "_savedAt": 1775853381255,
+  "footerBio": "Where Legends Are Made & Legacies Are Settled",
+  "_savedAt": 1775858614651,
   "contactSubmitLabel": "Request Free Abuse",
-  "contactSuccessMsg": "Ugh...you're so unworthy."
+  "contactSuccessMsg": "Ugh...you're so unworthy.",
+  "heroPrimaryDest": "contact",
+  "heroSecondaryDest": "services"
 };
