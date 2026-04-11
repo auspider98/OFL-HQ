@@ -701,7 +701,7 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
         <span class="sidebar-link-icon">🏠</span> Home Page
       </div>
 <div class="sidebar-link" onclick="showSection('attorney')" data-section="attorney">
-        <span class="sidebar-link-icon">👥</span> About Us
+        <span class="sidebar-link-icon">👥</span> <span id="sidebar-about-label">About Us</span>
       </div>
 <div id="cp-nav-list"></div>
       <button class="cp-nav-add-btn" onclick="addCustomPage()">＋ Add page</button>
@@ -721,7 +721,7 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
   </nav>
 
   <!-- MAIN -->
-  <main class="main" oninput="autosave()">
+  <main class="main" oninput="autosave()" onchange="autosave()">
 
     <!-- Import Drop Zone -->
     <div class="import-zone" id="importZone"
@@ -922,9 +922,14 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
           <span class="panel-chevron">▼</span>
         </div>
         <div class="panel-body">
+          <div class="field-group">
+            <label>Nav & Sidebar Label</label>
+            <input type="text" id="f_aboutNavLabel" placeholder="About Us" oninput="updateAboutNavLabel(this)"/>
+            <div class="field-hint">How this page appears in the sidebar and navigation menu.</div>
+          </div>
           <div class="form-row-2">
-            <div class="field-group"><label>Label</label><input type="text" id="ph_about_label"/></div>
-            <div class="field-group"><label>Title</label><input type="text" id="ph_about_title"/></div>
+            <div class="field-group"><label>Banner Label</label><input type="text" id="ph_about_label"/></div>
+            <div class="field-group"><label>Banner Title</label><input type="text" id="ph_about_title"/></div>
           </div>
         </div>
       </div>
@@ -1346,6 +1351,7 @@ let DATA = {
   attorneyCredentials:["AL State Bar","J.D., Birmingham Law","ABA Member","Super Lawyers","AAAA Member"],
   aboutBio1:"", aboutBio2:"",
   attorneyPhoto:"",
+  aboutNavLabel:"About Us",
   attorneys:[],
   phone:"(205) 515-9271", phoneRaw:"+12055159271",
   fax:"(205) 434-3975", email:"osborneadoptions@gmail.com",
@@ -1632,6 +1638,8 @@ function loadForm() {
     }];
   }
   buildAttorneyAccordions();
+  setVal('f_aboutNavLabel', DATA.aboutNavLabel || 'About Us');
+  updateAboutNavLabel({ value: DATA.aboutNavLabel || 'About Us' });
   updateFontPreview();
   loadToggles();
   // Custom pages
@@ -1751,6 +1759,7 @@ function collectData() {
   DATA.socialLinks = collectArray('social-list', ['platform','url']);
   DATA.heroBg.slides = collectArray('hero-slides-list', ['imagePath','position']);
   DATA.attorneys = collectAttorneys();
+  DATA.aboutNavLabel = getVal('f_aboutNavLabel') || 'About Us';
   collectToggles();
   DATA.homeSections = collectHomeSections();
   DATA.customPages = collectCustomPages();
@@ -1768,7 +1777,6 @@ function collectData() {
     DATA.attorneyPhoto = a.photo; DATA.attorneyCredentials = a.credentials;
     DATA.aboutBio1 = a.bio1; DATA.aboutBio2 = a.bio2;
   }
-  localStorage.setItem(LS_DATA(), JSON.stringify(DATA));
 }
 
 function collectArray(listId, fields) {
@@ -1796,15 +1804,47 @@ function collectSingleArray(listId, field) {
 /* =============================================
    ATTORNEY ACCORDION BUILDER
    ============================================= */
+function updateAttorneyLabel(input) {
+  const panel = input.closest('.attorney-accordion');
+  if (panel) { const lbl = panel.querySelector('.attorney-label'); if (lbl) lbl.textContent = input.value || 'Team Member'; }
+}
+function updateAboutNavLabel(input) {
+  const val = (typeof input === 'string' ? input : input.value) || 'About Us';
+  const sidebarLbl = document.getElementById('sidebar-about-label');
+  if (sidebarLbl) sidebarLbl.textContent = val;
+}
 function buildAttorneyAccordions() {
   const container = document.getElementById('attorney-accordions');
   if (!container) return;
-  container.innerHTML = (DATA.attorneys||[]).map((a, i) => `
-    <div class="panel open attorney-accordion" data-attorney-idx="${i}">
+  container.innerHTML = (DATA.attorneys||[]).map((a, i) => {
+    // Social links rows
+    const socials = (a.socialLinks||[]);
+    const socialRows = socials.map((s, si) => {
+      const platOpts = SOCIAL_PLATFORMS.map(p =>
+        `<option value="${p.value}"${s.platform===p.value?' selected':''}>${p.label}</option>`).join('');
+      return `<div class="form-row-2" style="margin-bottom:6px;" data-a-social="${i}" data-si="${si}">
+        <div class="field-group" style="margin:0;">
+          <select data-a="${i}" data-field="social-platform" data-si="${si}">${platOpts}</select>
+        </div>
+        <div class="field-group" style="margin:0;display:flex;gap:6px;align-items:center;">
+          <input type="text" data-a="${i}" data-field="social-url" data-si="${si}" value="${escHtml(s.url||'')}" placeholder="https://..." style="flex:1;"/>
+          <button class="btn-remove" onclick="removeAttrneySocial(${i},${si})">×</button>
+        </div>
+      </div>`;
+    }).join('');
+    // Button link type
+    const btnLT = a.btnLinkType || 'none';
+    const btnLTOpts = ['none','internal','external','file'].map(v =>
+      `<option value="${v}"${btnLT===v?' selected':''}>${v==='none'?'None (hide button)':v==='internal'?'Internal Page':v==='external'?'External URL':'File / Document'}</option>`
+    ).join('');
+    const showInt = btnLT === 'internal' ? '' : 'display:none;';
+    const showUrl = (btnLT === 'external' || btnLT === 'file') ? '' : 'display:none;';
+    const intOpts = getInternalPageOptions(btnLT === 'internal' ? (a.btnLinkUrl||'') : '');
+    return `<div class="panel open attorney-accordion" data-attorney-idx="${i}">
       <div class="panel-header" onclick="togglePanel(this)">
         <div class="panel-title">
           <span class="panel-title-icon">\u{1F464}</span>
-          <span class="attorney-label">${a.name || 'Team Member ' + (i+1)}</span>
+          <span class="attorney-label">${escHtml(a.name || 'Team Member ' + (i+1))}</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px;">
           ${DATA.attorneys.length > 1 ? `<button class="btn-remove" onclick="removeAttorney(${i});event.stopPropagation();" title="Remove">\xd7</button>` : ''}
@@ -1844,12 +1884,33 @@ function buildAttorneyAccordions() {
           <label>Bio Paragraph 2</label>
           <textarea data-a="${i}" data-field="bio2" rows="4">${escHtml(a.bio2||'')}</textarea>
         </div>
+        <div class="divider"></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Social Links</div>
+        <div class="attorney-social-list" data-a="${i}">${socialRows}</div>
+        <button class="btn-add" style="margin-top:6px;" onclick="addAttorneySocial(${i})">+ Add Social Link</button>
+        <div class="divider"></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">CTA Button</div>
+        <div class="form-row-2" style="margin-bottom:8px;">
+          <div class="field-group" style="margin:0;">
+            <label>Button Label</label>
+            <input type="text" data-a="${i}" data-field="btnLabel" value="${escHtml(a.btnLabel||'')}" placeholder="Schedule a Consultation"/>
+          </div>
+          <div class="field-group" style="margin:0;">
+            <label>Link Type</label>
+            <select data-a="${i}" data-field="btnLinkType" onchange="onAttorneyBtnLinkChange(${i},this)">${btnLTOpts}</select>
+          </div>
+        </div>
+        <div class="field-group attorney-btn-internal-${i}" style="${showInt}">
+          <label>Page</label>
+          <select data-a="${i}" data-field="btnLinkUrl-internal">${intOpts}</select>
+        </div>
+        <div class="field-group attorney-btn-url-${i}" style="${showUrl}">
+          <label>${btnLT === 'file' ? 'File Path / URL' : 'External URL'}</label>
+          <input type="text" data-a="${i}" data-field="btnLinkUrl-url" value="${escHtml((btnLT==='external'||btnLT==='file') ? (a.btnLinkUrl||'') : '')}" placeholder="https://"/>
+        </div>
       </div>
-    </div>`).join('');
-}
-function updateAttorneyLabel(input) {
-  const panel = input.closest('.attorney-accordion');
-  if (panel) { const lbl = panel.querySelector('.attorney-label'); if (lbl) lbl.textContent = input.value || 'Attorney'; }
+    </div>`;
+  }).join('');
 }
 function updateHeroImagePreview(val) {
   const wrap = document.getElementById('hero-image-preview-wrap');
@@ -1884,12 +1945,39 @@ function updatePhotoPreview(input) {
     wrap.style.display = "none";
   }
 }
-function addAttorney() {
-  DATA.attorneys.push({name:'',degree:'',photo:'',credentials:[],bio1:'',bio2:''});
+function addAttorneySocial(i) {
+  collectData();
+  if (!Array.isArray(DATA.attorneys[i].socialLinks)) DATA.attorneys[i].socialLinks = [];
+  DATA.attorneys[i].socialLinks.push({ platform:'linkedin', url:'' });
   buildAttorneyAccordions();
+  autosave();
+}
+function removeAttrneySocial(i, si) {
+  collectData();
+  DATA.attorneys[i].socialLinks.splice(si, 1);
+  buildAttorneyAccordions();
+  autosave();
+}
+function onAttorneyBtnLinkChange(i, sel) {
+  const val = sel.value;
+  const panel = sel.closest('.attorney-accordion');
+  const intEl  = panel?.querySelector(`.attorney-btn-internal-${i}`);
+  const urlEl  = panel?.querySelector(`.attorney-btn-url-${i}`);
+  const urlLbl = urlEl?.querySelector('label');
+  if (intEl) intEl.style.display = val === 'internal' ? '' : 'none';
+  if (urlEl) urlEl.style.display = (val === 'external' || val === 'file') ? '' : 'none';
+  if (urlLbl) urlLbl.textContent = val === 'file' ? 'File Path / URL' : 'External URL';
+  autosave();
+}
+function addAttorney() {
+  collectData();
+  DATA.attorneys.push({ name:'', degree:'', photo:'', credentials:[], bio1:'', bio2:'', socialLinks:[], btnLabel:'', btnLinkType:'none', btnLinkUrl:'' });
+  buildAttorneyAccordions();
+  autosave();
 }
 function removeAttorney(idx) {
   if (DATA.attorneys.length <= 1) return;
+  collectData();
   DATA.attorneys.splice(idx, 1);
   buildAttorneyAccordions();
   toast('Team member removed.','');
@@ -1897,12 +1985,30 @@ function removeAttorney(idx) {
 function collectAttorneys() {
   const container = document.getElementById('attorney-accordions');
   if (!container) return DATA.attorneys||[];
-  return Array.from(container.querySelectorAll('.attorney-accordion')).map(panel => {
+  return Array.from(container.querySelectorAll('.attorney-accordion')).map((panel, i) => {
     const get = f => { const el = panel.querySelector(`[data-field="${f}"]`); return el ? el.value.trim() : ''; };
+    const getA = f => { const el = panel.querySelector(`[data-a="${i}"][data-field="${f}"]`); return el ? el.value.trim() : ''; };
+    // Collect social links
+    const socialLinks = Array.from(panel.querySelectorAll(`[data-a-social="${i}"]`)).map((row, si) => ({
+      platform: panel.querySelector(`[data-a="${i}"][data-field="social-platform"][data-si="${si}"]`)?.value || 'linkedin',
+      url:      panel.querySelector(`[data-a="${i}"][data-field="social-url"][data-si="${si}"]`)?.value.trim() || '',
+    }));
+    // Collect button
+    const btnLT = getA('btnLinkType') || 'none';
+    const btnUrl = btnLT === 'internal'
+      ? (panel.querySelector(`[data-a="${i}"][data-field="btnLinkUrl-internal"]`)?.value || '')
+      : (panel.querySelector(`[data-a="${i}"][data-field="btnLinkUrl-url"]`)?.value.trim() || '');
     return {
-      name: get('name'), degree: get('degree'), photo: get('photo'),
+      name:        get('name'),
+      degree:      get('degree'),
+      photo:       get('photo'),
       credentials: get('credentials-text').split('\n').map(s=>s.trim()).filter(Boolean),
-      bio1: get('bio1'), bio2: get('bio2')
+      bio1:        get('bio1'),
+      bio2:        get('bio2'),
+      socialLinks,
+      btnLabel:    getA('btnLabel'),
+      btnLinkType: btnLT,
+      btnLinkUrl:  btnUrl,
     };
   });
 }
@@ -4648,7 +4754,7 @@ function buildHeroVideoClipsList() {
       `<option value="${p}"${(c.objectPosition||'center center')===p?' selected':''}>${p}</option>`
     ).join('');
     const rateOpts = [['0.25','0.25x'],['0.5','0.5x'],['0.75','0.75x'],['1','Normal'],['1.25','1.25x'],['1.5','1.5x']].map(([v,l]) =>
-      `<option value="${v}"${(c.playbackRate||'1')===v?' selected':''}>${l}</option>`
+      `<option value="${v}"${(String(c.playbackRate||1))===v?' selected':''}>${l}</option>`
     ).join('');
     return `<div class="array-item" data-clip-idx="${i}">
       <div class="array-item-header">
@@ -4812,12 +4918,15 @@ function importConfig(input) {
       const fn = new Function(`return ${match[1]}`);
       const imported = fn();
       DATA = Object.assign({}, DATA, imported);
-      if (imported.colors) DATA.colors = Object.assign({}, DATA.colors, imported.colors);
-      if (imported.fontColors) DATA.fontColors = Object.assign({}, DATA.fontColors, imported.fontColors);
+      if (imported.colors)      DATA.colors      = Object.assign({}, DATA.colors,      imported.colors);
+      if (imported.fontColors)  DATA.fontColors  = Object.assign({}, DATA.fontColors,  imported.fontColors);
       if (imported.whyChooseUs) DATA.whyChooseUs = Object.assign({}, DATA.whyChooseUs, imported.whyChooseUs);
-      if (imported.heroBg) DATA.heroBg = Object.assign({}, DATA.heroBg, imported.heroBg);
-      if (imported.pageTitles) DATA.pageTitles = Object.assign({}, DATA.pageTitles, imported.pageTitles);
-      if (Array.isArray(imported.customPages)) DATA.customPages = imported.customPages;
+      if (imported.heroBg)      DATA.heroBg      = Object.assign({}, DATA.heroBg,      imported.heroBg);
+      if (imported.pageTitles)  DATA.pageTitles  = Object.assign({}, DATA.pageTitles,  imported.pageTitles);
+      if (imported.pageHeaders) DATA.pageHeaders = Object.assign({}, DATA.pageHeaders, imported.pageHeaders);
+      if (Array.isArray(imported.customPages))  DATA.customPages  = imported.customPages;
+      if (Array.isArray(imported.homeSections)) DATA.homeSections = imported.homeSections;
+      if (Array.isArray(imported.attorneys))    DATA.attorneys    = imported.attorneys;
       loadForm();
       collectData();
       persistToLocalStorage();
@@ -4829,7 +4938,6 @@ function importConfig(input) {
   reader.readAsText(file);
   input.value = '';
 }
-
 function handleDrop(e) {
   e.preventDefault();
   document.getElementById('importZone').classList.remove('drag-over');
@@ -5110,8 +5218,10 @@ window.addEventListener('DOMContentLoaded', () => {
     if (parsed.whyChooseUs) DATA.whyChooseUs = Object.assign({}, DATA.whyChooseUs, parsed.whyChooseUs);
     if (parsed.heroBg)      DATA.heroBg      = Object.assign({}, DATA.heroBg,      parsed.heroBg);
     if (parsed.pageTitles)  DATA.pageTitles  = Object.assign({}, DATA.pageTitles,  parsed.pageTitles);
+    if (parsed.pageHeaders) DATA.pageHeaders = Object.assign({}, DATA.pageHeaders, parsed.pageHeaders);
     if (Array.isArray(parsed.customPages))  DATA.customPages  = parsed.customPages;
     if (Array.isArray(parsed.homeSections)) DATA.homeSections = parsed.homeSections;
+    if (Array.isArray(parsed.attorneys))    DATA.attorneys    = parsed.attorneys;
   }
 
   // Read localStorage
@@ -5126,16 +5236,19 @@ window.addEventListener('DOMContentLoaded', () => {
   } catch(e) {}
 
   // Try to fetch config.js and compare timestamps
-  fetch('config.js?_=' + Date.now())
-    .then(r => r.ok ? r.text() : Promise.reject())
+  // Note: fetch() fails on file:// protocol — falls back to localStorage or defaults
+  const tryFetch = () => fetch('config.js?_=' + Date.now())
+    .then(r => r.ok ? r.text() : Promise.reject('not ok'))
     .then(text => {
-      // Extract the SITE_CONFIG object from the JS file
-      const match = text.match(/const\s+SITE_CONFIG\s*=\s*(\{[\s\S]*\})\s*;/);
+      const match = text.match(/const\s+SITE_CONFIG\s*=\s*(\{[\s\S]*\})/);
       if (!match) throw new Error('no match');
-      const configData = JSON.parse(match[1]);
-      const configTs = configData._savedAt || 0;
+      const fn = new Function(`return ${match[1]}`);
+      return fn();
+    });
 
-      // Use whichever is newer
+  tryFetch()
+    .then(configData => {
+      const configTs = configData._savedAt || 0;
       if (configTs >= localTs) {
         applyData(configData);
         DATA._savedAt = configTs;
@@ -5153,7 +5266,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     })
     .catch(() => {
-      // config.js not found or parse failed — use localStorage if available
+      // fetch failed (file:// protocol or config.js not found) — use localStorage
       if (localData) {
         applyData(localData);
         loadForm();
