@@ -2423,6 +2423,7 @@ footer {
   <section class="section section-after-banner">
     <div class="container" id="about-members"></div>
   </section>
+  <div id="about-custom-sections"></div>
 </div>
 
 <!-- ============================================================
@@ -3131,6 +3132,19 @@ function buildAbout() {
       </div>
     </div>`;
   }).join('');
+
+  // Render aboutSections custom sections below attorney block
+  const aboutSections = CFG.aboutSections || [];
+  if (aboutSections.length) {
+    const aboutCustomWrap = document.getElementById('about-custom-sections');
+    if (aboutCustomWrap) {
+      aboutCustomWrap.innerHTML = '';
+      aboutSections.forEach((sec, idx) => {
+        const el = renderCustomSection(sec, idx, false, aboutSections);
+        if (el) aboutCustomWrap.appendChild(el);
+      });
+    }
+  }
 }
 
 /* =============================================

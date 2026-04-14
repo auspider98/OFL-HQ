@@ -965,6 +965,14 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
       <div id="attorney-accordions"></div>
 
       <button class="btn-add" onclick="addAttorney()" style="margin-top:8px;">+ Add Team Member</button>
+
+      <div class="divider" style="margin:28px 0 20px;"></div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Additional Sections</div>
+      <div id="about-sections-list"></div>
+      <div class="cp-add-section-bar">
+        <select id="about-type-select"></select>
+        <button class="btn btn-gold btn-sm" onclick="addAboutSection()">+ Add Section</button>
+      </div>
       </div><!-- /section-panels-wrap -->
     </div>
 
@@ -1428,7 +1436,8 @@ let DATA = {
   ctaLabel:"Free Consultation",
   pageToggles:{about:true,contact:true},
   homeToggles:{stats:true,why:true,testimonials:true},
-  customPages:[]
+  customPages:[],
+  aboutSections:[]
 };
 
 /* =============================================
@@ -1672,6 +1681,8 @@ function loadForm() {
   // Custom pages
   if (!Array.isArray(DATA.homeSections)) DATA.homeSections = [];
   buildHomeSectionsList();
+  if (!Array.isArray(DATA.aboutSections)) DATA.aboutSections = [];
+  buildAboutSectionsList();
   if (!Array.isArray(DATA.customPages)) DATA.customPages = [];
   buildCustomPagesList();
   // Apply site color scheme to admin UI
@@ -1950,6 +1961,7 @@ function collectData() {
   DATA.aboutNavLabel = getVal('f_aboutNavLabel') || 'About Us';
   collectToggles();
   DATA.homeSections = collectHomeSections();
+  DATA.aboutSections = collectAboutSections();
   DATA.customPages = collectCustomPages();
   // Mirror primary testimonials source into DATA.testimonials
   const allSections = [
@@ -3228,6 +3240,66 @@ function addHomeSection() {
   toast('Section added.', 'success');
 }
 
+function buildAboutSectionsList() {
+  const container = document.getElementById('about-sections-list');
+  if (!container) return;
+
+  // Populate type select if empty
+  const sel = document.getElementById('about-type-select');
+  if (sel && !sel.children.length) {
+    sel.innerHTML = CP_SECTION_TYPES.map(t => '<option value="' + t.value + '">' + t.label + '</option>').join('');
+  }
+
+  // Snapshot open section cards
+  const openSections = new Set();
+  container.querySelectorAll('.cp-section-card').forEach(card => {
+    if (card.classList.contains('open')) openSections.add(card.dataset.si);
+  });
+
+  container.innerHTML = (DATA.aboutSections || []).map((sec, si) => buildCustomSectionHtml(sec, 'a', si)).join('');
+
+  // Restore open states
+  container.querySelectorAll('.cp-section-card').forEach(card => {
+    if (!openSections.has(card.dataset.si)) card.classList.remove('open');
+  });
+
+  // Wire sub-item drag-drop
+  container.querySelectorAll('[data-cp-drag]').forEach(el => {
+    const parts = el.dataset.cpDrag.split('-');
+    const si = parseInt(parts[1]);
+    const arr = parts.slice(2).join('-');
+    initCpSubItemDragDrop(el, 'a', si, arr);
+  });
+}
+
+function addAboutSection() {
+  const sel = document.getElementById('about-type-select');
+  if (!sel) return;
+  const type = sel.value;
+  const defaults = { type, label: '', background: 'light' };
+  if (['stats','bullets','services','steps','faq','timeline','fees'].includes(type)) defaults.items = [];
+  if (type === 'checklist') defaults.categories = [];
+  if (type === 'form') { defaults.fields = []; defaults.submitLabel = 'Send Message'; defaults.successMsg = "Thank you! We'll be in touch soon."; }
+  if (type === 'link') { defaults.linkType = 'none'; defaults.linkUrl = ''; defaults.linkLabel = ''; }
+  if (type === 'button') { defaults.primary_linkType = 'none'; defaults.primary_linkUrl = ''; defaults.primary_linkLabel = ''; defaults.secondary_linkType = 'none'; defaults.secondary_linkUrl = ''; defaults.secondary_linkLabel = ''; }
+  if (type === 'richtext') { defaults.background = 'inherit'; defaults.richContent = ''; defaults.imagePath = ''; defaults.imagePos = 'none'; defaults.imageSize = 'md'; defaults.imageCaption = ''; defaults.fullWidth = false; }
+  if (!Array.isArray(DATA.aboutSections)) DATA.aboutSections = [];
+  DATA.aboutSections.push(defaults);
+  buildAboutSectionsList();
+  // Open and scroll to new section card
+  const container = document.getElementById('about-sections-list');
+  if (container) {
+    const cards = container.querySelectorAll('.cp-section-card');
+    const newCard = cards[cards.length - 1];
+    if (newCard) {
+      newCard.classList.add('open');
+      newCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+  autosave();
+  toast('Section added.', 'success');
+}
+
 function collectHomeSections() {
   const container = document.getElementById('home-sections-list');
   if (!container) return DATA.homeSections || [];
@@ -3240,10 +3312,24 @@ function collectHomeSections() {
   });
 }
 
+function collectAboutSections() {
+  const container = document.getElementById('about-sections-list');
+  if (!container) return DATA.aboutSections || [];
+  const sectionCards = container.querySelectorAll('.cp-section-card[data-pi="a"]');
+  return Array.from(sectionCards).map((secCard, si) => {
+    const existing = (DATA.aboutSections || [])[si] || {};
+    return collectHomeSingleSection_forPi(secCard, 'a', si, existing);
+  });
+}
+
 function collectHomeSingleSection(secCard, si, existing) {
+  return collectHomeSingleSection_forPi(secCard, 'h', si, existing);
+}
+
+function collectHomeSingleSection_forPi(secCard, pi, si, existing) {
   const type = existing.type || '';
   const get = (field) => {
-    const els = Array.from(secCard.querySelectorAll('[data-cp="h"][data-sec="' + si + '"][data-field="' + field + '"]'));
+    const els = Array.from(secCard.querySelectorAll('[data-cp="' + pi + '"][data-sec="' + si + '"][data-field="' + field + '"]'));
     if (!els.length) return (existing[field] ?? '');
     // Use visible-element detection via parent style traversal
     const visible = els.find(el => {
@@ -4697,13 +4783,15 @@ function addCpSection(pi) {
   toast('Section added.','success');
 }
 
-// Resolve pi to the correct sections array ('h' = homeSections, number = customPages[pi].sections)
+// Resolve pi to the correct sections array ('h' = homeSections, 'a' = aboutSections, number = customPages[pi].sections)
 function cpSections(pi) {
   if (pi === 'h') return DATA.homeSections || (DATA.homeSections = []);
+  if (pi === 'a') return DATA.aboutSections || (DATA.aboutSections = []);
   return DATA.customPages[pi]?.sections;
 }
 function rebuildAfterMutation(pi) {
   if (pi === 'h') buildHomeSectionsList();
+  else if (pi === 'a') buildAboutSectionsList();
   else buildCustomPagesList();
 }
 
@@ -5225,6 +5313,7 @@ function importConfig(input) {
       if (imported.pageHeaders) DATA.pageHeaders = Object.assign({}, DATA.pageHeaders, imported.pageHeaders);
       if (Array.isArray(imported.customPages))  DATA.customPages  = imported.customPages;
       if (Array.isArray(imported.homeSections)) DATA.homeSections = imported.homeSections;
+      if (Array.isArray(imported.aboutSections)) DATA.aboutSections = imported.aboutSections;
       if (Array.isArray(imported.attorneys))    DATA.attorneys    = imported.attorneys;
       loadForm();
       collectData();
@@ -5520,6 +5609,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (parsed.pageHeaders) DATA.pageHeaders = Object.assign({}, DATA.pageHeaders, parsed.pageHeaders);
     if (Array.isArray(parsed.customPages))  DATA.customPages  = parsed.customPages;
     if (Array.isArray(parsed.homeSections)) DATA.homeSections = parsed.homeSections;
+    if (Array.isArray(parsed.aboutSections)) DATA.aboutSections = parsed.aboutSections;
     if (Array.isArray(parsed.attorneys))    DATA.attorneys    = parsed.attorneys;
   }
 
