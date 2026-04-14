@@ -620,6 +620,115 @@ const SITE_CONFIG = {
   },
   "customPages": [
     {
+      "slug": "history",
+      "navLabel": "History",
+      "emoji": "📄",
+      "enabled": true,
+      "sections": [
+        {
+          "type": "two-col",
+          "label": "Our History",
+          "background": "alt",
+          "heading": "The Early Vision",
+          "body": "In the fall of 2005, a visionary known only as Spider sat down at a computer, created a Yahoo fantasy March Madness Pick'um league, and issued invitations exclusively to people he was willing to see at Christmas. This was not a business decision. It was a lifestyle choice. And it has paid off every single year since.\n\nThe early years were formative. Rules were debated. Ideas were vetoed. A controversial Head Above Water top-seed system sparked what historians now refer to as \"The Incident of 2013,\" which is not discussed in mixed company.\n\nThe BRC was later joined by the OFC and through it all, both leagues grew. Not in size — we are very careful about that — but in prestige, in tradition, and in the collective understanding that these leagues are something special.",
+          "imagePath": "images/ofl-webpage.png",
+          "imagePosition": "left",
+          "cta_linkType": "none",
+          "cta_linkUrl": "home",
+          "cta_linkLabel": ""
+        },
+        {
+          "type": "timeline",
+          "label": "Our Timeline",
+          "background": "dark",
+          "heading": "A Brief History of Greatness",
+          "subtitle": "Key milestones in the OFL's storied journey from humble family league to legendary institution.",
+          "items": [
+            {
+              "date": "2005",
+              "title": "The Beginning of the March",
+              "body": "3 men, 1 dream, and a purpose. The original founding members, spider, BR, and bubba, seeking excellence decided to match skills in a college basketball bracket tournament, known as March Madness. The goal was simple...create the perfect bracket and ridicule the others on the way to the top. So began, the Battle for the Blue Ribbon.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "date": "2010",
+              "title": "Expansion to the BRC",
+              "body": "After years of chest pounding and trash talking, family unrest hit peak energy. Other members of the Osborne tribe wanted a piece of the action. After some tough conversations, and late night phone calls, the decision was made to extend seven invitations to hungry family members. With the expansion of the league to 10 members, a name change was in order. Thus, the Blue Ribbon Cup was born.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "date": "2011 - 2012",
+              "title": "The Great Divide",
+              "body": "After just 1 year, the BRC was rocked to its core when many of its newest members boycotted the BRC season citing difficult playing conditions, trash talking, and weak stomachs.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "date": "2012",
+              "title": "The Commish",
+              "body": "After nearly a decade of tournaments, the league decided that in order to bring consistency and order back to the league, it needed one of its own to take the reigns to propel the league forward. In a unanimous vote, the BRC elects its first Commissioner, Spider.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "date": "2013",
+              "title": "Boycott Ends",
+              "body": "Fueled by the exciting changes under the command of Commissioner Spider, the boycott ends and the BRC roster expands to 12 active members.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "date": "2016",
+              "title": "the OFC",
+              "body": "With the mighty growth and excitement surrounding the revamped Blue Ribbon Cup, the Commish decides to bring another fantasy to life. In August of 2016, the Osborne Football Club is announced bringing in a new league with a slightly different vibe, but with prestige equaled to that of the famed BRC. This league touts that its six teams will bring their own culture, create their own rivalries, and fuel their own deeply held grudges for years to come.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "date": "2019",
+              "title": "No Call Controversy",
+              "body": "We don't talk about 2019. The double-dribble that wasn't called sent shockwaves through the BRC. Lots of pain and anguish followed. We don't talk about 2019.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "date": "2020",
+              "title": "The Great Scandal",
+              "body": "We don't talk about 2020 either. What we can say is that new rules were implemented, a clarification email was sent, and everyone agreed to move forward. Everyone agreed. Out loud. But not in front of witnesses. It was a Covid thing.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "date": "2022-2023",
+              "title": "Huntsville Duo",
+              "body": "This dynamic duo weren't new faces, they'd struck before in back to back seasons. But this time the duo upped their mischievous game. In 2022, Gangan and her bracket, Happy Hooker, won the BRC title with the lowest points in history, 77. Not to be out done, Bubba brought his bracket, Dribbling Bubba's, to the 2023 BRC tournament and walked away with the crown with a measly 55 points, besting the Happy Hooker for the lowest scoring championship bracket. More importantly, though, the win locked trophy in the Huntsville display case for another year.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "date": "2026",
+              "title": "OFL Era Begins",
+              "body": "The BRC and the OFC had thrived independently long enough. In March of 2026, the Commish announced the merger of two of the greatest fantasy leagues, with the introduction of the OFL. With both leagues thriving, this was inevitable for the long term future of the leagues. Included in the celebration was the introduction of the official OFL website, complete with stats, history, trophies, and a records room. This wasn't just a fantasy league anymore, this shit had just gotten real.",
+              "linkLabel": "Official Website of the OFL",
+              "linkType": "external",
+              "linkUrl": "https://auspider98.github.io/OFL/index.html"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "slug": "the-experience",
       "navLabel": "the Experience",
       "emoji": "📄",
@@ -676,6 +785,105 @@ const SITE_CONFIG = {
               "btnLabel": "the Commish",
               "btnLinkType": "internal",
               "btnLinkUrl": "about"
+            }
+          ]
+        },
+        {
+          "type": "bullets",
+          "label": "Trash Talking",
+          "background": "light",
+          "heading": "Verbal Combat Guidelines",
+          "subtitle": "In the OFL, silence is for losers. If you aren't talking, you’ve already accepted your place at the bottom of the standings. Use these guidelines to ensure your insults are as elite as your roster.",
+          "items": [
+            {
+              "icon": "📄",
+              "title": "1. The Hierarchy Of Discourse",
+              "desc": "Insults are weighted by the standings. A member in the Top 3 of the OFC may speak freely. A member in the \"Shame Tier\" (Bottom 3) must request written permission from the Commissioner before attempting a \"burn.\"",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "icon": "💯",
+              "title": "2. Verified Content Only",
+              "desc": "​All trash talk must be grounded in the Hall of Records. Fabricating a blowout is a violation of league integrity.",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "icon": "🚛",
+              "title": "​3. The \"BRC Rig\" Protocol",
+              "desc": "When discussing the Blue Ribbon Cup, all trash talk must involve transportation metaphors. ​If a member's bracket is busted by a 15-seed, you are encouraged to ask them why their \"rig\" is currently on fire in a ditch. Bragging about a perfect Sweet 16 is known as \"owning the fast lane.\" Those with busted brackets must yield the right of way in all text threads.",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "icon": "🤕",
+              "title": "4. Prohibited Conduct",
+              "desc": "While we encourage aggression, certain behaviors are beneath the dignity of the Osborne Fantasy League:\n​Claiming you \"don't really care about the league anyway\" is a bannable offense. If you didn't care, you wouldn't feel so small. Offering \"good game\" or \"tough luck\" to a loser is considered an insult to the Commissioner's vision. There is no luck in the OFL—only strategy and catastrophic failure.",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "icon": "🛡️",
+              "title": "​5. The Commissioner’s \"Shield\"",
+              "desc": "The Commissioner (Spider) is immune to all forms of trash talk. Any insult directed at the Commissioner will be automatically redirected to our \"Hate Mail\" department and used as a marketing testimonial for why the league is so exclusive.",
+              "linkType": "none",
+              "linkUrl": "home"
+            },
+            {
+              "icon": "⚖️",
+              "title": "​6. Trash Talk Dispute Resolution",
+              "desc": "If you feel you have been the victim of a \"weak\" burn that didn't meet OFL standards, you may file a Quality Control Report.",
+              "linkType": "none",
+              "linkUrl": "home"
+            }
+          ]
+        },
+        {
+          "type": "resources",
+          "label": "House Rules",
+          "background": "alt",
+          "heading": "Compliance & Dispute Resolution",
+          "subtitle": "We pride ourselves on an industry-leading 92% Commissioner Approval Rating. If you find yourself in the remaining 8%, please understand that this is a statistical anomaly caused by your own inability to comprehend the Commissioner's vision.",
+          "items": [
+            {
+              "emoji": "📋",
+              "tag": "Article 16-23A",
+              "imagePath": "",
+              "title": "​Rule Absolute",
+              "excerpt": "The Commissioner does not make \"mistakes.\" He makes \"unannounced adjustments to the difficulty curve.\"",
+              "date": "",
+              "readTime": "",
+              "featured": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "ctaLabel": ""
+            },
+            {
+              "emoji": "👍",
+              "tag": "Article 6-14D",
+              "imagePath": "",
+              "title": "The Final Word",
+              "excerpt": "Once a ruling is made, it is etched into the digital bedrock of the OFL. There is no appeal process, only an \"Acceptance Process.\"",
+              "date": "",
+              "readTime": "",
+              "featured": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "ctaLabel": ""
+            },
+            {
+              "emoji": "🗑️",
+              "tag": "Article 41A",
+              "imagePath": "",
+              "title": "Automated Processing",
+              "excerpt": "Your complaint is instantly analyzed by our AI and categorized into one of three buckets: Whining, Delusional, or Technically Correct but Still Ignored.",
+              "date": "",
+              "readTime": "",
+              "featured": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "ctaLabel": ""
             }
           ]
         }
@@ -1452,12 +1660,12 @@ const SITE_CONFIG = {
       "type": "richtext",
       "label": "",
       "background": "dark",
-      "richContent": "<p><span style=\"font-size: 17px;\">The Commissioner of the Osborne Fantasy League holds an office of supreme authority within the OFL ecosystem. This office was created in 2005 to govern the new league, Battle of the Blue Ribbon (renamed the Blue Ribbon Cup following it's successful first year), and has been occupied by exactly one person: Spider. There have been zero successful attempts to remove, replace, or \"democratize\" the commissionership. One motion to the contrary was tabled in 2015. It is still tabled. It will remain tabled.</span></p><p><span style=\"font-size: 17px;\">Commissioner Spider approaches his duties with the seriousness of a Supreme Court Justice and the confidence of someone who knows he cannot be fired.</span></p>",
+      "richContent": "<p><span style=\"font-size: 17px;\">The Commissioner of the Osborne Fantasy League holds an office of supreme authority within the OFL ecosystem. This office was created in 2005 to govern the new league, Battle of the Blue Ribbon (renamed the Blue Ribbon Cup following it's successful first year), and has been occupied by exactly one person during that time. There have been zero successful attempts to remove, replace, or \"democratize\" the commissionership. One motion to the contrary was tabled in 2015. It is still tabled. It will remain tabled.</span></p><p><span style=\"font-size: 17px;\">The Commissioner approaches his duties with the seriousness of a Supreme Court Justice and the confidence of someone who knows he cannot be fired.</span></p>",
       "imagePath": "",
       "imagePos": "none",
       "imageSize": "md",
       "imageCaption": "",
-      "fullWidth": false
+      "fullWidth": true
     }
   ],
   "homeSections": [
@@ -1507,15 +1715,18 @@ const SITE_CONFIG = {
       "background": "dark",
       "heading": "You definitely reached this page in error",
       "body": "Time to skedaddle. You are not worthy to continue this exploration. Your very existence here is mucking up our reputation. For your safety, and our status, we ask that you click the button below and remove yourself from these hallowed halls, before you get yourself shamed back into the hole you crawled out of. Go,",
-      "ctaLabel": "Time to Go",
-      "ctaLinkType": "none",
-      "ctaLinkUrl": ""
+      "cta_primary_linkLabel": "",
+      "cta_secondary_linkLabel": "Time to Go",
+      "cta_primary_linkType": "none",
+      "cta_secondary_linkType": "external",
+      "cta_primary_linkUrl": "google.com",
+      "cta_secondary_linkUrl": "google.com"
     }
   ],
   "aboutBio3": "She is a member of the Alabama Bar Association, the American Academy of Adoption Attorneys (AAAA), and has been recognized as a Super Lawyer in Alabama Family Law for eight consecutive years. She is admitted to practice in all Alabama courts and regularly handles cases in Jefferson, Shelby, St. Clair, and Cullman counties.",
   "aboutBio4": "When she's not advocating for families in court, Amy volunteers with the Alabama Foster Care Association and speaks at community workshops on adoption awareness.",
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
-  "_savedAt": 1776142364508,
+  "_savedAt": 1776200541880,
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",
   "heroPrimaryDest": "contact",
