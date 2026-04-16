@@ -632,7 +632,7 @@ const SITE_CONFIG = {
           "heading": "The Early Vision",
           "body": "In the fall of 2005, a visionary known only as Spider sat down at a computer, created a Yahoo fantasy March Madness Pick'um league, and issued invitations exclusively to people he was willing to see at Christmas. This was not a business decision. It was a lifestyle choice. And it has paid off every single year since.\n\nThe early years were formative. Rules were debated. Ideas were vetoed. A controversial Head Above Water top-seed system sparked what historians now refer to as \"The Incident of 2013,\" which is not discussed in mixed company.\n\nThe BRC was later joined by the OFC and through it all, both leagues grew. Not in size — we are very careful about that — but in prestige, in tradition, and in the collective understanding that these leagues are something special.",
           "imagePath": "images/brc-sketches.png",
-          "imagePosition": "left",
+          "imagePosition": "right",
           "cta_linkType": "none",
           "cta_linkUrl": "home",
           "cta_linkLabel": ""
@@ -727,26 +727,16 @@ const SITE_CONFIG = {
           ]
         },
         {
-          "type": "resources",
+          "type": "jurisdiction",
           "label": "Happening Now",
-          "background": "alt",
+          "background": "light",
+          "icon": "✍",
+          "title": "the Commissioners Desk",
           "heading": "The State of the OFL",
-          "subtitle": "",
-          "items": [
-            {
-              "emoji": "🏟️",
-              "tag": "OFL Era",
-              "imagePath": "",
-              "title": "2026-Current",
-              "excerpt": "Since the inception of the OFL, the league completed its first BRC tournament with incredible precision. With the help of the interactive website, the BRC was taken to amazing new heights keeping its competitors well informed through their journey. The leagues membership has also expanded to 15 ruthless members, whose pedigrees include, scholastic athletics, mowing mechanics, and k9 enhancements. Plans fornan OFC expansion is also rumored to be in negotiations. More exciting things to come, and all under the leadership of our amazing Commissioner!",
-              "date": "April 2026",
-              "readTime": "",
-              "featured": "",
-              "linkType": "none",
-              "linkUrl": "home",
-              "ctaLabel": ""
-            }
-          ]
+          "body": "Since the inception of the OFL, the league completed its first BRC tournament with incredible precision. With the help of the interactive website, the BRC was taken to amazing new heights keeping its competitors well informed throughout the tournament. Along with the introduction of the OFL, the leagues membership expanded from 13 to 15 members, whose with the newest members boasting pedigrees in scholastic athletics, and mowing mechanics.. Plans for an OFC expansion are also in negotiations with more exciting things to come. With the merger of our two leagues, the OFL has distanced itself even further from all other fantasy leagues and continues to be the dominant player in the world of fantasy sports. We are still climbing that mountain, but from we sit now, the future is looking bright!",
+          "linkLabel": "",
+          "linkType": "none",
+          "linkUrl": "home"
         }
       ]
     },
@@ -771,7 +761,7 @@ const SITE_CONFIG = {
               "body": "Think you know how to negotiate a 64 lane highway with four bald 12 seeds strapped to your rig. You don't and you'll find out soon enough, no else does either.",
               "linkLabel": "Red Ribbons are for Sissies",
               "linkType": "external",
-              "linkUrl": "https://auspider98.github.io/OFL/league.html?league=brc"
+              "linkUrl": "home"
             },
             {
               "num": "02",
@@ -779,7 +769,7 @@ const SITE_CONFIG = {
               "body": "An exclusive club for those who think they can ride a roster full of overpaid talent to the height of monstrous glory.",
               "linkLabel": "Fling Mud, Family Style",
               "linkType": "external",
-              "linkUrl": "https://auspider98.github.io/OFL/league.html?league=ofc"
+              "linkUrl": "home"
             }
           ]
         },
@@ -810,7 +800,7 @@ const SITE_CONFIG = {
             },
             {
               "q": "Can you be in both leagues?",
-              "a": "Some members participate in both the OFC and the BRC. This is a significant commitment of time, emotional energy, and willingness to have two separate team names that both need to be funny but not the same kind of funny.",
+              "a": "Some members participate in both the OFC and the BRC. This is a significant commitment of time, emotional energy, and willingness to have two separate team names that both identify who you are and WHO YOU THINK YOU ARE.",
               "linkLabel": "",
               "linkType": "none",
               "linkUrl": "home"
@@ -824,7 +814,7 @@ const SITE_CONFIG = {
             },
             {
               "q": "What's the prize for winning?",
-              "a": "The trophy. The glory. The absolute, unquestioned right to mention it at every family gathering for the next 12 months. Some years there's a cash prize. The trophy means more.",
+              "a": "The trophy. The glory. The absolute, unquestioned right to mention it at every family gathering for the next 12 months. Some years there's a cash prize. Yeah, who are we kidding, there's no cash, just a freaking big bad@#$ trophy!",
               "linkLabel": "",
               "linkType": "none",
               "linkUrl": "home"
@@ -1782,11 +1772,48 @@ const SITE_CONFIG = {
   ],
   "homeSections": [
     {
+      "type": "bullets",
+      "label": "Membership",
+      "background": "light",
+      "heading": "Why Choose Us...You Don't.",
+      "subtitle": "There are exactly four known pathways to OFL membership. Three are effectively closed. One is theoretically open.",
+      "items": [
+        {
+          "icon": "🧬",
+          "title": "Blood Relation to an Osborne",
+          "desc": "The most reliable pathway. If you were born into the Osborne family, you have a reasonable claim to membership consideration. 'Reasonable' is not 'guaranteed.' The Commissioner still has thoughts.",
+          "linkType": "none",
+          "linkUrl": "home"
+        },
+        {
+          "icon": "💍",
+          "title": "Romantic Partnership with a Member",
+          "desc": "Being in a serious, committed relationship with an existing member creates eligibility — not membership. The relationship must clear the 'is this serious' threshold, which is a judgment call made by the room at the draft.",
+          "linkType": "none",
+          "linkUrl": "home"
+        },
+        {
+          "icon": "🤝",
+          "title": "Unanimous Invitation",
+          "desc": "In theory, a unanimous vote by all current members can admit a new member. In practice, this has never happened. The requirement of unanimous consent was specifically designed to make this outcome improbable.",
+          "linkType": "none",
+          "linkUrl": "home"
+        },
+        {
+          "icon": "🛸",
+          "title": "Act of God / Commissioner Discretion",
+          "desc": "The Commissioner reserves the right to extend an invitation under extraordinary circumstances. What those circumstances might be is known only to the Commish. No outsider has ever triggered this provision.",
+          "linkType": "none",
+          "linkUrl": "home"
+        }
+      ]
+    },
+    {
       "type": "faq",
-      "label": "Why Choose Us...",
+      "label": "Ask Yourself",
       "background": "alt",
-      "heading": "You Don't...You are Chosen!",
-      "subtitle": "Being a part of this organization isn't even a birth right. Here, blood only means something when its spilled fighting for championship glory.",
+      "heading": "Membership Questionaire",
+      "subtitle": "",
       "items": [
         {
           "q": "Are you a member of the Osborne family, by blood or relationship??",
@@ -1841,7 +1868,7 @@ const SITE_CONFIG = {
   "aboutBio3": "She is a member of the Alabama Bar Association, the American Academy of Adoption Attorneys (AAAA), and has been recognized as a Super Lawyer in Alabama Family Law for eight consecutive years. She is admitted to practice in all Alabama courts and regularly handles cases in Jefferson, Shelby, St. Clair, and Cullman counties.",
   "aboutBio4": "When she's not advocating for families in court, Amy volunteers with the Alabama Foster Care Association and speaks at community workshops on adoption awareness.",
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
-  "_savedAt": 1776315021495,
+  "_savedAt": 1776373462640,
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",
   "heroPrimaryDest": "contact",

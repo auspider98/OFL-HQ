@@ -3907,7 +3907,6 @@ function buildCpSectionTypeFields(sec, pi, si) {
         </div>`;
       }).join('');
       return `
-        <div class="field-group"><label>Label (eyebrow)</label><input type="text" ${p} data-field="label" value="${v('label')}"/></div>
         <div class="field-group"><label>Heading</label><input type="text" ${p} data-field="heading" value="${v('heading')}"/></div>
         <div class="field-group"><label>Body / Subtext</label><textarea ${p} data-field="body" rows="2">${v('body')}</textarea></div>
         <div class="form-row-2" style="margin-bottom:16px;">
@@ -4468,11 +4467,11 @@ function buildCpSectionTypeFields(sec, pi, si) {
       const selExt = lt === 'external' ? ' selected' : '';
       const selFile = lt === 'file' ? ' selected' : '';
       return `
+        <div class="field-group"><label>Section Heading (optional)</label><input type="text" ${p} data-field="heading" value="${v('heading')}"/></div>
         <div class="form-row-2">
           <div class="field-group"><label>Icon (emoji)</label><input type="text" ${p} data-field="icon" value="${v('icon','⚖️')}" style="max-width:80px;"/></div>
           <div class="field-group"><label>Notice Title</label><input type="text" ${p} data-field="title" value="${v('title')}"/></div>
         </div>
-        <div class="field-group"><label>Section Heading (optional)</label><input type="text" ${p} data-field="heading" value="${v('heading')}"/></div>
         <div class="field-group"><label>Notice Body</label><textarea ${p} data-field="body" rows="5">${v('body')}</textarea></div>
         <div class="form-row-2" style="margin-bottom:4px;">
           <div class="field-group" style="margin:0;"><label>Link Label (optional)</label>
