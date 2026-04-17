@@ -22,7 +22,7 @@
   --gold:       #c9a84c;
   --gold-light: #e8c97a;
   --gold-pale:  #faf6ec;
-  --chrome:     #060f1d;
+  --chrome:     #000000;
   --cream:      #f9f6f0;
   --warm-white: #fffdf9;
   --text-body:  #4a4740;
@@ -67,7 +67,7 @@ img { display: block; max-width: 100%; }
    ============================================= */
 #preloader {
   position: fixed; inset: 0;
-  background: var(--navy);
+  background: var(--chrome);
   z-index: 9999;
   display: flex; align-items: center; justify-content: center;
   transition: opacity 0.7s var(--ease-out), visibility 0.7s;
@@ -1168,6 +1168,7 @@ h2.section-title {
   gap: 0 80px;
   margin-top: 56px;
 }
+.faq-grid.faq-grid-full { grid-template-columns: 1fr; gap: 0; max-width: 780px; }
 .faq-item {
   border-bottom: 1px solid #e8e3d8;
   padding: 0;
@@ -2682,6 +2683,21 @@ if (!Array.isArray(CFG.customPages)) CFG.customPages = [];
   } catch(e) {}
 })();
 
+// Apply preloader color and text synchronously to prevent flash of wrong content
+(function() {
+  try {
+    const sub = document.getElementById('preloader-sub');
+    if (sub) sub.textContent = CFG.preloaderTagline || '';
+    // Apply critical color vars immediately so preloader uses correct palette
+    const c = CFG.colors || {};
+    const r = document.documentElement;
+    if (c.navy)      r.style.setProperty('--navy',       c.navy);
+    if (c.chrome)    r.style.setProperty('--chrome',     c.chrome);
+    if (c.gold)      r.style.setProperty('--gold',       c.gold);
+    if (c.warmWhite) r.style.setProperty('--warm-white', c.warmWhite);
+  } catch(e) {}
+})();
+
 /* =============================================
    FONT LOADER
    ============================================= */
@@ -3878,7 +3894,7 @@ function renderCustomSection(sec, idx, isFirst, allSections) {
         ${labelHTML}
         ${sec.heading ? `<${headTag} class="${headClass} reveal">${sec.heading}</${headTag}>` : ''}
         ${sec.subtitle ? `<p class="section-subtitle reveal reveal-delay-1" style="${subtitleStyle}">${sec.subtitle}</p>` : ''}
-        <div class="faq-grid" style="margin-top:40px;">${items}</div>
+        <div class="faq-grid${sec.fullWidth ? ' faq-grid-full' : ''}" style="margin-top:40px;">${items}</div>
       </div>`;
       break;
     }
