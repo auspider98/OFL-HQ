@@ -2294,11 +2294,34 @@ const SITE_CONFIG = {
       ]
     },
     {
+      "type": "stats",
+      "label": "Elite Offerings",
+      "background": "alt",
+      "items": [
+        {
+          "num": "\"BRC is Elite x10\"",
+          "label": ""
+        },
+        {
+          "num": "",
+          "label": "- USA Today Fantasy Sports"
+        },
+        {
+          "num": "\"Whoa...OFC is Gold\"",
+          "label": ""
+        },
+        {
+          "num": "",
+          "label": "- NFL Players Association"
+        }
+      ]
+    },
+    {
       "type": "cta",
       "label": "",
       "background": "dark",
       "heading": "Confused Where You Are?",
-      "body": "Time to skedaddle. Please do not explore this site any further. Your very existence here is mucking up our reputation. For your safety, and our status, we ask that you click the button below and remove yourself from these hallowed halls, before you get yourself shamed back into the hole you crawled out of. Go,",
+      "body": "Please do not explore this site any further. Your very existence here is mucking up our reputation. For your safety, and our status, we ask that you click the button below and remove yourself from these hallowed halls, before you get yourself shamed back into the hole you crawled out of. Skedaddle.",
       "cta_primary_linkLabel": "",
       "cta_secondary_linkLabel": "Time to Go",
       "cta_primary_linkType": "none",
@@ -2310,7 +2333,7 @@ const SITE_CONFIG = {
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",
-  "_savedAt": 1776718638976,
+  "_savedAt": 1776719719513,
   "aboutBio3": "She is a member of the Alabama Bar Association, the American Academy of Adoption Attorneys (AAAA), and has been recognized as a Super Lawyer in Alabama Family Law for eight consecutive years. She is admitted to practice in all Alabama courts and regularly handles cases in Jefferson, Shelby, St. Clair, and Cullman counties.",
   "aboutBio4": "When she's not advocating for families in court, Amy volunteers with the Alabama Foster Care Association and speaks at community workshops on adoption awareness.",
   "heroPrimaryDest": "contact",
