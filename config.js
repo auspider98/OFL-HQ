@@ -1029,7 +1029,7 @@ const SITE_CONFIG = {
           "imagePos": "none",
           "imageSize": "md",
           "imageCaption": "",
-          "fullWidth": false
+          "fullWidth": true
         },
         {
           "type": "logo-strip",
@@ -1277,10 +1277,10 @@ const SITE_CONFIG = {
       "sections": [
         {
           "type": "services",
-          "label": "Realistic Fantasy",
+          "label": "Real Fantasy",
           "background": "dark",
           "anchorId": "",
-          "heading": "the Experience",
+          "heading": "the OFL Experience",
           "subtitle": "Dominance is a full-time job. We provide the essential infrastructure required to maintain your status among the elite or document your spectacular fall from grace.",
           "items": [
             {
@@ -1431,55 +1431,6 @@ const SITE_CONFIG = {
               "linkType": "none",
               "linkUrl": "home",
               "anchorId": ""
-            }
-          ]
-        },
-        {
-          "type": "resources",
-          "label": "House Rules",
-          "background": "alt",
-          "anchorId": "",
-          "heading": "Compliance & Dispute Resolution",
-          "subtitle": "We pride ourselves on an industry-leading 92% Commissioner Approval Rating. If you find yourself in the remaining 8%, please understand that this is a statistical anomaly caused by your own inability to comprehend the Commissioner's vision.",
-          "items": [
-            {
-              "emoji": "📋",
-              "tag": "Article 16-23A",
-              "imagePath": "",
-              "title": "​Rule Absolute",
-              "excerpt": "The Commissioner does not make \"mistakes.\" He makes \"unannounced adjustments to the difficulty curve.\"",
-              "date": "",
-              "readTime": "",
-              "featured": "",
-              "linkType": "none",
-              "linkUrl": "home",
-              "ctaLabel": ""
-            },
-            {
-              "emoji": "👍",
-              "tag": "Article 6-14D",
-              "imagePath": "",
-              "title": "The Final Word",
-              "excerpt": "Once a ruling is made, it is etched into the digital bedrock of the OFL. There is no appeal process, only an \"Acceptance Process.\"",
-              "date": "",
-              "readTime": "",
-              "featured": "",
-              "linkType": "none",
-              "linkUrl": "home",
-              "ctaLabel": ""
-            },
-            {
-              "emoji": "🗑️",
-              "tag": "Article 41A",
-              "imagePath": "",
-              "title": "Automated Processing",
-              "excerpt": "Your complaint is instantly analyzed by our AI and categorized into one of three buckets: Whining, Delusional, or Technically Correct but Still Ignored.",
-              "date": "",
-              "readTime": "",
-              "featured": "",
-              "linkType": "none",
-              "linkUrl": "home",
-              "ctaLabel": ""
             }
           ]
         }
@@ -2400,6 +2351,55 @@ const SITE_CONFIG = {
       ]
     },
     {
+      "type": "resources",
+      "label": "Commissioner Rules",
+      "background": "light",
+      "anchorId": "",
+      "heading": "Compliance & Dispute Resolution",
+      "subtitle": "We pride ourselves on an industry-leading 92% Commissioner Approval Rating. If you find yourself in the remaining 8%, please understand that this is a statistical anomaly caused by your own inability to comprehend the Commissioner's vision.",
+      "items": [
+        {
+          "tag": "Article 16-23A",
+          "title": "​Rule Absolute",
+          "excerpt": "The Commissioner does not make \"mistakes.\" He makes \"unannounced adjustments to the difficulty curve.\"",
+          "date": "",
+          "readTime": "",
+          "featured": "",
+          "emoji": "📋",
+          "imagePath": "",
+          "linkType": "none",
+          "linkUrl": "home",
+          "ctaLabel": ""
+        },
+        {
+          "tag": "Article 6-14D",
+          "title": "The Final Word",
+          "excerpt": "Once a ruling is made by the Commissioner, it is etched into the digital bedrock of the OFL. There is no appeal process, only an \"Acceptance Process.\"",
+          "date": "",
+          "readTime": "",
+          "featured": "",
+          "emoji": "👍",
+          "imagePath": "",
+          "linkType": "none",
+          "linkUrl": "home",
+          "ctaLabel": ""
+        },
+        {
+          "tag": "Article 41A",
+          "title": "Complaint Processing",
+          "excerpt": "Your complaint is instantly analyzed by our AI and categorized into one of three buckets: Whining, Delusional, or Technically Correct but Whateva. The Commissioner doesn't have time for the your ridiculous complaining, so no time is wasted.",
+          "date": "",
+          "readTime": "",
+          "featured": "",
+          "emoji": "🗑️",
+          "imagePath": "",
+          "linkType": "none",
+          "linkUrl": "home",
+          "ctaLabel": ""
+        }
+      ]
+    },
+    {
       "type": "button",
       "label": "",
       "background": "light",
@@ -2621,7 +2621,7 @@ const SITE_CONFIG = {
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",
-  "_savedAt": 1776805754463,
+  "_savedAt": 1776807457142,
   "aboutBio3": "She is a member of the Alabama Bar Association, the American Academy of Adoption Attorneys (AAAA), and has been recognized as a Super Lawyer in Alabama Family Law for eight consecutive years. She is admitted to practice in all Alabama courts and regularly handles cases in Jefferson, Shelby, St. Clair, and Cullman counties.",
   "aboutBio4": "When she's not advocating for families in court, Amy volunteers with the Alabama Foster Care Association and speaks at community workshops on adoption awareness.",
   "heroPrimaryDest": "contact",
