@@ -823,6 +823,12 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
       <div class="panel open">
         <div class="panel-header" onclick="togglePanel(this)">
           <div class="panel-title"><span class="panel-title-icon">📊</span> Stats Bar</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-left:auto;margin-right:12px;" onclick="event.stopPropagation()">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">
+              <label class="switch" style="margin:0;"><input type="checkbox" id="f_animateStats"/><span class="switch-slider"></span></label>
+              Animate
+            </label>
+          </div>
           <span class="panel-chevron">▼</span>
         </div>
         <div class="panel-body">
@@ -1575,6 +1581,8 @@ function loadForm() {
   setVal('f_firmName', DATA.firmName);
   setVal('f_tagline', DATA.tagline);
   setVal('f_footerBio', DATA.footerBio||'');
+  const animEl = document.getElementById('f_animateStats');
+  if (animEl) animEl.checked = DATA.animateStats === true;
   setVal('f_preloaderTagline', DATA.preloaderTagline||'');
   // Page Headers
   const ph = DATA.pageHeaders || {};
@@ -1882,10 +1890,13 @@ function onMqModeChange(pi, si, sel) {
 function onVideoLayoutChange(pi, si, sel) {
   const secCard = sel.closest('.cp-section-card');
   const isTwoCol = sel.value === 'two-col';
-  const posRow  = secCard.querySelector('[data-video-pos-row]');
-  const ctaArea = secCard.querySelector('[data-video-twocol-cta]');
-  if (posRow)  posRow.style.display  = isTwoCol ? '' : 'none';
-  if (ctaArea) ctaArea.style.display = isTwoCol ? '' : 'none';
+  const isContained = sel.value === 'contained';
+  const posRow   = secCard.querySelector('[data-video-pos-row]');
+  const ctaArea  = secCard.querySelector('[data-video-twocol-cta]');
+  const widthRow = secCard.querySelector('[data-video-width-row]');
+  if (posRow)   posRow.style.display   = isTwoCol   ? '' : 'none';
+  if (ctaArea)  ctaArea.style.display  = isTwoCol   ? '' : 'none';
+  if (widthRow) widthRow.style.display = isContained ? '' : 'none';
   autosave();
 }
 
@@ -1913,6 +1924,8 @@ function collectData() {
   DATA.firmName = getVal('f_firmName');
   DATA.tagline = getVal('f_tagline');
   DATA.footerBio = getVal('f_footerBio');
+  const _animEl = document.getElementById('f_animateStats');
+  DATA.animateStats = _animEl ? _animEl.checked : false;
   DATA.preloaderTagline = getVal('f_preloaderTagline');
   // Page Headers
   const phPages = ['about'];
@@ -1989,7 +2002,7 @@ function collectData() {
   DATA.heroBg.videoHoldEnabled = document.getElementById('f_heroVideoHoldEnabled')?.checked || false;
   DATA.heroBg.videoHold = parseInt(document.getElementById('f_heroVideoHold')?.value) || 4;
   collectHeroVideoClips();
-  DATA.stats = collectArray('stats-list', ['num','label']);
+  DATA.stats = collectArray('stats-list', ['num','label','animate']);
   DATA.hours = collectArray('hours-list', ['days','hours']);
   DATA.socialLinks = collectArray('social-list', ['platform','url']);
   DATA.heroBg.slides = collectArray('hero-slides-list', ['imagePath','position']);
@@ -2022,7 +2035,8 @@ function collectArray(listId, fields) {
     const obj = {};
     fields.forEach(f => {
       const el = item.querySelector(`[data-field="${f}"]`);
-      obj[f] = el ? el.value.trim() : '';
+      if (!el) { obj[f] = ''; return; }
+      obj[f] = el.type === 'checkbox' ? el.checked : el.value.trim();
     });
     return obj;
   });
@@ -2366,7 +2380,28 @@ function initArrayDragDrop(listId) {
 
 function buildStatsList() {
   const list = document.getElementById('stats-list');
-  list.innerHTML = (DATA.stats||[]).map((s,i) => arrayItemHtml(i,[{key:'num',label:'Number/Value'},{key:'label',label:'Label'}],s,'stats-list')).join('');
+  list.innerHTML = (DATA.stats||[]).map((s,i) => `
+    <div class="array-item" draggable="false" data-list-id="stats-list" data-idx="${i}">
+      <div class="array-item-header">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="array-item-drag-handle" title="Drag to reorder">⠿</span>
+          <span class="array-item-label">#${i+1}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:4px;">
+          <button class="cp-move-btn" onclick="moveArrayItem('stats-list',${i},-1)" title="Move up">↑</button>
+          <button class="cp-move-btn" onclick="moveArrayItem('stats-list',${i},1)" title="Move down">↓</button>
+          <button class="btn-remove" onclick="removeArrayItem(this)" title="Remove">×</button>
+        </div>
+      </div>
+      <div class="form-row-2" style="margin-bottom:8px;">
+        <div class="field-group" style="margin:0;"><label>Number/Value</label><input type="text" data-field="num" value="${escHtml(s.num||'')}"/></div>
+        <div class="field-group" style="margin:0;"><label>Label</label><input type="text" data-field="label" value="${escHtml(s.label||'')}"/></div>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:var(--muted);">
+        <label class="switch" style="margin:0;"><input type="checkbox" data-field="animate" ${s.animate?'checked':''}/><span class="switch-slider"></span></label>
+        Animate this stat
+      </label>
+    </div>`).join('');
   initArrayDragDrop('stats-list');
 }
 function addStat() { collectData(); DATA.stats.push({num:'',label:''}); buildStatsList(); autosave(); }
@@ -3234,6 +3269,7 @@ const CP_SECTION_TYPES = [
   { value:'logo-strip',   label:'🏷️ Logo / Partner Strip' },
   { value:'marquee',      label:'📡 Marquee / Ticker' },
   { value:'video',        label:'🎬 Video Embed' },
+  { value:'gallery',      label:'🖼️ Image Gallery' },
   { value:'link',         label:'🔗 Link' },
   { value:'button',       label:'🔘 Button' },
   { value:'richtext',     label:'✍️ Rich Text Block' },
@@ -3311,6 +3347,7 @@ function addHomeSection() {
   if (type === 'logo-strip') { defaults.items = []; defaults.logoSize = 'medium'; }
   if (type === 'marquee') { defaults.items = []; defaults.mqMode = 'text'; defaults.mqSpeed = 'medium'; defaults.mqDir = 'left'; defaults.mqPause = true; defaults.mqText = ''; defaults.mqSeparator = '·'; }
   if (type === 'video') { defaults.videoLayout = 'contained'; defaults.videoPosition = 'left'; defaults.embedUrl = ''; defaults.mp4Url = ''; }
+  if (type === 'gallery') { defaults.items = []; defaults.galleryCols = 3; }
   if (!Array.isArray(DATA.homeSections)) DATA.homeSections = [];
   DATA.homeSections.push(defaults);
   buildHomeSectionsList();
@@ -3375,6 +3412,7 @@ function addAboutSection() {
   if (type === 'logo-strip') { defaults.items = []; defaults.logoSize = 'medium'; }
   if (type === 'marquee') { defaults.items = []; defaults.mqMode = 'text'; defaults.mqSpeed = 'medium'; defaults.mqDir = 'left'; defaults.mqPause = true; defaults.mqText = ''; defaults.mqSeparator = '·'; }
   if (type === 'video') { defaults.videoLayout = 'contained'; defaults.videoPosition = 'left'; defaults.embedUrl = ''; defaults.mp4Url = ''; }
+  if (type === 'gallery') { defaults.items = []; defaults.galleryCols = 3; }
   if (!Array.isArray(DATA.aboutSections)) DATA.aboutSections = [];
   DATA.aboutSections.push(defaults);
   buildAboutSectionsList();
@@ -3449,7 +3487,7 @@ function collectHomeSingleSection_forPi(secCard, pi, si, existing) {
 
   // Array sub-items
   const arrTypes = {
-    stats: ['num','label'],
+    stats: ['num','label','animate'],
     bullets: ['icon','title','desc','linkType','linkUrl','anchorId'],
     services: ['icon','title','desc','detail','btnLabel','btnLinkType','btnLinkUrl','btnAnchorId'],
     steps: ['title','body','linkLabel','linkType','linkUrl','anchorId'],
@@ -3484,6 +3522,11 @@ function collectHomeSingleSection_forPi(secCard, pi, si, existing) {
       });
       return obj;
     });
+  }
+
+  // Stats animate
+  if (type === 'stats') {
+    sec.animateStats = secCard.querySelector('[data-field="animateStats"]')?.checked || false;
   }
 
   // FAQ fullWidth
@@ -3605,13 +3648,25 @@ function collectHomeSingleSection_forPi(secCard, pi, si, existing) {
 
   // Video Embed
   if (type === 'video') {
-    sec.videoLayout   = get('videoLayout')   || 'contained';
-    sec.videoPosition = get('videoPosition') || 'left';
-    sec.embedUrl      = get('embedUrl');
-    sec.mp4Url        = get('mp4Url');
-    sec.cta_linkType  = get('cta_linkType')  || 'none';
-    sec.cta_linkLabel = get('cta_linkLabel') || '';
-    sec.cta_anchorId  = get('cta_anchorId')  || '';
+    sec.videoLayout    = get('videoLayout')    || 'contained';
+    sec.videoPosition  = get('videoPosition')  || 'left';
+    sec.containedWidth = get('containedWidth') || 'medium';
+    sec.embedUrl       = get('embedUrl');
+    sec.mp4Url         = get('mp4Url');
+    sec.cta_linkType   = get('cta_linkType')   || 'none';
+    sec.cta_linkLabel  = get('cta_linkLabel')  || '';
+    sec.cta_anchorId   = get('cta_anchorId')   || '';
+  }
+
+  // Gallery
+  if (type === 'gallery') {
+    sec.galleryCols = parseInt(get('galleryCols')) || 3;
+    sec.items = Array.from(secCard.querySelectorAll('.cp-sub-item')).map(item => ({
+      imagePath: item.querySelector('[data-field="imagePath"]')?.value.trim() || '',
+      alt:       item.querySelector('[data-field="alt"]')?.value.trim()       || '',
+      title:     item.querySelector('[data-field="title"]')?.value.trim()     || '',
+      caption:   item.querySelector('[data-field="caption"]')?.value.trim()   || '',
+    }));
   }
 
   // Accordion
@@ -4001,13 +4056,23 @@ function buildCpSectionTypeFields(sec, pi, si) {
       const rows = items.map((it,ii) => `
         <div class="cp-sub-item" data-sub-idx="${ii}">
           ${cpSubItemHeader(`Stat #${ii+1}`, pi, si, 'items', ii)}
-          <div class="form-row-2">
+          <div class="form-row-2" style="margin-bottom:8px;">
             <div class="field-group" style="margin:0;"><label>Number/Value</label><input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="num" value="${escHtml(it.num||'')}"/></div>
             <div class="field-group" style="margin:0;"><label>Label</label><input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="label" value="${escHtml(it.label||'')}"/></div>
           </div>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:var(--muted);">
+            <label class="switch" style="margin:0;"><input type="checkbox" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="animate" ${it.animate?'checked':''}/><span class="switch-slider"></span></label>
+            Animate this stat
+          </label>
         </div>`).join('');
       return `<div class="cp-sub-items" data-cp-drag="${pi}-${si}-items">${rows}</div>
-        <button class="btn-add" onclick="addCpSubItem(${typeof pi==='string'?("'"+pi+"'"):pi},${si},'items',{num:'',label:''})">+ Add Stat</button>`;
+        <button class="btn-add" onclick="addCpSubItem(${typeof pi==='string'?("'"+pi+"'"):pi},${si},'items',{num:'',label:'',animate:false})">+ Add Stat</button>
+        <div style="margin-top:12px;">
+          <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+            <label class="switch" style="margin:0;"><input type="checkbox" ${p} data-field="animateStats" ${sec.animateStats?'checked':''}/><span class="switch-slider"></span></label>
+            Animate Numbers &amp; Text
+          </label>
+        </div>`;
     }
 
     case 'feature-cards': {
@@ -4777,6 +4842,14 @@ function buildCpSectionTypeFields(sec, pi, si) {
               <option value="left"  ${vidPos==='left' ?'selected':''}>Video Left</option>
               <option value="right" ${vidPos==='right'?'selected':''}>Video Right</option>
             </select></div>
+          <div class="field-group" style="margin:0;" data-video-width-row ${!isTwoCol && layout==='contained'?'':'style="display:none;"'}>
+            <label>Video Width</label>
+            <select ${p} data-field="containedWidth">
+              <option value="narrow" ${(sec.containedWidth||'medium')==='narrow'?'selected':''}>Narrow (560px)</option>
+              <option value="medium" ${(sec.containedWidth||'medium')==='medium'?'selected':''}>Medium (860px)</option>
+              <option value="wide"   ${(sec.containedWidth||'medium')==='wide'  ?'selected':''}>Wide (1060px)</option>
+              <option value="full"   ${(sec.containedWidth||'medium')==='full'  ?'selected':''}>Full Container</option>
+            </select></div>
         </div>
         <div class="divider" style="margin:4px 0 12px;"></div>
         <div class="field-group">
@@ -4794,6 +4867,37 @@ function buildCpSectionTypeFields(sec, pi, si) {
           <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">CTA Button (optional)</div>
           ${cpSmartLinkFields(sec, pi, si, 'Learn More', 'cta')}
         </div>`;
+    }
+
+    case 'gallery': {
+      const cols = sec.galleryCols || 3;
+      const items = sec.items || [];
+      const rows = items.map((it, ii) => `<div class="cp-sub-item" data-sub-idx="${ii}">
+        ${cpSubItemHeader('Image #' + (ii+1), pi, si, 'items', ii)}
+        <div class="field-group" style="margin-bottom:6px;"><label>Image Path</label>
+          <input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="imagePath" value="${escHtml(it.imagePath||'')}" placeholder="images/photo.jpg"/></div>
+        <div class="field-group" style="margin-bottom:6px;"><label>Alt Text</label>
+          <input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="alt" value="${escHtml(it.alt||'')}" placeholder="Describe the image…"/></div>
+        <div class="form-row-2">
+          <div class="field-group" style="margin:0;"><label>Title (optional)</label>
+            <input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="title" value="${escHtml(it.title||'')}"/></div>
+          <div class="field-group" style="margin:0;"><label>Caption (optional)</label>
+            <input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="caption" value="${escHtml(it.caption||'')}"/></div>
+        </div>
+      </div>`).join('');
+      return `
+        <div class="field-group"><label>Heading (optional)</label><input type="text" ${p} data-field="heading" value="${v('heading')}"/></div>
+        <div class="field-group"><label>Subtitle (optional)</label><input type="text" ${p} data-field="subtitle" value="${v('subtitle')}"/></div>
+        <div class="field-group"><label>Columns</label>
+          <select ${p} data-field="galleryCols">
+            <option value="2" ${cols==2?'selected':''}>2 Columns</option>
+            <option value="3" ${cols==3?'selected':''}>3 Columns</option>
+            <option value="4" ${cols==4?'selected':''}>4 Columns</option>
+            <option value="5" ${cols==5?'selected':''}>5 Columns</option>
+            <option value="6" ${cols==6?'selected':''}>6 Columns</option>
+          </select></div>
+        <div class="cp-sub-items" data-cp-drag="${pi}-${si}-items">${rows}</div>
+        <button class="btn-add" onclick="addCpSubItem(${typeof pi==='string'?("'"+pi+"'"):pi},${si},'items',{imagePath:'',alt:'',title:'',caption:''})">+ Add Image</button>`;
     }
 
     case 'accordion': {
@@ -5270,6 +5374,7 @@ function addCpSection(pi) {
   if (type === 'logo-strip') { defaults.items = []; defaults.logoSize = 'medium'; }
   if (type === 'marquee') { defaults.items = []; defaults.mqMode = 'text'; defaults.mqSpeed = 'medium'; defaults.mqDir = 'left'; defaults.mqPause = true; defaults.mqText = ''; defaults.mqSeparator = '·'; }
   if (type === 'video') { defaults.videoLayout = 'contained'; defaults.videoPosition = 'left'; defaults.embedUrl = ''; defaults.mp4Url = ''; }
+  if (type === 'gallery') { defaults.items = []; defaults.galleryCols = 3; }
   if (!DATA.customPages[pi]) return;
   DATA.customPages[pi].sections = DATA.customPages[pi].sections || [];
   DATA.customPages[pi].sections.push(defaults);
@@ -5464,7 +5569,9 @@ function collectCpSections(card, pi, existingSections) {
         sec.cta_linkType = get('cta_linkType'); sec.cta_linkUrl = get('cta_linkUrl');
         sec.cta_linkLabel = get('cta_linkLabel'); break;
       case 'stats':
-        sec.items = collectCpSubItems(secCard, pi, si, ['num','label']); break;
+        sec.items = collectCpSubItems(secCard, pi, si, ['num','label','animate']);
+        sec.animateStats = secCard.querySelector('[data-field="animateStats"]')?.checked || false;
+        break;
       case 'feature-cards':
         sec.label = get('label'); sec.heading = get('heading'); sec.body = get('body');
         sec.badgeNum = get('badgeNum'); sec.badgeLabel = get('badgeLabel');
@@ -5535,6 +5642,7 @@ function collectCpSections(card, pi, existingSections) {
         sec.heading       = get('heading'); sec.body = get('body');
         sec.videoLayout   = get('videoLayout')   || 'contained';
         sec.videoPosition = get('videoPosition')  || 'left';
+        sec.containedWidth = get('containedWidth') || 'medium';
         sec.embedUrl      = get('embedUrl');
         sec.mp4Url        = get('mp4Url');
         sec.cta_linkType  = get('cta_linkType')  || 'none';
@@ -5542,6 +5650,10 @@ function collectCpSections(card, pi, existingSections) {
         sec.cta_linkUrl   = collectCpSmartLinkUrl(secCard, pi, si, 'cta_', sec.cta_linkType);
         sec.cta_anchorId  = get('cta_anchorId');
         break;
+      case 'gallery':
+        sec.heading = get('heading'); sec.subtitle = get('subtitle');
+        sec.galleryCols = parseInt(get('galleryCols')) || 3;
+        sec.items = collectCpSubItems(secCard, pi, si, ['imagePath','alt','title','caption']); break;
       case 'accordion':
         sec.heading = get('heading'); sec.subtitle = get('subtitle');
         sec.items = collectCpSubItems(secCard, pi, si, ['title','body','imagePath','imagePos']); break;

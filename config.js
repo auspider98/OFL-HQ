@@ -113,15 +113,18 @@ const SITE_CONFIG = {
   "stats": [
     {
       "num": "2",
-      "label": "Elite Leagues"
+      "label": "Elite Leagues",
+      "animate": true
     },
     {
       "num": "Exclusive",
-      "label": "Membership"
+      "label": "Membership",
+      "animate": false
     },
     {
       "num": "★6",
-      "label": "Rating"
+      "label": "Rating",
+      "animate": true
     }
   ],
   "colors": {
@@ -1029,6 +1032,23 @@ const SITE_CONFIG = {
           "fullWidth": false
         },
         {
+          "type": "logo-strip",
+          "label": "",
+          "background": "dark",
+          "anchorId": "",
+          "heading": "",
+          "subtitle": "",
+          "logoSize": "large",
+          "items": [
+            {
+              "imagePath": "logos/brc.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            }
+          ]
+        },
+        {
           "type": "steps",
           "label": "Hit the Hardwood",
           "background": "dark",
@@ -1095,9 +1115,26 @@ const SITE_CONFIG = {
           ]
         },
         {
+          "type": "logo-strip",
+          "label": "",
+          "background": "light",
+          "anchorId": "",
+          "heading": "",
+          "subtitle": "",
+          "logoSize": "large",
+          "items": [
+            {
+              "imagePath": "logos/ofc-shield.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            }
+          ]
+        },
+        {
           "type": "timeline",
           "label": "Gridiron Gameplan",
-          "background": "alt",
+          "background": "light",
           "anchorId": "league-ofc",
           "heading": "OFC Playbook",
           "subtitle": "",
@@ -1168,9 +1205,56 @@ const SITE_CONFIG = {
           ]
         },
         {
+          "type": "logo-strip",
+          "label": "",
+          "background": "light",
+          "anchorId": "",
+          "heading": "",
+          "subtitle": "",
+          "logoSize": "medium",
+          "items": [
+            {
+              "imagePath": "logos/atliens.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/flyingbubbas.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/boknowsbest.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/mollydefenders.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/ozzies.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/spiders.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            }
+          ]
+        },
+        {
           "type": "cta",
           "label": "",
-          "background": "alt",
+          "background": "dark",
           "anchorId": "",
           "heading": "Got Some League Questions",
           "body": "Just want to feel like you're part of something amazing, and you're curious what its like on the other side of the fence...fire away.",
@@ -1742,17 +1826,21 @@ const SITE_CONFIG = {
           "items": [
             {
               "num": "A1",
-              "label": "Stats Bar 1"
+              "label": "Stats Bar 1",
+              "animate": "on"
             },
             {
               "num": "B2",
-              "label": "Stats Bar 2"
+              "label": "Stats Bar 2",
+              "animate": "on"
             },
             {
               "num": "C3",
-              "label": "Stats Bar 3"
+              "label": "Stats Bar 3",
+              "animate": "on"
             }
-          ]
+          ],
+          "animateStats": false
         },
         {
           "type": "feature-cards",
@@ -2172,11 +2260,11 @@ const SITE_CONFIG = {
             {
               "imagePath": "logos/brc.png",
               "alt": "Blue Ribbon Cup",
-              "caption": "Log 1 Partner Name",
+              "caption": "Logo 1 Partner Name",
               "linkUrl": ""
             },
             {
-              "imagePath": "logos/ofc.png",
+              "imagePath": "logos/ofc-shield.png",
               "alt": "Ofc",
               "caption": "Logo 2 Partner Name",
               "linkUrl": ""
@@ -2190,14 +2278,50 @@ const SITE_CONFIG = {
           "anchorId": "",
           "heading": "Video Heading",
           "body": "Video Body",
-          "videoLayout": "contained",
+          "videoLayout": "two-col",
           "videoPosition": "left",
+          "containedWidth": "narrow",
           "embedUrl": "https://youtu.be/RbqwvG1ZBwg?si=kn5XO39oO9RY0WWE",
           "mp4Url": "",
           "cta_linkType": "none",
           "cta_linkLabel": "",
           "cta_linkUrl": "",
           "cta_anchorId": ""
+        },
+        {
+          "type": "gallery",
+          "label": "Image Label",
+          "background": "dark",
+          "anchorId": "",
+          "heading": "Image Heading",
+          "subtitle": "",
+          "galleryCols": 3,
+          "items": [
+            {
+              "imagePath": "logos/spiders.png",
+              "alt": "Image 1 Alt Text",
+              "title": "Image 1 Title",
+              "caption": "Image 1 Caption"
+            },
+            {
+              "imagePath": "logos/atliens.png",
+              "alt": "Image 2 Alt Text",
+              "title": "Image 2 Title",
+              "caption": "Image 2 Caption"
+            },
+            {
+              "imagePath": "logos/brc.png",
+              "alt": "The is the official logo of the Blue Ribbon Cup",
+              "title": "",
+              "caption": ""
+            },
+            {
+              "imagePath": "logos/ofc-shield.png",
+              "alt": "",
+              "title": "",
+              "caption": ""
+            }
+          ]
         }
       ]
     }
@@ -2256,8 +2380,38 @@ const SITE_CONFIG = {
           "linkLabel": "",
           "linkType": "none",
           "linkUrl": "home"
+        },
+        {
+          "num": "05",
+          "title": "Reach for the Stars",
+          "body": "Advance the league into the future, for our family of tomorrow.",
+          "linkLabel": "",
+          "linkType": "none",
+          "linkUrl": "home"
+        },
+        {
+          "num": "06",
+          "title": "Read Mailroom Droppings",
+          "body": "The Commissioner is entitled to a comic relief from the countless non-members messages seeking acceptance, admiration, and life meaning.",
+          "linkLabel": "",
+          "linkType": "none",
+          "linkUrl": "home"
         }
       ]
+    },
+    {
+      "type": "button",
+      "label": "",
+      "background": "light",
+      "anchorId": "",
+      "primary_linkType": "none",
+      "primary_linkLabel": "",
+      "primary_linkUrl": "",
+      "primary_anchorId": "",
+      "secondary_linkType": "internal",
+      "secondary_linkLabel": "Contact the Commish",
+      "secondary_linkUrl": "home",
+      "secondary_anchorId": "time-to-go"
     }
   ],
   "homeSections": [
@@ -2320,9 +2474,9 @@ const SITE_CONFIG = {
     {
       "type": "services",
       "label": "Our Elite Offerings",
-      "background": "light",
+      "background": "dark",
       "anchorId": "",
-      "heading": "Two Leagues. Both Exclusive. Neither Yours.",
+      "heading": "Two Leagues. Both Exclusive...Members Only.",
       "subtitle": "The OFL operates two elite fantasy sports leagues, each with its own culture, rivalries, and reasons to keep you out of them.",
       "items": [
         {
@@ -2348,33 +2502,61 @@ const SITE_CONFIG = {
       ]
     },
     {
-      "type": "marquee",
+      "type": "logo-strip",
       "label": "",
       "background": "dark",
       "anchorId": "",
       "heading": "",
       "subtitle": "",
-      "mqMode": "logos",
-      "mqSpeed": "fast",
-      "mqDir": "left",
-      "mqPause": true,
-      "mqText": "",
-      "mqSeparator": "·",
+      "logoSize": "small",
       "items": [
         {
           "imagePath": "logos/brc.png",
-          "alt": "Blue Ribbon Cup",
+          "alt": "",
+          "caption": "",
+          "linkUrl": "https://auspider98.github.io/OFL/league.html?league=brc"
+        },
+        {
+          "imagePath": "logos/atliens.png",
+          "alt": "",
+          "caption": "",
           "linkUrl": ""
         },
         {
-          "imagePath": "logos/ofc.png",
+          "imagePath": "logos/boknowsbest.png",
           "alt": "",
+          "caption": "",
           "linkUrl": ""
         },
         {
-          "imagePath": "logos/ofl-shield.png",
+          "imagePath": "logos/flyingbubbas.png",
           "alt": "",
+          "caption": "",
           "linkUrl": ""
+        },
+        {
+          "imagePath": "logos/mollydefenders.png",
+          "alt": "",
+          "caption": "",
+          "linkUrl": ""
+        },
+        {
+          "imagePath": "logos/ozzies.png",
+          "alt": "",
+          "caption": "",
+          "linkUrl": ""
+        },
+        {
+          "imagePath": "logos/spiders.png",
+          "alt": "",
+          "caption": "",
+          "linkUrl": ""
+        },
+        {
+          "imagePath": "logos/ofc-shield.png",
+          "alt": "",
+          "caption": "",
+          "linkUrl": "https://auspider98.github.io/OFL/league.html?league=ofc"
         }
       ]
     },
@@ -2385,46 +2567,51 @@ const SITE_CONFIG = {
       "anchorId": "",
       "items": [
         {
-          "num": "\"BRC is Elite x10\"",
-          "label": ""
+          "num": "\"BRC = Elite x10\"",
+          "label": "",
+          "animate": false
         },
         {
           "num": "",
-          "label": "- USA Today Fantasy Sports"
+          "label": "- USA Today Fantasy Sports",
+          "animate": false
         },
         {
-          "num": "\"Whoa...OFC is Gold\"",
-          "label": ""
+          "num": "\"Whoa... OFC is Gold\"",
+          "label": "",
+          "animate": false
         },
         {
           "num": "",
-          "label": "- NFL Players Association"
+          "label": "- NFL Players Association",
+          "animate": false
         }
-      ]
+      ],
+      "animateStats": false
     },
     {
       "type": "button",
       "label": "",
       "background": "light",
       "anchorId": "",
-      "primary_linkType": "internal",
-      "primary_linkLabel": "FAQs Membership",
-      "primary_linkUrl": "membership",
-      "primary_anchorId": "FAQ-membership",
-      "secondary_linkType": "none",
-      "secondary_linkLabel": "",
-      "secondary_linkUrl": "",
+      "primary_linkType": "none",
+      "primary_linkLabel": "",
+      "primary_linkUrl": "leagues",
+      "primary_anchorId": "",
+      "secondary_linkType": "internal",
+      "secondary_linkLabel": "League Battlegrounds",
+      "secondary_linkUrl": "leagues",
       "secondary_anchorId": ""
     },
     {
       "type": "cta",
       "label": "",
       "background": "dark",
-      "anchorId": "",
-      "heading": "Confused Where You Are?",
+      "anchorId": "time-to-go",
+      "heading": "Not a Member...Time to Go.",
       "body": "Please do not explore this site any further. Your very existence here is mucking up our reputation. For your safety, and our status, we ask that you click the button below and remove yourself from these hallowed halls, before you get yourself shamed back into the hole you crawled out of. Skedaddle.",
       "cta_primary_linkLabel": "",
-      "cta_secondary_linkLabel": "Time to Go",
+      "cta_secondary_linkLabel": "EXIT NOW",
       "cta_primary_linkType": "none",
       "cta_secondary_linkType": "external",
       "cta_primary_linkUrl": "google.com",
@@ -2434,9 +2621,10 @@ const SITE_CONFIG = {
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",
-  "_savedAt": 1776776057373,
+  "_savedAt": 1776805343749,
   "aboutBio3": "She is a member of the Alabama Bar Association, the American Academy of Adoption Attorneys (AAAA), and has been recognized as a Super Lawyer in Alabama Family Law for eight consecutive years. She is admitted to practice in all Alabama courts and regularly handles cases in Jefferson, Shelby, St. Clair, and Cullman counties.",
   "aboutBio4": "When she's not advocating for families in court, Amy volunteers with the Alabama Foster Care Association and speaks at community workshops on adoption awareness.",
   "heroPrimaryDest": "contact",
-  "heroSecondaryDest": "services"
+  "heroSecondaryDest": "services",
+  "animateStats": true
 };

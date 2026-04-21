@@ -2425,8 +2425,10 @@ footer {
 }
 
 /* Tight padding for marquee and logo strip — content doesn't need full section breathing room */
-.cps-section-marquee,
-.cps-section-logo-strip { padding: 12px 0; }
+.cps-section-marquee { padding: 12px 0; }
+/* Logo strip: tight only when no header content (strip mode); header mode uses normal section padding */
+.cps-section-logo-strip { padding: calc(var(--section-pad) / 2) 0; }
+.cps-section-logo-strip.logo-strip-mode { padding: 12px 0; }
 .cps-accordion { margin-top: 40px; }
 .cps-acc-item {
   border-bottom: 1px solid #e8e3d8;
@@ -2502,8 +2504,10 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 32px;
-  margin-top: 48px;
+  margin-top: 32px;
 }
+/* Strip mode (no heading) — no top margin, full vertical centering handled by section padding */
+.logo-strip-mode .cps-logo-strip { margin-top: 0; }
 .cps-logo-item {
   display: flex;
   flex-direction: column;
@@ -2637,7 +2641,7 @@ footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(40px, 6vw, 80px);
-  align-items: center;
+  align-items: start;
 }
 .cps-video-layout--two-col.video-right { }
 .cps-video-col { min-width: 0; }
@@ -2670,8 +2674,159 @@ footer {
   .cps-video-layout--two-col.video-right .cps-video-col { order: -1; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .cps-marquee-track { animation: none !important; }
+/* ── IMAGE GALLERY ───────────────────────────────────────────── */
+.cps-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 40px;
+}
+.cps-gallery-grid[data-cols="2"] { grid-template-columns: repeat(2, 1fr); }
+.cps-gallery-grid[data-cols="4"] { grid-template-columns: repeat(4, 1fr); }
+.cps-gallery-grid[data-cols="5"] { grid-template-columns: repeat(5, 1fr); }
+.cps-gallery-grid[data-cols="6"] { grid-template-columns: repeat(6, 1fr); }
+
+.cps-gallery-item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--navy);
+}
+.cps-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s var(--ease-out);
+}
+.cps-gallery-item:hover img { transform: scale(1.05); }
+.cps-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(9,20,38,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+.cps-gallery-item:hover .cps-gallery-overlay { background: rgba(9,20,38,0.4); }
+.cps-gallery-expand {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.4);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.cps-gallery-item:hover .cps-gallery-expand { opacity: 1; transform: scale(1); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cps-gallery-grid[data-cols="4"] { grid-template-columns: repeat(3, 1fr); }
+  .cps-gallery-grid[data-cols="5"] { grid-template-columns: repeat(4, 1fr); }
+  .cps-gallery-grid[data-cols="6"] { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 768px) {
+  .cps-gallery-grid,
+  .cps-gallery-grid[data-cols="3"],
+  .cps-gallery-grid[data-cols="4"],
+  .cps-gallery-grid[data-cols="5"],
+  .cps-gallery-grid[data-cols="6"] { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .cps-gallery-grid,
+  .cps-gallery-grid[data-cols="2"],
+  .cps-gallery-grid[data-cols="3"],
+  .cps-gallery-grid[data-cols="4"],
+  .cps-gallery-grid[data-cols="5"],
+  .cps-gallery-grid[data-cols="6"] { grid-template-columns: 1fr; }
+}
+
+/* Lightbox */
+.cps-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  background: rgba(5,10,20,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  padding: 20px;
+}
+.cps-lightbox.open { opacity: 1; pointer-events: all; }
+.cps-lightbox-inner {
+  position: relative;
+  max-width: min(90vw, 1100px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cps-lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 2px;
+  display: block;
+}
+.cps-lightbox-caption {
+  margin-top: 16px;
+  text-align: center;
+  color: rgba(255,255,255,0.85);
+}
+.cps-lightbox-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.cps-lightbox-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+}
+.cps-lightbox-close {
+  position: fixed;
+  top: 20px; right: 24px;
+  background: none; border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+  z-index: 2101;
+}
+.cps-lightbox-close:hover { color: #fff; }
+.cps-lightbox-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 22px;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 2101;
+}
+.cps-lightbox-arrow:hover { background: rgba(255,255,255,0.2); }
+.cps-lightbox-prev { left: 16px; }
+.cps-lightbox-next { right: 16px; }
+@media (max-width: 600px) {
+  .cps-lightbox-arrow { display: none; }
 }
 </style>
 </head>
@@ -2856,6 +3011,17 @@ footer {
      CUSTOM PAGES — dynamically rendered by buildCustomPages()
      ============================================================ -->
 <div id="custom-pages-container"></div>
+
+<!-- Image Gallery Lightbox -->
+<div class="cps-lightbox" id="cpsLightbox" onclick="if(event.target===this)closeLightbox()">
+  <button class="cps-lightbox-close" onclick="closeLightbox()">×</button>
+  <button class="cps-lightbox-arrow cps-lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+  <button class="cps-lightbox-arrow cps-lightbox-next" onclick="lightboxNav(1)">›</button>
+  <div class="cps-lightbox-inner">
+    <img class="cps-lightbox-img" id="cpsLightboxImg" src="" alt=""/>
+    <div class="cps-lightbox-caption" id="cpsLightboxCaption"></div>
+  </div>
+</div>
 
 <!-- Service Modal -->
 <div class="modal-overlay" id="serviceModal" onclick="if(event.target===this)closeServiceModal()">
@@ -3335,9 +3501,10 @@ function buildStats() {
   el.dataset.count = stats.length;
   el.innerHTML = stats.map(s => `
     <div class="stat-cell">
-      <div class="stat-num">${s.num}</div>
+      <div class="stat-num" data-stat-animate="${s.animate ? '1' : '0'}">${s.num}</div>
       <div class="stat-label">${s.label}</div>
     </div>`).join('');
+  if (CFG.animateStats) initStatAnimations(el);
 }
 
 /* =============================================
@@ -4139,10 +4306,14 @@ function renderCustomSection(sec, idx, isFirst, allSections) {
       const statItems = sec.items || [];
       const items = statItems.map(s => `
         <div class="stat-cell">
-          <div class="stat-num">${s.num}</div>
+          <div class="stat-num" data-stat-animate="${s.animate ? '1' : '0'}">${s.num}</div>
           <div class="stat-label">${s.label}</div>
         </div>`).join('');
       wrapper.innerHTML = `<div class="stats-inner" data-count="${statItems.length}">${items}</div>`;
+      if (sec.animateStats) {
+        // Defer until element is in DOM
+        requestAnimationFrame(() => initStatAnimations(wrapper));
+      }
       break;
     }
 
@@ -4712,14 +4883,44 @@ function renderCustomSection(sec, idx, isFirst, allSections) {
           '</div>' +
         '</div>';
       } else {
+        const widthMap = { narrow: '560px', medium: '860px', wide: '1060px', full: '100%' };
+        const containedWidth = widthMap[sec.containedWidth] || '860px';
         const layoutClass = layout === 'full' ? 'cps-video-layout--full' : 'cps-video-layout--contained';
+        const containedStyle = layout === 'contained' ? 'max-width:' + containedWidth + ';' : '';
         wrapper.innerHTML = '<div class="container">' +
           labelHTML +
           (sec.heading ? '<' + headTag + ' class="' + headClass + ' cps-heading reveal" style="margin-bottom:24px;">' + sec.heading + '</' + headTag + '>' : '') +
           (sec.body    ? '<div class="cps-body reveal reveal-delay-1" style="margin-bottom:24px;">' + formatBody(sec.body) + '</div>' : '') +
-          '<div class="' + layoutClass + ' reveal reveal-delay-1">' + embedHtml + '</div>' +
+          '<div class="' + layoutClass + ' reveal reveal-delay-1" style="' + containedStyle + '">' + embedHtml + '</div>' +
         '</div>';
       }
+      break;
+    }
+
+    // ── IMAGE GALLERY ────────────────────────────────────────────
+    case 'gallery': {
+      const cols = sec.galleryCols || 3;
+      const galleryItems = sec.items || [];
+      const lbData = galleryItems.map(item => ({
+        src:     item.imagePath || '',
+        alt:     item.alt       || '',
+        title:   item.title     || '',
+        caption: item.caption   || '',
+      }));
+      const lbJson = escAttr(JSON.stringify(lbData));
+      const cells = galleryItems.map((item, i) => {
+        const src = item.imagePath || '';
+        return '<div class="cps-gallery-item reveal" onclick="openLightbox(JSON.parse(this.dataset.lb),' + i + ')" data-lb="' + lbJson + '">' +
+          (src ? '<img src="' + src + '" alt="' + escAttr(item.alt || item.title || '') + '" loading="lazy"/>' : '') +
+          '<div class="cps-gallery-overlay"><div class="cps-gallery-expand">⤢</div></div>' +
+        '</div>';
+      }).join('');
+      wrapper.innerHTML = '<div class="container">' +
+        labelHTML +
+        (sec.heading  ? '<' + headTag + ' class="' + headClass + ' cps-heading reveal">' + sec.heading + '</' + headTag + '>' : '') +
+        (sec.subtitle ? '<p class="section-subtitle reveal reveal-delay-1" style="' + subtitleStyle + '">' + sec.subtitle + '</p>' : '') +
+        '<div class="cps-gallery-grid reveal reveal-delay-1" data-cols="' + cols + '">' + cells + '</div>' +
+      '</div>';
       break;
     }
 
@@ -4766,6 +4967,8 @@ function renderCustomSection(sec, idx, isFirst, allSections) {
         return '<div class="cps-logo-item">' + inner + '</div>';
       }).join('');
       wrapper.classList.add('cps-section-logo-strip');
+      const hasHeader = sec.label || sec.heading || sec.subtitle;
+      if (!hasHeader) wrapper.classList.add('logo-strip-mode');
       wrapper.innerHTML = '<div class="container">' +
         labelHTML +
         (sec.heading ? '<' + headTag + ' class="' + headClass + ' cps-heading reveal">' + sec.heading + '</' + headTag + '>' : '') +
@@ -4826,6 +5029,109 @@ function renderCustomSection(sec, idx, isFirst, allSections) {
 // Two-zone layout: splits sections with a heading into a tinted header zone
 // and a lighter content zone, separated by a thin divider line.
 // Helpers
+/* =============================================
+   STAT ANIMATIONS — count-up + sequential letter reveal
+   ============================================= */
+function initStatAnimations(container) {
+
+  function animateNumber(el, raw) {
+    const match = raw.match(/^([^0-9]*)([0-9]+\.?[0-9]*)(.*)$/);
+    if (!match) return;
+    const prefix = match[1];
+    const target = parseFloat(match[2]);
+    const suffix = match[3];
+    const isFloat = match[2].includes('.');
+    const decimals = isFloat ? (match[2].split('.')[1] || '').length : 0;
+    const duration = 1500;
+    const startTime = performance.now();
+
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function tick(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = easeOut(progress) * target;
+      el.textContent = prefix + (isFloat ? value.toFixed(decimals) : Math.floor(value)) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = prefix + (isFloat ? target.toFixed(decimals) : target) + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function animateText(el, text) {
+    const stepMs = 15; // ms per letter step
+    const chars = text.split('');
+    const revealed = new Array(chars.length).fill('');
+
+    function getStart(ch) {
+      if (/[a-z]/.test(ch)) return 'a'.charCodeAt(0);
+      if (/[A-Z]/.test(ch)) return 'A'.charCodeAt(0);
+      return null; // non-letter — show instantly
+    }
+
+    function animateChar(i, onDone) {
+      const ch = chars[i];
+      const startCode = getStart(ch);
+
+      // Non-letter: show instantly and move on
+      if (startCode === null) {
+        revealed[i] = ch;
+        el.textContent = revealed.join('');
+        onDone();
+        return;
+      }
+
+      const targetCode = ch.charCodeAt(0);
+      let current = startCode;
+
+      function step() {
+        revealed[i] = String.fromCharCode(current);
+        el.textContent = revealed.join('');
+        if (current >= targetCode) {
+          onDone();
+          return;
+        }
+        current++;
+        setTimeout(step, stepMs);
+      }
+      step();
+    }
+
+    // Chain characters sequentially
+    function runChar(i) {
+      if (i >= chars.length) return;
+      animateChar(i, () => runChar(i + 1));
+    }
+
+    // Start with blank
+    el.textContent = '';
+    runChar(0);
+  }
+
+  const els = container.querySelectorAll('.stat-num');
+  if (!els.length) return;
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      obs.unobserve(entry.target);
+      const el = entry.target;
+      // Respect per-item animate flag — '0' means skip
+      if (el.dataset.statAnimate === '0') return;
+      const raw = el.dataset.statRaw || el.textContent.trim();
+      el.dataset.statRaw = raw;
+      const hasNumber = /[0-9]/.test(raw);
+      if (hasNumber) {
+        animateNumber(el, raw);
+      } else {
+        animateText(el, raw);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  els.forEach(el => obs.observe(el));
+}
+
 function formatBody(text) {
   if (!text) return '';
   // Convert newlines to paragraphs if not already HTML
@@ -4858,6 +5164,54 @@ function openSmartLink(linkType, linkUrl, anchor) {
 let _modalBtnLinkType = 'internal';
 let _modalBtnLinkUrl = 'contact';
 let _modalBtnAnchorId = '';
+
+// Image gallery lightbox
+let _lbItems = [];
+let _lbIdx = 0;
+
+function openLightbox(items, idx) {
+  _lbItems = items;
+  _lbIdx = idx;
+  _lbRender();
+  const lb = document.getElementById('cpsLightbox');
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function _lbRender() {
+  const item = _lbItems[_lbIdx];
+  if (!item) return;
+  const img = document.getElementById('cpsLightboxImg');
+  const cap = document.getElementById('cpsLightboxCaption');
+  img.src = item.src;
+  img.alt = item.alt || '';
+  const titleHtml = item.title ? '<div class="cps-lightbox-title">' + item.title + '</div>' : '';
+  const descHtml  = item.caption ? '<div class="cps-lightbox-desc">' + item.caption + '</div>' : '';
+  cap.innerHTML = titleHtml + descHtml;
+  // Show/hide arrows
+  const prev = document.querySelector('.cps-lightbox-prev');
+  const next = document.querySelector('.cps-lightbox-next');
+  if (prev) prev.style.display = _lbItems.length > 1 ? '' : 'none';
+  if (next) next.style.display = _lbItems.length > 1 ? '' : 'none';
+}
+
+function lightboxNav(dir) {
+  _lbIdx = (_lbIdx + dir + _lbItems.length) % _lbItems.length;
+  _lbRender();
+}
+
+function closeLightbox() {
+  document.getElementById('cpsLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('cpsLightbox');
+  if (!lb || !lb.classList.contains('open')) return;
+  if (e.key === 'Escape')      closeLightbox();
+  if (e.key === 'ArrowLeft')   lightboxNav(-1);
+  if (e.key === 'ArrowRight')  lightboxNav(1);
+});
 
 function closeServiceModal() {
   const m = document.getElementById('serviceModal');
