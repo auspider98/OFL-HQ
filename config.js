@@ -114,7 +114,7 @@ const SITE_CONFIG = {
     {
       "num": "2",
       "label": "Elite Leagues",
-      "animate": false
+      "animate": true
     },
     {
       "num": "Exclusive",
@@ -124,7 +124,7 @@ const SITE_CONFIG = {
     {
       "num": "★6",
       "label": "Rating",
-      "animate": false
+      "animate": true
     }
   ],
   "colors": {
@@ -864,13 +864,83 @@ const SITE_CONFIG = {
           "label": "Profiles in Persistence",
           "background": "alt",
           "anchorId": "",
-          "heading": "Archetypes of the Rejected",
-          "subtitle": "Through years of fielding unsolicited applications, we have identified several recurring personality types. See if you recognize yourself.",
+          "heading": "Archetypes of the Rejected — BRC Division",
+          "subtitle": "The Blue Ribbon Cup attracts its own unique class of aspiring outsider. These are the bracket-centric personalities the OFL has had to formally decline.",
+          "items": [
+            {
+              "icon": "🏀",
+              "title": "The Guy Who Watches Zero College Basketball But Has Strong Opinions",
+              "desc": "Cannot name the starting lineup of any team in the bracket. Has extremely confident predictions anyway. Believes 'upsets happen' is a strategy. It is an observation. Not a strategy.",
+              "detail": "This archetype is distinguished by a unique inversion: the less they know, the more certain they are. They routinely predict 'chaos in the Midwest region' while being unable to locate the Midwest region on a bracket. Their bracket does not survive the second round. Their confidence survives indefinitely.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "😇",
+              "title": "The 'I Just Fill It Out For Fun' Person",
+              "desc": "Claims to not care about the outcome. Posts bracket updates constantly. Texts every time a pick hits. Is absolutely devastated when eliminated. Has described themselves as 'pretty chill about it.'",
+              "detail": "The 'Just For Fun' person is the BRC's most common applicant archetype and its most transparent. Nobody fills out a 64-team bracket 'for fun.' You fill it out because you need to win. The 'fun' framing is a psychological defense mechanism. The Commissioner sees through it. The BRC sees through it. Everyone sees through it.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "🎲",
+              "title": "The Pure Chaos Picker",
+              "desc": "Picks exclusively by upset. Has never once chosen a 1-seed to win a game. Self-identifies as 'the chaos agent.' Has never won the BRC. Will claim the chaos was the point.",
+              "detail": "The Chaos Picker believes that randomness is strategy. It is not. Randomness is randomness. There is a difference, and that difference is reflected in the BRC standings every single year without exception. The Chaos Picker finishes somewhere between 8th and last, calls it a 'good run,' and does the exact same thing next year.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "😭",
+              "title": "The One Who Peaked in Round One",
+              "desc": "Goes 28-4 in the first round. Is convinced they have cracked the bracket. Is eliminated in the second round when all four of their Final Four picks lose on the same day. Posts 'well that happened' to the group chat.",
+              "detail": "The Round One Peak is the BRC's most painful archetype — not because they did anything wrong, but because they dared to hope. Going 28-4 creates a false sense of bracket security that is dismantled with surgical precision by college basketball over the following 72 hours. They were not ready. Nobody is ever ready.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "📊",
+              "title": "The Advanced Metrics Guy",
+              "desc": "Picks entirely based on KenPom ratings, BPI, and NET rankings. Has a formula. The formula is sophisticated. The formula did not account for a team that shot 47% from three in a game it had no business being in.",
+              "detail": "The Advanced Metrics Guy is the BRC equivalent of the OFC Analytics Guy, and they share the same fatal flaw: they believe the data protects them from chaos. It does not. March Madness exists specifically to humble the analytical. The BRC has humbled several. The Commissioner finds this instructive.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "🤡",
+              "title": "The Bracket Revisionist",
+              "desc": "After every upset, mentions what they 'almost picked.' Has an alternate bracket they 'were going to go with.' Their actual submitted bracket tells a very different story that is available for everyone to see.",
+              "detail": "The Bracket Revisionist is the BRC's most socially complicated archetype. There is no alternate bracket. There is only the bracket that was submitted. The BRC operates on a strict 'what you locked is what you are' policy, and the Commissioner enforces it with a screenshot archive dating back several seasons.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            }
+          ]
+        },
+        {
+          "type": "services",
+          "label": "",
+          "background": "alt",
+          "anchorId": "",
+          "heading": "Archetypes of the Rejected - OFC Division",
+          "subtitle": "The OFC has produced the most sustained wave of rejected applicants. These are the archetypes that keep appearing, season after season.",
           "items": [
             {
               "icon": "🏈",
               "title": "The Guy Who's 'Really Good",
-              "desc": "Claims a 7-1 record in his own league. Has a spreadsheet of his projections. Genuinely believes this qualifies him for OFL consideration. It does not. Being good at a different league is not a transferable credential.",
+              "desc": "Claims a 7-1 record in his own league. Has a spreadsheet of his projections. Genuinely believes this qualifies him for OFC consideration. It does not. Being good at a different league is not a transferable credential.",
               "detail": "The 'Really Good' guy is perhaps the most common archetype in the OFL's rejection files. He approaches membership as a meritocratic process and is genuinely confused when merit is not the primary consideration. We wish him well. We do not wish him a draft pick.",
               "btnLabel": "",
               "btnLinkType": "none",
@@ -881,7 +951,7 @@ const SITE_CONFIG = {
               "icon": "😤",
               "title": "The Significant Other Who Thinks It's Unfair",
               "desc": "Their partner is in the league and they have to hear about it all season. 'I know as much about football as they do,' they have said, accurately, multiple times. And yet.",
-              "detail": "The Aggrieved Partner occupies a sympathetic position in the OFL's cosmology. They have done nothing wrong. They are simply not in a committed relationship with someone who is also personally connected to the Osborne family tree in a way that would make their inclusion feel natural. It's a niche requirement.",
+              "detail": "The Aggrieved Partner occupies a sympathetic position in the OFC's cosmology. They have done nothing wrong. They are simply not in a committed relationship with someone who is also personally connected to the Osborne family tree in a way that would make their inclusion feel natural. It's a niche requirement.",
               "btnLabel": "",
               "btnLinkType": "none",
               "btnLinkUrl": "home",
@@ -891,7 +961,7 @@ const SITE_CONFIG = {
               "icon": "🤓",
               "title": "The Analytics Guy",
               "desc": "Approaches the application with a data-driven presentation. Has modeled his projected impact on league competitiveness. The presentation is impressive. The answer is still no. We kept the presentation as a curiosity.",
-              "detail": "The Analytics Guy is sophisticated. He has done the research. He has identified the OFL's operational structure correctly and proposed solutions to perceived inefficiencies. The Commissioner reviewed the proposal with interest and genuine respect, and then issued a warm but firm rejection. The door, he was told, remains closed. It is a very well-locked door.",
+              "detail": "The Commissioner reviewed the proposal with interest, genuine respect, and then issued a warm but firm rejection. The door, he was told, remains closed. It is a very well-locked door. The Analytics Guy has since updated his model to account for the lock.",
               "btnLabel": "",
               "btnLinkType": "none",
               "btnLinkUrl": "home",
@@ -901,7 +971,7 @@ const SITE_CONFIG = {
               "icon": "👋",
               "title": "The Mutual Friend's Friend",
               "desc": "Heard about the league secondhand. 'My buddy's girlfriend's cousin is in it.' Believes this constitutes a social proximity that warrants consideration. It constitutes nothing of the sort.",
-              "detail": "The Mutual Friend's Friend has misunderstood the nature of OFL networking. Proximity to a member does not generate eligibility. You could live next door to three OFL members and remain as categorically unqualified as someone who lives in another country. The geographic and social proximity is noted. The answer is unchanged.",
+              "detail": "The Mutual Friend's Friend has misunderstood the nature of OFC networking. Proximity to a member does not generate eligibility. You could live next door to three OFC members and remain as categorically unqualified as someone who lives in another country. The geographic and social proximity is noted. The answer is unchanged.",
               "btnLabel": "",
               "btnLinkType": "none",
               "btnLinkUrl": "home",
@@ -911,7 +981,7 @@ const SITE_CONFIG = {
               "icon": "📧",
               "title": "The Email Sender",
               "desc": "Sends a formal email to the OFL contact address requesting membership consideration. The email is well-written. It is respectful. It demonstrates awareness of proper application etiquette. It receives a form rejection.",
-              "detail": "The Email Sender is, in some ways, our favorite archetype. There is something admirable about putting it in writing, using subject lines like 'OFL Membership Inquiry — [Year]' and carbon-copying people who definitely cannot help them. The formality is respected. The application is not advanced. The Commissioner personally reads all emails of this nature and feels something he identifies as 'bemused respect.'",
+              "detail": "The Email Sender is, in some ways, our favorite archetype. There is something admirable about putting it in writing, using subject lines like 'OFC Membership Inquiry — [Year]' and carbon-copying people who definitely cannot help them. The formality is respected. The application is not advanced. The Commissioner personally reads all emails of this nature and feels something he identifies as 'bemused respect.'",
               "btnLabel": "",
               "btnLinkType": "none",
               "btnLinkUrl": "home",
@@ -1004,18 +1074,18 @@ const SITE_CONFIG = {
               "title": "Blue Ribbon Cup",
               "body": "Think you know how to negotiate a 64 lane highway with four bald 12 seeds strapped to your rig. You don't and you'll find out soon enough, no else does either.",
               "linkLabel": "Red Ribbons are for Sissies",
-              "linkType": "external",
-              "linkUrl": "home",
-              "anchorId": ""
+              "linkType": "internal",
+              "linkUrl": "leagues",
+              "anchorId": "league-brc"
             },
             {
               "num": "02",
               "title": "Osborne Football Club",
               "body": "An exclusive club for those who think they can ride a roster full of overpaid talent to the height of monstrous glory.",
               "linkLabel": "Fling Mud, Family Style",
-              "linkType": "external",
-              "linkUrl": "home",
-              "anchorId": ""
+              "linkType": "internal",
+              "linkUrl": "leagues",
+              "anchorId": "league-ofc"
             }
           ]
         },
@@ -1029,13 +1099,30 @@ const SITE_CONFIG = {
           "imagePos": "none",
           "imageSize": "md",
           "imageCaption": "",
-          "fullWidth": false
+          "fullWidth": true
+        },
+        {
+          "type": "logo-strip",
+          "label": "",
+          "background": "dark",
+          "anchorId": "league-brc",
+          "heading": "",
+          "subtitle": "",
+          "logoSize": "large",
+          "items": [
+            {
+              "imagePath": "logos/brc.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            }
+          ]
         },
         {
           "type": "steps",
           "label": "Hit the Hardwood",
           "background": "dark",
-          "anchorId": "league-brc",
+          "anchorId": "",
           "heading": "BRC Chalkboard",
           "subtitle": "",
           "items": [
@@ -1098,10 +1185,27 @@ const SITE_CONFIG = {
           ]
         },
         {
+          "type": "logo-strip",
+          "label": "",
+          "background": "light",
+          "anchorId": "league-ofc",
+          "heading": "",
+          "subtitle": "",
+          "logoSize": "large",
+          "items": [
+            {
+              "imagePath": "logos/OFC-shield.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            }
+          ]
+        },
+        {
           "type": "timeline",
           "label": "Gridiron Gameplan",
-          "background": "alt",
-          "anchorId": "league-ofc",
+          "background": "light",
+          "anchorId": "",
           "heading": "OFC Playbook",
           "subtitle": "",
           "items": [
@@ -1171,9 +1275,56 @@ const SITE_CONFIG = {
           ]
         },
         {
+          "type": "logo-strip",
+          "label": "",
+          "background": "light",
+          "anchorId": "",
+          "heading": "",
+          "subtitle": "",
+          "logoSize": "medium",
+          "items": [
+            {
+              "imagePath": "logos/ATLiens.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/flyingbubbas.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/boknowsbest.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/mollydefenders.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/ozzies.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            },
+            {
+              "imagePath": "logos/spiders.png",
+              "alt": "",
+              "caption": "",
+              "linkUrl": ""
+            }
+          ]
+        },
+        {
           "type": "cta",
           "label": "",
-          "background": "alt",
+          "background": "dark",
           "anchorId": "",
           "heading": "Got Some League Questions",
           "body": "Just want to feel like you're part of something amazing, and you're curious what its like on the other side of the fence...fire away.",
@@ -1196,10 +1347,10 @@ const SITE_CONFIG = {
       "sections": [
         {
           "type": "services",
-          "label": "Realistic Fantasy",
+          "label": "Real Fantasy",
           "background": "dark",
           "anchorId": "",
-          "heading": "the Experience",
+          "heading": "the OFL Experience",
           "subtitle": "Dominance is a full-time job. We provide the essential infrastructure required to maintain your status among the elite or document your spectacular fall from grace.",
           "items": [
             {
@@ -1295,6 +1446,174 @@ const SITE_CONFIG = {
           ]
         },
         {
+          "type": "fees",
+          "label": "OFC Penalty Ledger",
+          "background": "light",
+          "anchorId": "",
+          "heading": "The OFC Fine & Penalty Schedule",
+          "subtitle": "The Commissioner's office maintains a binding schedule of fines and punishments for conduct unbecoming of an OFL competitor. All rulings are final. All fines are emotional.",
+          "col1Label": "Offense",
+          "col2Label": "Penalty",
+          "col3Label": "Notes",
+          "disclaimer": "",
+          "items": [
+            {
+              "service": "Drafting a Kicker Before Round 12",
+              "amount": "Immediate Mockery",
+              "detail": "Kickers are not people. Draft them accordingly.",
+              "note": "The group chat will not recover for 48 hours. Screenshot archived in the Hall of Records.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Starting a Bye-Week Player",
+              "amount": "Loss of Trash Talk Privileges",
+              "detail": "The calendar is free. Check it.",
+              "note": "48-hour communication blackout from any game-day smack talk. You forfeit the moral high ground.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Offering a Trade So Lopsided It Insults Everyone",
+              "amount": "Formal Veto + Written Apology",
+              "detail": "The Commissioner will title the veto memo. Titles have included: 'Are You Serious Right Now.'",
+              "note": "The Commissioner issues a veto with editorial commentary. The commentary is the real punishment.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Complaining About a Loss Attributable to Own Bad Picks",
+              "amount": "Mandatory Mirror Time",
+              "detail": "There is no way to verify compliance. The honor system is invoked. You know what you did.",
+              "note": "You are required to sit quietly with yourself for 10 minutes and reflect on the picks you made.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Claiming You 'Don't Even Care' After a Loss",
+              "amount": "Retroactive Point Deduction (Spiritual)",
+              "detail": "You care. We all care. That's why we're here.",
+              "note": "Points are not actually deducted. But the Commissioner will remember. And the Commish's memory is long.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Attempting to Negotiate With The Commissioner",
+              "amount": "Negotiation Terminated + Notes Compared",
+              "detail": "The Commissioner is not a negotiating partner. He is the ruling body.",
+              "note": "The negotiation is terminated immediately. The Commissioner notes the attempt. The attempt is discussed later.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            }
+          ]
+        },
+        {
+          "type": "fees",
+          "label": "BRC Penalty Ledger",
+          "background": "alt",
+          "anchorId": "",
+          "heading": "The BRC Bracket Violation Schedule",
+          "subtitle": "The Blue Ribbon Cup has its own code of conduct, separate from the OFC but equally enforceable. The BRC is chaos on the court — it is not chaos in the league office.",
+          "col1Label": "Violation",
+          "col2Label": "Penalty",
+          "col3Label": "Enforcement Notes",
+          "disclaimer": "",
+          "items": [
+            {
+              "service": "Submitting Bracket After Tip-Off",
+              "amount": "Full Disqualification",
+              "detail": "The Commissioner has a screenshot of every bracket timestamp. He will use it.",
+              "note": "No partial credit. No moral victory. No 'I had most of it done.' The bracket did not exist until it was submitted.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Picking a 16-Seed to Win It All",
+              "amount": "Bracket Flagged + Credibility Review",
+              "detail": "One 16-over-1 upset has occurred in NCAA history. You did not predict it. You have predicted something else.",
+              "note": "Your bracket is technically valid. Your judgment is under formal review for the remainder of the BRC season.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Announcing an 'Alternate Bracket' You Would Have Submitted",
+              "amount": "Public Dismissal",
+              "detail": "The Commissioner's response to all alternate bracket claims: 'I'd love to see it.' He would not love to see it.",
+              "note": "The alternate bracket does not exist. The bracket that was submitted exists. These are the only relevant facts.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Going Silent in the Group Chat After Bracket Busted",
+              "amount": "Mandatory Re-Engagement",
+              "detail": "Ghosting the group chat after elimination is a BRC social infraction. Your bracket is dead. You are not.",
+              "note": "You are required to send at least two game-day reactions per round regardless of bracket status. The BRC is not a spectator sport.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Claiming a 12-Over-5 Upset 'Doesn't Count' Because You 'Had a Feeling",
+              "amount": "Feeling Logged, Dismissed",
+              "detail": "The bracket is a legal document within the BRC. Feelings are inadmissible.",
+              "note": "Your feeling was not submitted with your bracket. Feelings are not picks. Picks are picks.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Using the Phrase 'This Is Why I Don't Do Brackets' After Submitting a Bracket",
+              "amount": "Irony Surcharge",
+              "detail": "Commissioner's official position: 'If you didn't want to do a bracket, you shouldn't have done a bracket.'",
+              "note": "You did a bracket. You are doing a bracket right now. This phrase is self-canceling and the BRC will not honor it.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Lobbying Other Members to Root for Your Teams",
+              "amount": "Social Sanction + Eye Roll",
+              "detail": "Every member of the BRC has already decided who they're rooting for. It is themselves.",
+              "note": "BRC members root for their own brackets. You may not outsource your bracket's performance to group sentiment.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            },
+            {
+              "service": "Predicting 'Chaos' Without Specifying Which Region, Seed, or Game",
+              "amount": "Vague Prophecy Tax",
+              "detail": "Correctly predicting chaos you did not specify is not credit. It is luck. The BRC does not award credit for luck",
+              "note": "If your bracket strategy is 'chaos,' you must define which chaos you are choosing. 'All of it' is not an answer.",
+              "linkLabel": "",
+              "linkType": "none",
+              "linkUrl": "home",
+              "anchorId": ""
+            }
+          ]
+        },
+        {
           "type": "bullets",
           "label": "Trash Talking",
           "background": "light",
@@ -1350,55 +1669,6 @@ const SITE_CONFIG = {
               "linkType": "none",
               "linkUrl": "home",
               "anchorId": ""
-            }
-          ]
-        },
-        {
-          "type": "resources",
-          "label": "House Rules",
-          "background": "alt",
-          "anchorId": "",
-          "heading": "Compliance & Dispute Resolution",
-          "subtitle": "We pride ourselves on an industry-leading 92% Commissioner Approval Rating. If you find yourself in the remaining 8%, please understand that this is a statistical anomaly caused by your own inability to comprehend the Commissioner's vision.",
-          "items": [
-            {
-              "emoji": "📋",
-              "tag": "Article 16-23A",
-              "imagePath": "",
-              "title": "​Rule Absolute",
-              "excerpt": "The Commissioner does not make \"mistakes.\" He makes \"unannounced adjustments to the difficulty curve.\"",
-              "date": "",
-              "readTime": "",
-              "featured": "",
-              "linkType": "none",
-              "linkUrl": "home",
-              "ctaLabel": ""
-            },
-            {
-              "emoji": "👍",
-              "tag": "Article 6-14D",
-              "imagePath": "",
-              "title": "The Final Word",
-              "excerpt": "Once a ruling is made, it is etched into the digital bedrock of the OFL. There is no appeal process, only an \"Acceptance Process.\"",
-              "date": "",
-              "readTime": "",
-              "featured": "",
-              "linkType": "none",
-              "linkUrl": "home",
-              "ctaLabel": ""
-            },
-            {
-              "emoji": "🗑️",
-              "tag": "Article 41A",
-              "imagePath": "",
-              "title": "Automated Processing",
-              "excerpt": "Your complaint is instantly analyzed by our AI and categorized into one of three buckets: Whining, Delusional, or Technically Correct but Still Ignored.",
-              "date": "",
-              "readTime": "",
-              "featured": "",
-              "linkType": "none",
-              "linkUrl": "home",
-              "ctaLabel": ""
             }
           ]
         }
@@ -2179,11 +2449,11 @@ const SITE_CONFIG = {
             {
               "imagePath": "logos/brc.png",
               "alt": "Blue Ribbon Cup",
-              "caption": "Log 1 Partner Name",
+              "caption": "Logo 1 Partner Name",
               "linkUrl": ""
             },
             {
-              "imagePath": "logos/ofc.png",
+              "imagePath": "logos/ofc-shield.png",
               "alt": "Ofc",
               "caption": "Logo 2 Partner Name",
               "linkUrl": ""
@@ -2197,9 +2467,9 @@ const SITE_CONFIG = {
           "anchorId": "",
           "heading": "Video Heading",
           "body": "Video Body",
-          "videoLayout": "contained",
+          "videoLayout": "two-col",
           "videoPosition": "left",
-          "containedWidth": "medium",
+          "containedWidth": "narrow",
           "embedUrl": "https://youtu.be/RbqwvG1ZBwg?si=kn5XO39oO9RY0WWE",
           "mp4Url": "",
           "cta_linkType": "none",
@@ -2208,157 +2478,218 @@ const SITE_CONFIG = {
           "cta_anchorId": ""
         },
         {
-          "type": "pricing",
-          "label": "Tier Cards Label",
-          "background": "dark",
-          "anchorId": "",
-          "heading": "Tier Cards Heading",
-          "subtitle": "Tier Cards Subtitle",
-          "items": [
-            {
-              "name": "Tier Best Name",
-              "tagline": "Tier Best Tagline",
-              "price": "$99",
-              "period": "/ Month",
-              "icon": "",
-              "imagePath": "",
-              "ribbon": "Best",
-              "note": "Tier Cards 1 Fine Print",
-              "cardStyle": "dark",
-              "featured": true,
-              "cta_linkLabel": "Tier Cards 1 Button Label",
-              "cta_linkType": "internal",
-              "cta_linkUrl": "leagues",
-              "features": [
-                {
-                  "label": "Tier Cards 1 Feature A",
-                  "status": "yes",
-                  "isGroup": true
-                },
-                {
-                  "label": "Tier Cards 1 Feature B",
-                  "status": "yes",
-                  "isGroup": false
-                },
-                {
-                  "label": "Tier Cards 1 Feature C",
-                  "status": "yes",
-                  "isGroup": false
-                },
-                {
-                  "label": "Tier Cards 1 Feature D",
-                  "status": "yes",
-                  "isGroup": true
-                }
-              ]
-            },
-            {
-              "name": "Tier Better Name",
-              "tagline": "Tier Better Tagline",
-              "price": "$89",
-              "period": "/ Month",
-              "icon": "",
-              "imagePath": "",
-              "ribbon": "Better",
-              "note": "",
-              "cardStyle": "dark",
-              "featured": false,
-              "cta_linkLabel": "",
-              "cta_linkType": "none",
-              "cta_linkUrl": "",
-              "features": [
-                {
-                  "label": "Tier Cards Feature A",
-                  "status": "yes",
-                  "isGroup": false
-                },
-                {
-                  "label": "Tier Cards Feature B",
-                  "status": "yes",
-                  "isGroup": false
-                }
-              ]
-            },
-            {
-              "name": "Tier Good Nsme",
-              "tagline": "Tier Good Tagline",
-              "price": "$59",
-              "period": "/ Month",
-              "icon": "",
-              "imagePath": "",
-              "ribbon": "Good",
-              "note": "",
-              "cardStyle": "dark",
-              "featured": false,
-              "cta_linkLabel": "",
-              "cta_linkType": "none",
-              "cta_linkUrl": "",
-              "features": [
-                {
-                  "label": "Tier Cards 3 Feature A",
-                  "status": "yes",
-                  "isGroup": false
-                }
-              ]
-            }
-          ]
-        },
-        {
           "type": "gallery",
           "label": "Gallery Label",
-          "background": "alt",
+          "background": "dark",
           "anchorId": "",
           "heading": "Gallery Heading",
           "subtitle": "Gallery Subtitle",
           "galleryCols": 6,
           "items": [
             {
-              "imagePath": "logos/brc.png",
-              "alt": "",
-              "title": "",
-              "caption": ""
-            },
-            {
-              "imagePath": "logos/ATLiens.png",
-              "alt": "",
-              "title": "",
-              "caption": ""
-            },
-            {
-              "imagePath": "logos/ozzies.png",
-              "alt": "",
-              "title": "",
-              "caption": ""
-            },
-            {
-              "imagePath": "logos/mollydefenders.png",
-              "alt": "",
-              "title": "",
-              "caption": ""
-            },
-            {
-              "imagePath": "logos/boknowsbest.png",
-              "alt": "",
-              "title": "",
-              "caption": ""
-            },
-            {
-              "imagePath": "logos/flyingbubbas.png",
-              "alt": "",
-              "title": "",
-              "caption": ""
-            },
-            {
               "imagePath": "logos/spiders.png",
-              "alt": "",
+              "alt": "Image 1 Alt Text",
+              "title": "Image 1 Title",
+              "caption": "Image 1 Caption"
+            },
+            {
+              "imagePath": "logos/atliens.png",
+              "alt": "Image 2 Alt Text",
+              "title": "Image 2 Title",
+              "caption": "Image 2 Caption"
+            },
+            {
+              "imagePath": "logos/brc.png",
+              "alt": "The is the official logo of the Blue Ribbon Cup",
               "title": "",
               "caption": ""
             },
             {
-              "imagePath": "logos/ofc.png",
+              "imagePath": "logos/ofc-shield.png",
               "alt": "",
               "title": "",
               "caption": ""
+            }
+          ]
+        },
+        {
+          "type": "pricing",
+          "label": "Tier Label",
+          "background": "dark",
+          "anchorId": "",
+          "heading": "Tier Heading",
+          "subtitle": "Tier Subtitle",
+          "items": [
+            {
+              "name": "Card 1",
+              "tagline": "Card 1 Tagline",
+              "price": "$99",
+              "period": "/ month",
+              "icon": "",
+              "imagePath": "",
+              "ribbon": "Card 1",
+              "note": "",
+              "cardStyle": "dark",
+              "featured": true,
+              "cta_linkLabel": "",
+              "cta_linkType": "none",
+              "cta_linkUrl": "",
+              "features": [
+                {
+                  "label": "Feature 1",
+                  "status": "",
+                  "isGroup": true
+                },
+                {
+                  "label": "Feature 1a",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 1b",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 1c",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 2",
+                  "status": "yes",
+                  "isGroup": true
+                },
+                {
+                  "label": "Feature 2a",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 2b",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 2c",
+                  "status": "yes",
+                  "isGroup": false
+                }
+              ]
+            },
+            {
+              "name": "Card 2",
+              "tagline": "Card 2 Tagline",
+              "price": "$79",
+              "period": "/ month",
+              "icon": "",
+              "imagePath": "",
+              "ribbon": "Card 2",
+              "note": "",
+              "cardStyle": "alt",
+              "featured": false,
+              "cta_linkLabel": "",
+              "cta_linkType": "none",
+              "cta_linkUrl": "",
+              "features": [
+                {
+                  "label": "Feature 1",
+                  "status": "yes",
+                  "isGroup": true
+                },
+                {
+                  "label": "Feature 1a",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 1b",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 1c",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 2",
+                  "status": "yes",
+                  "isGroup": true
+                },
+                {
+                  "label": "Feature 2a",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 2b",
+                  "status": "no",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 2c",
+                  "status": "no",
+                  "isGroup": false
+                }
+              ]
+            },
+            {
+              "name": "Card 3",
+              "tagline": "Card 3 Tagline",
+              "price": "$59",
+              "period": "/ month",
+              "icon": "",
+              "imagePath": "",
+              "ribbon": "Card 3",
+              "note": "",
+              "cardStyle": "light",
+              "featured": false,
+              "cta_linkLabel": "",
+              "cta_linkType": "none",
+              "cta_linkUrl": "",
+              "features": [
+                {
+                  "label": "Feature 1",
+                  "status": "yes",
+                  "isGroup": true
+                },
+                {
+                  "label": "Feature 1a",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 1b",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 1c",
+                  "status": "no",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 2",
+                  "status": "yes",
+                  "isGroup": true
+                },
+                {
+                  "label": "Feature 2a",
+                  "status": "yes",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 2b",
+                  "status": "no",
+                  "isGroup": false
+                },
+                {
+                  "label": "Feature 2c",
+                  "status": "no",
+                  "isGroup": false
+                }
+              ]
             }
           ]
         }
@@ -2419,8 +2750,87 @@ const SITE_CONFIG = {
           "linkLabel": "",
           "linkType": "none",
           "linkUrl": "home"
+        },
+        {
+          "num": "05",
+          "title": "Reach for the Stars",
+          "body": "Advance the league into the future, for our family of tomorrow.",
+          "linkLabel": "",
+          "linkType": "none",
+          "linkUrl": "home"
+        },
+        {
+          "num": "06",
+          "title": "Read Mailroom Droppings",
+          "body": "The Commissioner is entitled to a comic relief from the countless non-members messages seeking acceptance, admiration, and life meaning.",
+          "linkLabel": "",
+          "linkType": "none",
+          "linkUrl": "home"
         }
       ]
+    },
+    {
+      "type": "resources",
+      "label": "Commissioner Rules",
+      "background": "light",
+      "anchorId": "",
+      "heading": "Compliance & Dispute Resolution",
+      "subtitle": "We pride ourselves on an industry-leading 92% Commissioner Approval Rating. If you find yourself in the remaining 8%, please understand that this is a statistical anomaly caused by your own inability to comprehend the Commissioner's vision.",
+      "items": [
+        {
+          "tag": "Article 16-23A",
+          "title": "​Rule Absolute",
+          "excerpt": "The Commissioner does not make \"mistakes.\" He makes \"unannounced adjustments to the difficulty curve.\"",
+          "date": "",
+          "readTime": "",
+          "featured": "",
+          "emoji": "📋",
+          "imagePath": "",
+          "linkType": "none",
+          "linkUrl": "home",
+          "ctaLabel": ""
+        },
+        {
+          "tag": "Article 6-14D",
+          "title": "The Final Word",
+          "excerpt": "Once a ruling is made by the Commissioner, it is etched into the digital bedrock of the OFL. There is no appeal process, only an \"Acceptance Process.\"",
+          "date": "",
+          "readTime": "",
+          "featured": "",
+          "emoji": "👍",
+          "imagePath": "",
+          "linkType": "none",
+          "linkUrl": "home",
+          "ctaLabel": ""
+        },
+        {
+          "tag": "Article 41A",
+          "title": "Complaint Processing",
+          "excerpt": "Your complaint is instantly analyzed by our AI and categorized into one of three buckets: Whining, Delusional, or Technically Correct but Whateva. The Commissioner doesn't have time for the your ridiculous complaining, so no time is wasted.",
+          "date": "",
+          "readTime": "",
+          "featured": "",
+          "emoji": "🗑️",
+          "imagePath": "",
+          "linkType": "none",
+          "linkUrl": "home",
+          "ctaLabel": ""
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "label": "",
+      "background": "light",
+      "anchorId": "",
+      "primary_linkType": "none",
+      "primary_linkLabel": "",
+      "primary_linkUrl": "",
+      "primary_anchorId": "",
+      "secondary_linkType": "internal",
+      "secondary_linkLabel": "Contact the Commish",
+      "secondary_linkUrl": "home",
+      "secondary_anchorId": "time-to-go"
     }
   ],
   "homeSections": [
@@ -2483,9 +2893,9 @@ const SITE_CONFIG = {
     {
       "type": "services",
       "label": "Our Elite Offerings",
-      "background": "light",
+      "background": "dark",
       "anchorId": "",
-      "heading": "Two Leagues. Both Exclusive. Neither Yours.",
+      "heading": "Two Leagues. Both Exclusive...Members Only.",
       "subtitle": "The OFL operates two elite fantasy sports leagues, each with its own culture, rivalries, and reasons to keep you out of them.",
       "items": [
         {
@@ -2511,33 +2921,61 @@ const SITE_CONFIG = {
       ]
     },
     {
-      "type": "marquee",
+      "type": "logo-strip",
       "label": "",
       "background": "dark",
       "anchorId": "",
       "heading": "",
       "subtitle": "",
-      "mqMode": "logos",
-      "mqSpeed": "fast",
-      "mqDir": "left",
-      "mqPause": true,
-      "mqText": "",
-      "mqSeparator": "·",
+      "logoSize": "small",
       "items": [
         {
           "imagePath": "logos/brc.png",
-          "alt": "Blue Ribbon Cup",
+          "alt": "",
+          "caption": "",
+          "linkUrl": "https://auspider98.github.io/OFL/league.html?league=brc"
+        },
+        {
+          "imagePath": "logos/ATLiens.png",
+          "alt": "",
+          "caption": "",
           "linkUrl": ""
         },
         {
-          "imagePath": "logos/ofc.png",
+          "imagePath": "logos/boknowsbest.png",
           "alt": "",
+          "caption": "",
           "linkUrl": ""
         },
         {
-          "imagePath": "logos/ofl-shield.png",
+          "imagePath": "logos/flyingbubbas.png",
           "alt": "",
+          "caption": "",
           "linkUrl": ""
+        },
+        {
+          "imagePath": "logos/mollydefenders.png",
+          "alt": "",
+          "caption": "",
+          "linkUrl": ""
+        },
+        {
+          "imagePath": "logos/ozzies.png",
+          "alt": "",
+          "caption": "",
+          "linkUrl": ""
+        },
+        {
+          "imagePath": "logos/spiders.png",
+          "alt": "",
+          "caption": "",
+          "linkUrl": ""
+        },
+        {
+          "imagePath": "logos/OFC-shield.png",
+          "alt": "",
+          "caption": "",
+          "linkUrl": "https://auspider98.github.io/OFL/league.html?league=ofc"
         }
       ]
     },
@@ -2548,7 +2986,7 @@ const SITE_CONFIG = {
       "anchorId": "",
       "items": [
         {
-          "num": "\"BRC is Elite x10\"",
+          "num": "\"BRC = Elite x10\"",
           "label": "",
           "animate": false
         },
@@ -2558,7 +2996,7 @@ const SITE_CONFIG = {
           "animate": false
         },
         {
-          "num": "\"Whoa...OFC is Gold\"",
+          "num": "\"Whoa... OFC is Gold\"",
           "label": "",
           "animate": false
         },
@@ -2575,24 +3013,24 @@ const SITE_CONFIG = {
       "label": "",
       "background": "light",
       "anchorId": "",
-      "primary_linkType": "internal",
-      "primary_linkLabel": "FAQs Membership",
-      "primary_linkUrl": "membership",
-      "primary_anchorId": "FAQ-membership",
-      "secondary_linkType": "none",
-      "secondary_linkLabel": "",
-      "secondary_linkUrl": "",
+      "primary_linkType": "none",
+      "primary_linkLabel": "",
+      "primary_linkUrl": "leagues",
+      "primary_anchorId": "",
+      "secondary_linkType": "internal",
+      "secondary_linkLabel": "League Battlegrounds",
+      "secondary_linkUrl": "leagues",
       "secondary_anchorId": ""
     },
     {
       "type": "cta",
       "label": "",
       "background": "dark",
-      "anchorId": "",
-      "heading": "Confused Where You Are?",
+      "anchorId": "time-to-go",
+      "heading": "Not a Member...Time to Go.",
       "body": "Please do not explore this site any further. Your very existence here is mucking up our reputation. For your safety, and our status, we ask that you click the button below and remove yourself from these hallowed halls, before you get yourself shamed back into the hole you crawled out of. Skedaddle.",
       "cta_primary_linkLabel": "",
-      "cta_secondary_linkLabel": "Time to Go",
+      "cta_secondary_linkLabel": "EXIT NOW",
       "cta_primary_linkType": "none",
       "cta_secondary_linkType": "external",
       "cta_primary_linkUrl": "google.com",
@@ -2602,10 +3040,10 @@ const SITE_CONFIG = {
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",
-  "_savedAt": 1776833139110,
+  "_savedAt": 1776876197301,
   "aboutBio3": "She is a member of the Alabama Bar Association, the American Academy of Adoption Attorneys (AAAA), and has been recognized as a Super Lawyer in Alabama Family Law for eight consecutive years. She is admitted to practice in all Alabama courts and regularly handles cases in Jefferson, Shelby, St. Clair, and Cullman counties.",
   "aboutBio4": "When she's not advocating for families in court, Amy volunteers with the Alabama Foster Care Association and speaks at community workshops on adoption awareness.",
   "heroPrimaryDest": "contact",
   "heroSecondaryDest": "services",
-  "animateStats": false
+  "animateStats": true
 };

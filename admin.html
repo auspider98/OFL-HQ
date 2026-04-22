@@ -1904,6 +1904,23 @@ function removeTierFeature(pi, si, ci, fi) {
   autosave();
 }
 
+function moveTierFeature(pi, si, ci, fi, dir) {
+  collectData();
+  const secs = cpSections(pi);
+  if (!secs || !secs[si]) return;
+  const card = secs[si].items[ci];
+  if (!card || !Array.isArray(card.features)) return;
+  const fi2 = fi + dir;
+  if (fi2 < 0 || fi2 >= card.features.length) return;
+  const tmp = card.features[fi];
+  card.features[fi] = card.features[fi2];
+  card.features[fi2] = tmp;
+  if (pi === 'h') buildHomeSectionsList();
+  else if (pi === 'a') buildAboutSectionsList();
+  else buildCustomPagesList();
+  autosave();
+}
+
 function onMqModeChange(pi, si, sel) {
   const secCard = sel.closest('.cp-section-card');
   const isLogos = sel.value === 'logos';
@@ -3697,7 +3714,7 @@ function collectHomeSingleSection_forPi(secCard, pi, si, existing) {
       return {
         name: g('name'), tagline: g('tagline'), price: g('price'), period: g('period'),
         icon: g('icon'), imagePath: g('imagePath'), ribbon: g('ribbon'), note: g('note'),
-        cardStyle:     cardEl.querySelector('[data-field="cardStyle"]')?.value || 'bordered',
+        cardStyle:     cardEl.querySelector('[data-field="cardStyle"]')?.value || 'light',
         featured:      gb('featured'),
         cta_linkLabel: g('cta_linkLabel'),
         cta_linkType:  cardEl.querySelector('[data-field="cta_linkType"]')?.value || 'none',
@@ -4926,15 +4943,20 @@ function buildCpSectionTypeFields(sec, pi, si) {
       const cards = sec.items || [];
 
       const cardRows = cards.map((card, ci) => {
-        const style = card.cardStyle || 'bordered';
+        const style = card.cardStyle || 'light';
         const features = card.features || [];
         const featureRows = features.map((f, fi) => {
           const isGroup = f.isGroup || false;
           const status = f.status || '';
+          const piArg = typeof pi==='string' ? ("'"+pi+"'") : pi;
+          const isFirst = fi === 0;
+          const isLast = fi === features.length - 1;
           return '<div class="cp-sub-item" style="margin-bottom:4px;padding:8px 10px;background:rgba(0,0,0,0.02);border-radius:4px;" data-feature-idx="' + fi + '">' +
-            '<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">' +
+            '<div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">' +
               '<span style="font-size:11px;font-weight:600;color:var(--muted);flex:1;">Feature #' + (fi+1) + '</span>' +
-              '<button class="btn-remove" style="font-size:11px;" onclick="removeTierFeature(' + (typeof pi==='string'?("'"+pi+"'"):pi) + ',' + si + ',' + ci + ',' + fi + ')">×</button>' +
+              '<button class="arr-btn" style="padding:1px 5px;font-size:13px;" ' + (isFirst?'disabled':'') + ' onclick="moveTierFeature(' + piArg + ',' + si + ',' + ci + ',' + fi + ',-1)">↑</button>' +
+              '<button class="arr-btn" style="padding:1px 5px;font-size:13px;" ' + (isLast?'disabled':'') + ' onclick="moveTierFeature(' + piArg + ',' + si + ',' + ci + ',' + fi + ',1)">↓</button>' +
+              '<button class="btn-remove" style="font-size:11px;" onclick="removeTierFeature(' + piArg + ',' + si + ',' + ci + ',' + fi + ')">×</button>' +
             '</div>' +
             '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">' +
               '<label style="display:flex;align-items:center;gap:6px;font-size:11px;cursor:pointer;">' +
@@ -4979,7 +5001,6 @@ function buildCpSectionTypeFields(sec, pi, si) {
               '<input type="text" data-cp="' + pi + '" data-sec="' + si + '" data-arr="items" data-idx="' + ci + '" data-field="ribbon" value="' + escHtml(card.ribbon||'') + '" placeholder="Best Value"/></div>' +
             '<div class="field-group" style="margin:0;"><label>Card Style</label>' +
               '<select data-cp="' + pi + '" data-sec="' + si + '" data-arr="items" data-idx="' + ci + '" data-field="cardStyle">' +
-                '<option value="bordered" ' + (style==='bordered'?'selected':'') + '>Bordered</option>' +
                 '<option value="light"    ' + (style==='light'   ?'selected':'') + '>Light</option>' +
                 '<option value="alt"      ' + (style==='alt'     ?'selected':'') + '>Alt</option>' +
                 '<option value="dark"     ' + (style==='dark'    ?'selected':'') + '>Dark</option>' +
@@ -4992,9 +5013,14 @@ function buildCpSectionTypeFields(sec, pi, si) {
               'Featured card' +
             '</label>' +
           '</div>' +
-          '<div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:10px 0 6px;">Features</div>' +
-          '<div data-feature-list="' + ci + '">' + featureRows + '</div>' +
-          '<button class="btn-add" style="margin-bottom:10px;" onclick="addTierFeature(' + (typeof pi==='string'?("'"+pi+"'"):pi) + ',' + si + ',' + ci + ')">+ Add Feature</button>' +
+          '<div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:10px 0 6px;display:flex;align-items:center;gap:6px;cursor:pointer;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display===\'none\'?\'\':\'none\';this.querySelector(\'.tf-chevron\').textContent=this.nextElementSibling.style.display===\'none\'?\'▸\':\'▾\';">' +
+            'Features <span style="font-weight:400;color:var(--muted);font-size:10px;">(' + features.length + ')</span>' +
+            '<span class="tf-chevron" style="font-size:10px;margin-left:2px;">' + (features.length ? '▾' : '▸') + '</span>' +
+          '</div>' +
+          '<div style="' + (features.length ? '' : 'display:none;') + '">' +
+            '<div data-feature-list="' + ci + '">' + featureRows + '</div>' +
+            '<button class="btn-add" style="margin-bottom:10px;" onclick="addTierFeature(' + (typeof pi==='string'?("'"+pi+"'"):pi) + ',' + si + ',' + ci + ')">+ Add Feature</button>' +
+          '</div>' +
           '<div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:10px 0 6px;">CTA Button</div>' +
           '<div class="form-row-2" style="margin-bottom:6px;">' +
             '<div class="field-group" style="margin:0;"><label>Button Label</label>' +
@@ -5018,7 +5044,7 @@ function buildCpSectionTypeFields(sec, pi, si) {
         <div class="field-group"><label>Heading (optional)</label><input type="text" ${p} data-field="heading" value="${v('heading')}"/></div>
         <div class="field-group"><label>Subtitle (optional)</label><input type="text" ${p} data-field="subtitle" value="${v('subtitle')}"/></div>
         <div class="cp-sub-items" data-cp-drag="${pi}-${si}-items">${cardRows}</div>
-        <button class="btn-add" onclick="addCpSubItem(${typeof pi==='string'?("'"+pi+"'"):pi},${si},'items',{name:'',tagline:'',price:'',period:'',icon:'',imagePath:'',ribbon:'',cardStyle:'bordered',featured:false,features:[],cta_linkType:'none',cta_linkLabel:'',cta_linkUrl:'',note:''})">+ Add Card</button>`;
+        <button class="btn-add" onclick="addCpSubItem(${typeof pi==='string'?("'"+pi+"'"):pi},${si},'items',{name:'',tagline:'',price:'',period:'',icon:'',imagePath:'',ribbon:'',cardStyle:'light',featured:false,features:[],cta_linkType:'none',cta_linkLabel:'',cta_linkUrl:'',note:''})">+ Add Card</button>`;
     }
 
     case 'gallery': {
@@ -5812,7 +5838,7 @@ function collectCpSections(card, pi, existingSections) {
           return {
             name: cg('name'), tagline: cg('tagline'), price: cg('price'), period: cg('period'),
             icon: cg('icon'), imagePath: cg('imagePath'), ribbon: cg('ribbon'), note: cg('note'),
-            cardStyle:     cardEl.querySelector('[data-field="cardStyle"]')?.value || 'bordered',
+            cardStyle:     cardEl.querySelector('[data-field="cardStyle"]')?.value || 'light',
             featured:      cgb('featured'),
             cta_linkLabel: cg('cta_linkLabel'),
             cta_linkType:  cardEl.querySelector('[data-field="cta_linkType"]')?.value || 'none',

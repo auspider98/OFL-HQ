@@ -2858,11 +2858,19 @@ footer {
   flex-direction: column;
   border-radius: 6px;
   overflow: hidden;
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+  box-shadow: none;
+  transition: box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out), box-shadow 0.3s;
 }
-.cps-tier-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,35,64,0.12); }
-.cps-tier-card--bordered { border: 1px solid #e8e3d8; background: var(--warm-white); }
-.cps-tier-card--light    { border: 1px solid #e8e3d8; background: var(--warm-white); }
+.cps-tier-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out), box-shadow 0.3s;
+}
+.cps-tier-card.visible:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(15,35,64,0.12); }
+.cps-tier-card--light    { background: var(--warm-white); }
 .cps-tier-card--alt      { border: 1px solid #ddd8cc; background: var(--cream); }
 .cps-tier-card--dark     { border: none; background: var(--navy); }
 .cps-tier-card--gold     { border: none; background: var(--gold); }
@@ -2871,8 +2879,8 @@ footer {
 .cps-tier-card--gold.cps-tier-card--featured { border-top-color: var(--navy); }
 /* Featured pulse + shimmer */
 @keyframes tierPulse {
-  0%, 100% { box-shadow: 0 8px 32px rgba(201,168,76,0.2); }
-  50%       { box-shadow: 0 8px 48px rgba(201,168,76,0.45); }
+  0%, 100% { box-shadow: 0 8px 32px rgba(201,168,76,0.25); }
+  50%       { box-shadow: 0 12px 64px rgba(201,168,76,0.7); }
 }
 .cps-tier-card--featured.cps-tier-pulse { animation: tierPulse 2.8s ease-in-out infinite; }
 
@@ -4163,6 +4171,14 @@ function showPage(name, anchor) {
     document.title = titles[name] || CFG.firmName;
   }
 
+  // Reset reveals on the newly active page synchronously (before repaint) so no flash
+  const activePage = document.querySelector(`#page-${name}, #page-custom-${name}`);
+  if (activePage) {
+    activePage.querySelectorAll('.reveal.visible').forEach(el => el.classList.remove('visible'));
+    activePage.querySelectorAll('.cps-tier-card.visible').forEach(el => {
+      el.classList.remove('visible', 'cps-tier-pulse');
+    });
+  }
   setTimeout(() => { initReveal(); initProcessObserver(); }, 100);
 }
 
@@ -4238,9 +4254,18 @@ function initProcessObserver() {
 
 function initReveal() {
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        if (e.target.classList.contains('cps-tier-card--featured')) {
+          setTimeout(() => e.target.classList.add('cps-tier-pulse'), 1100);
+        }
+        obs.unobserve(e.target);
+      }
+    });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+  document.querySelectorAll('.cps-tier-card:not(.visible)').forEach(el => obs.observe(el));
 }
 
 /* =============================================
@@ -4953,7 +4978,7 @@ function renderCustomSection(sec, idx, isFirst, allSections) {
       }
 
       wrapper.innerHTML = `<div class="container">
-        <div class="cps-rt-wrap${rtFull ? ' cps-rt-full' : ''} cps-rt-clearfix">
+        <div class="cps-rt-wrap${rtFull ? ' cps-rt-full' : ''} cps-rt-clearfix reveal">
           ${imgHtml}
           <div class="cps-rt-body${rtIsDark ? ' on-dark' : ''}">${rtHtml}</div>
         </div>
@@ -5040,11 +5065,10 @@ function renderCustomSection(sec, idx, isFirst, allSections) {
       const cards = sec.items || [];
 
       const cardHtml = cards.map((card, ci) => {
-        const style = card.cardStyle || 'bordered';
+        const style = card.cardStyle || 'light';
         const isFeatured = card.featured === true;
         const styleClass = 'cps-tier-card--' + style;
-        const featClass = isFeatured ? ' cps-tier-card--featured cps-tier-pulse' : '';
-        const delayClass = ' reveal-delay-' + Math.min(ci + 1, 4);
+        const featClass = isFeatured ? ' cps-tier-card--featured' : '';
 
         // Ribbon
         const ribbonHtml = card.ribbon
@@ -5098,7 +5122,9 @@ function renderCustomSection(sec, idx, isFirst, allSections) {
 
         const noteHtml = card.note ? '<div class="cps-tier-note">' + card.note + '</div>' : '';
 
-        return '<div class="cps-tier-card reveal' + delayClass + ' ' + styleClass + featClass + '">' +
+        const delay = ci < 4 ? (ci * 0.1) + 's' : '0.4s';
+
+        return '<div class="cps-tier-card ' + styleClass + featClass + '" style="transition-delay:' + delay + ';">' +
           ribbonHtml +
           (card.imagePath ? mediaHtml : '') +
           '<div class="cps-tier-body">' +
@@ -5396,7 +5422,6 @@ let _modalBtnAnchorId = '';
 let _lbItems = [];
 let _lbIdx = 0;
 
-let _lbSwipeInit = false;
 function openLightbox(items, idx) {
   _lbItems = items;
   _lbIdx = idx;
@@ -5404,21 +5429,6 @@ function openLightbox(items, idx) {
   const lb = document.getElementById('cpsLightbox');
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
-  if (!_lbSwipeInit) {
-    _lbSwipeInit = true;
-    let _touchX = 0, _touchY = 0;
-    lb.addEventListener('touchstart', e => {
-      _touchX = e.changedTouches[0].clientX;
-      _touchY = e.changedTouches[0].clientY;
-    }, { passive: true });
-    lb.addEventListener('touchend', e => {
-      const dx = e.changedTouches[0].clientX - _touchX;
-      const dy = e.changedTouches[0].clientY - _touchY;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-        lightboxNav(dx < 0 ? 1 : -1);
-      }
-    }, { passive: true });
-  }
 }
 
 function _lbRender() {
