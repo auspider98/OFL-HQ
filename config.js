@@ -504,6 +504,41 @@ const SITE_CONFIG = {
       "stars": "1",
       "text": "I went to my therapist to talk to him about my darkest thoughts as I fight through my fear and depression, but we spent the hour discussing his bracket choices and the elimination of 2 of his Final Four teams. Dudes got some serious BRC issues caused by the extreme trash talk and bullying from your insane league.",
       "meta": "Therapy • Lincoln, NE"
+    },
+    {
+      "name": "GourmetGreg88",
+      "initials": "GG",
+      "stars": "1",
+      "text": "I was looking for a recipe for slow-cooker carnitas and somehow ended up here. I clicked 'Join Now' thinking it was a mailing list for a spice rub. For the last three days I swear some dude in an OFL tactical vest has been following me. Confused and very intimidated.",
+      "meta": "Confused • Witness Protection USA"
+    },
+    {
+      "name": "Local_Historian",
+      "initials": "LH",
+      "stars": "1",
+      "text": "I am conducting a genealogical study on the Osborne family tree and stumbled upon this 'Hall of Records.' I requested access to the archives, but the 'Commissioner' replied that my bloodline hadn't been 'vetted for high-stakes bracketology' and blocked my IP address. I’m fairly certain this is a cult.",
+      "meta": "Bloodlines • Memphis, TN"
+    },
+    {
+      "name": "TechSupport_Terry",
+      "initials": "TT",
+      "stars": "0",
+      "text": "I was hired to fix a 'VBA Macro error' for a security service, but I think the client sent me the wrong link. I ended up in a secure portal for something called the 'Blue Ribbon Cup.' When I tried to debug the script, a pop-up window told me I was 'committing a federal basketball offense' and my webcam turned on by itself. My dog suddenly bolted out of the room. Now I’m too scared to close the tab.",
+      "meta": "Bad Link • Lake Charles, LA"
+    },
+    {
+      "name": "Yoga_Mom_99",
+      "initials": "YM",
+      "stars": "2",
+      "text": "I thought this was the registration page for the 'Ocala Fitness League.' I uploaded my medical history and a photo of my driver's license, and all I got back was an automated message saying: 'Your BMI is fine, but your trash-talk potential is sub-zero. Seek employment elsewhere.' I haven't been able to sleep since. Is 'OFL' a branch of the government?",
+      "meta": "Meditation • Reno, NV"
+    },
+    {
+      "name": "UFO_Hunter_X",
+      "initials": "UH",
+      "stars": "1",
+      "text": "Found it. This is clearly a front for a shadow government. If you look at the 'Member Services' page in dark mode, the coordinates lead to a suburb in Tennessee, not far from Oak Ridge. They claim to be playing 'fantasy football,' but no one has this much security just to trade wide receivers. I’ve been trying to join for months but they keep telling me my 'clearance' isn't high enough. One day I'll see the Monster Lombardi Trophy with my own eyes. THE TRUTH IS IN THE STANDINGS.",
+      "meta": "Member Services • Seattle, WA"
     }
   ],
   "blogPosts": [
@@ -803,7 +838,7 @@ const SITE_CONFIG = {
           "background": "light",
           "anchorId": "",
           "heading": "Why Choose Us...You Don't.",
-          "subtitle": "There are exactly four known pathways to OFL membership. Three are effectively closed. One is theoretically open.",
+          "subtitle": "There are exactly four known pathways to OFL membership. Three are effectively closed to the public. One is theoretically open.",
           "fullWidth": false,
           "items": [
             {
@@ -1031,77 +1066,7 @@ const SITE_CONFIG = {
           "label": "Profiles in Persistence",
           "background": "alt",
           "anchorId": "",
-          "heading": "Archetypes of the Rejected — BRC Division",
-          "subtitle": "The Blue Ribbon Cup attracts its own unique class of aspiring outsider. These are the bracket-centric personalities the OFL has had to formally decline.",
-          "items": [
-            {
-              "icon": "🏀",
-              "title": "The Guy Who Watches Zero College Basketball But Has Strong Opinions",
-              "desc": "Cannot name the starting lineup of any team in the bracket. Has extremely confident predictions anyway. Believes 'upsets happen' is a strategy. It is an observation. Not a strategy.",
-              "detail": "This archetype is distinguished by a unique inversion: the less they know, the more certain they are. They routinely predict 'chaos in the Midwest region' while being unable to locate the Midwest region on a bracket. Their bracket does not survive the second round. Their confidence survives indefinitely.",
-              "btnLabel": "",
-              "btnLinkType": "none",
-              "btnLinkUrl": "home",
-              "btnAnchorId": ""
-            },
-            {
-              "icon": "😇",
-              "title": "The 'I Just Fill It Out For Fun' Person",
-              "desc": "Claims to not care about the outcome. Posts bracket updates constantly. Texts every time a pick hits. Is absolutely devastated when eliminated. Has described themselves as 'pretty chill about it.'",
-              "detail": "The 'Just For Fun' person is the BRC's most common applicant archetype and its most transparent. Nobody fills out a 64-team bracket 'for fun.' You fill it out because you need to win. The 'fun' framing is a psychological defense mechanism. The Commissioner sees through it. The BRC sees through it. Everyone sees through it.",
-              "btnLabel": "",
-              "btnLinkType": "none",
-              "btnLinkUrl": "home",
-              "btnAnchorId": ""
-            },
-            {
-              "icon": "🎲",
-              "title": "The Pure Chaos Picker",
-              "desc": "Picks exclusively by upset. Has never once chosen a 1-seed to win a game. Self-identifies as 'the chaos agent.' Has never won the BRC. Will claim the chaos was the point.",
-              "detail": "The Chaos Picker believes that randomness is strategy. It is not. Randomness is randomness. There is a difference, and that difference is reflected in the BRC standings every single year without exception. The Chaos Picker finishes somewhere between 8th and last, calls it a 'good run,' and does the exact same thing next year.",
-              "btnLabel": "",
-              "btnLinkType": "none",
-              "btnLinkUrl": "home",
-              "btnAnchorId": ""
-            },
-            {
-              "icon": "😭",
-              "title": "The One Who Peaked in Round One",
-              "desc": "Goes 28-4 in the first round. Is convinced they have cracked the bracket. Is eliminated in the second round when all four of their Final Four picks lose on the same day. Posts 'well that happened' to the group chat.",
-              "detail": "The Round One Peak is the BRC's most painful archetype — not because they did anything wrong, but because they dared to hope. Going 28-4 creates a false sense of bracket security that is dismantled with surgical precision by college basketball over the following 72 hours. They were not ready. Nobody is ever ready.",
-              "btnLabel": "",
-              "btnLinkType": "none",
-              "btnLinkUrl": "home",
-              "btnAnchorId": ""
-            },
-            {
-              "icon": "📊",
-              "title": "The Advanced Metrics Guy",
-              "desc": "Picks entirely based on KenPom ratings, BPI, and NET rankings. Has a formula. The formula is sophisticated. The formula did not account for a team that shot 47% from three in a game it had no business being in.",
-              "detail": "The Advanced Metrics Guy is the BRC equivalent of the OFC Analytics Guy, and they share the same fatal flaw: they believe the data protects them from chaos. It does not. March Madness exists specifically to humble the analytical. The BRC has humbled several. The Commissioner finds this instructive.",
-              "btnLabel": "",
-              "btnLinkType": "none",
-              "btnLinkUrl": "home",
-              "btnAnchorId": ""
-            },
-            {
-              "icon": "🤡",
-              "title": "The Bracket Revisionist",
-              "desc": "After every upset, mentions what they 'almost picked.' Has an alternate bracket they 'were going to go with.' Their actual submitted bracket tells a very different story that is available for everyone to see.",
-              "detail": "The Bracket Revisionist is the BRC's most socially complicated archetype. There is no alternate bracket. There is only the bracket that was submitted. The BRC operates on a strict 'what you locked is what you are' policy, and the Commissioner enforces it with a screenshot archive dating back several seasons.",
-              "btnLabel": "",
-              "btnLinkType": "none",
-              "btnLinkUrl": "home",
-              "btnAnchorId": ""
-            }
-          ]
-        },
-        {
-          "type": "services",
-          "label": "",
-          "background": "alt",
-          "anchorId": "",
-          "heading": "Archetypes of the Rejected - OFC Division",
+          "heading": "Archetypes of the OFL Rejected",
           "subtitle": "The OFC has produced the most sustained wave of rejected applicants. These are the archetypes that keep appearing, season after season.",
           "items": [
             {
@@ -1118,7 +1083,7 @@ const SITE_CONFIG = {
               "icon": "😤",
               "title": "The Significant Other Who Thinks It's Unfair",
               "desc": "Their partner is in the league and they have to hear about it all season. 'I know as much about football as they do,' they have said, accurately, multiple times. And yet.",
-              "detail": "The Aggrieved Partner occupies a sympathetic position in the OFC's cosmology. They have done nothing wrong. They are simply not in a committed relationship with someone who is also personally connected to the Osborne family tree in a way that would make their inclusion feel natural. It's a niche requirement.",
+              "detail": "The Aggrieved Partner occupies a sympathetic position in the OFL's cosmology. They have done nothing wrong. They are simply not in a committed relationship with someone who is also personally connected to the Osborne family tree in a way that would make their inclusion feel natural. It's a niche requirement.",
               "btnLabel": "",
               "btnLinkType": "none",
               "btnLinkUrl": "home",
@@ -1138,7 +1103,7 @@ const SITE_CONFIG = {
               "icon": "👋",
               "title": "The Mutual Friend's Friend",
               "desc": "Heard about the league secondhand. 'My buddy's girlfriend's cousin is in it.' Believes this constitutes a social proximity that warrants consideration. It constitutes nothing of the sort.",
-              "detail": "The Mutual Friend's Friend has misunderstood the nature of OFC networking. Proximity to a member does not generate eligibility. You could live next door to three OFC members and remain as categorically unqualified as someone who lives in another country. The geographic and social proximity is noted. The answer is unchanged.",
+              "detail": "The Mutual Friend's Friend has misunderstood the nature of OFL networking. Proximity to a member does not generate eligibility. You could live next door to three OFL members and remain as categorically unqualified as someone who lives in another country. The geographic and social proximity is noted. The answer is unchanged.",
               "btnLabel": "",
               "btnLinkType": "none",
               "btnLinkUrl": "home",
@@ -1148,7 +1113,7 @@ const SITE_CONFIG = {
               "icon": "📧",
               "title": "The Email Sender",
               "desc": "Sends a formal email to the OFL contact address requesting membership consideration. The email is well-written. It is respectful. It demonstrates awareness of proper application etiquette. It receives a form rejection.",
-              "detail": "The Email Sender is, in some ways, our favorite archetype. There is something admirable about putting it in writing, using subject lines like 'OFC Membership Inquiry — [Year]' and carbon-copying people who definitely cannot help them. The formality is respected. The application is not advanced. The Commissioner personally reads all emails of this nature and feels something he identifies as 'bemused respect.'",
+              "detail": "The Email Sender is, in some ways, our favorite archetype. There is something admirable about putting it in writing, using subject lines like 'OFL Membership Inquiry — [Year]' and carbon-copying people who definitely cannot help them. The formality is respected. The application is not advanced. The Commissioner personally reads all emails of this nature and feels something he identifies as 'bemused respect.'",
               "btnLabel": "",
               "btnLinkType": "none",
               "btnLinkUrl": "home",
@@ -1429,9 +1394,9 @@ const SITE_CONFIG = {
           "background": "light",
           "anchorId": "",
           "linkType": "internal",
-          "linkLabel": "BRC Violation Schedule & Catastrophe Ledger",
-          "linkUrl": "home",
-          "link_anchorId": ""
+          "linkLabel": "BRC War Room Guide",
+          "linkUrl": "war-room",
+          "link_anchorId": "brc-penalty"
         },
         {
           "type": "logo-strip",
@@ -1529,9 +1494,9 @@ const SITE_CONFIG = {
           "background": "light",
           "anchorId": "",
           "linkType": "internal",
-          "linkLabel": "OFC Violation Schedule & Catastrophe Ledger",
-          "linkUrl": "home",
-          "link_anchorId": ""
+          "linkLabel": "OFC  War Room Guide",
+          "linkUrl": "war-room",
+          "link_anchorId": "ofc-penalty"
         },
         {
           "type": "logo-strip",
@@ -1811,11 +1776,81 @@ const SITE_CONFIG = {
           ]
         },
         {
+          "type": "services",
+          "label": "Profiles in the BRC",
+          "background": "alt",
+          "anchorId": "",
+          "heading": "Archetypes of a Bracketologist",
+          "subtitle": "The Blue Ribbon Cup attracts its own unique class of aspiring outsider. These are the bracket-centric personalities the OFL has had to formally decline.",
+          "items": [
+            {
+              "icon": "🏀",
+              "title": "The Guy Who Watches Zero College Basketball But Has Strong Opinions",
+              "desc": "Cannot name the starting lineup of any team in the bracket. Has extremely confident predictions anyway. Believes 'upsets happen' is a strategy. It is an observation. Not a strategy.",
+              "detail": "This archetype is distinguished by a unique inversion: the less they know, the more certain they are. They routinely predict 'chaos in the Midwest region' while being unable to locate the Midwest region on a bracket. Their bracket does not survive the second round. Their confidence survives indefinitely.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "😇",
+              "title": "The 'I Just Fill It Out For Fun' Person",
+              "desc": "Claims to not care about the outcome. Posts bracket updates constantly. Texts every time a pick hits. Is absolutely devastated when eliminated. Has described themselves as 'pretty chill about it.'",
+              "detail": "The 'Just For Fun' person is the BRC's most common applicant archetype and its most transparent. Nobody fills out a 64-team bracket 'for fun.' You fill it out because you need to win. The 'fun' framing is a psychological defense mechanism. The Commissioner sees through it. The BRC sees through it. Everyone sees through it.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "🎲",
+              "title": "The Pure Chaos Picker",
+              "desc": "Picks exclusively by upset. Has never once chosen a 1-seed to win a game. Self-identifies as 'the chaos agent.' Has never won the BRC. Will claim the chaos was the point.",
+              "detail": "The Chaos Picker believes that randomness is strategy. It is not. Randomness is randomness. There is a difference, and that difference is reflected in the BRC standings every single year without exception. The Chaos Picker finishes somewhere between 8th and last, calls it a 'good run,' and does the exact same thing next year.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "😭",
+              "title": "The One Who Peaked in Round One",
+              "desc": "Goes 28-4 in the first round. Is convinced they have cracked the bracket. Is eliminated in the second round when all four of their Final Four picks lose on the same day. Posts 'well that happened' to the group chat.",
+              "detail": "The Round One Peak is the BRC's most painful archetype — not because they did anything wrong, but because they dared to hope. Going 28-4 creates a false sense of bracket security that is dismantled with surgical precision by college basketball over the following 72 hours. They were not ready. Nobody is ever ready.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "📊",
+              "title": "The Advanced Metrics Guy",
+              "desc": "Picks entirely based on KenPom ratings, BPI, and NET rankings. Has a formula. The formula is sophisticated. The formula did not account for a team that shot 47% from three in a game it had no business being in.",
+              "detail": "The Advanced Metrics Guy is the BRC equivalent of the OFC Analytics Guy, and they share the same fatal flaw: they believe the data protects them from chaos. It does not. March Madness exists specifically to humble the analytical. The BRC has humbled several. The Commissioner finds this instructive.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "🤡",
+              "title": "The Bracket Revisionist",
+              "desc": "After every upset, mentions what they 'almost picked.' Has an alternate bracket they 'were going to go with.' Their actual submitted bracket tells a very different story that is available for everyone to see.",
+              "detail": "The Bracket Revisionist is the BRC's most socially complicated archetype. There is no alternate bracket. There is only the bracket that was submitted. The BRC operates on a strict 'what you locked is what you are' policy, and the Commissioner enforces it with a screenshot archive dating back several seasons.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            }
+          ]
+        },
+        {
           "type": "fees",
           "label": "BRC Hall of Records",
           "background": "dark",
           "anchorId": "brc-ledger",
-          "heading": "The BRC All-Time Bracket Catastrophe Ledger",
+          "heading": "All-Time Bracket Catastrophe Ledger",
           "subtitle": "The OFL maintains an official record of bracket-related incidents that have become permanent BRC lore. Names are withheld. The incidents are not.",
           "col1Label": "The Incident",
           "col2Label": "Severity",
@@ -1965,6 +2000,126 @@ const SITE_CONFIG = {
               "linkType": "none",
               "linkUrl": "home",
               "anchorId": ""
+            }
+          ]
+        },
+        {
+          "type": "services",
+          "label": "OFC Character Studies",
+          "background": "light",
+          "anchorId": "",
+          "heading": "Archetypes in the Huddle",
+          "subtitle": "Every OFC season features the same cast of characters. The rosters change. The personalities do not. The Commissioner has documented each type with the precision of a naturalist cataloguing wildlife.",
+          "items": [
+            {
+              "icon": "🤕",
+              "title": "The Injury Denier",
+              "desc": "His starting running back has been listed as Doubtful since Wednesday. It is now Sunday morning. He is starting him. 'He'll gut it out.' The player does not gut it out. He is inactive by 11:45am.",
+              "detail": "The Injury Denier operates on a belief system that is immune to injury reports, beat reporter updates, and the direct testimony of the player's own head coach. 'Questionable means he's playing' is a statement this person has made. It is not always wrong. It is wrong often enough to have defined multiple seasons. Commissioner Spider has stopped commenting on individual lineup decisions. He comments on outcomes. The outcomes comment on the decisions.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "💍",
+              "title": "The Loyalty Starter",
+              "desc": "Drafted someone in the second round. That player has three touchdowns all season. It is Week 11. He is still starting. 'I drafted him for a reason.' The reason was projections from August. August was wrong.",
+              "detail": "The Loyalty Starter confuses personal investment with strategic wisdom. The round in which you drafted a player is not relevant to whether you should start them in Week 11 of a different reality than August projected. The Commissioner has issued no formal ruling on loyalty starting because it is technically legal. He has, however, issued informal commentary via the group chat that is legally distinct from a ruling but carries similar weight.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "😴",
+              "title": "The Waiver Wire Nihilist",
+              "desc": "Has not touched the waiver wire since Week 2. Believes the roster he drafted in August is fundamentally the roster he deserves. Has watched $40 of free agent value walk past him unclaimed every week. Does not see the problem.",
+              "detail": "The Waiver Wire Nihilist is philosophically committed to his original draft as a complete and finished document. The waiver wire is, in his view, an afterthought for people who didn't draft well enough. He drafted well enough. His record suggests otherwise. The Commissioner has noted that the waiver wire exists for a reason and that the reason is visible in this member's lineup every week from September through elimination.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "🌙",
+              "title": "The 3am Panic Dropper",
+              "desc": "It is Saturday night. He has made a decision. A starter is being dropped. A waiver wire pickup of unclear value is coming in. By 9am Sunday he has serious concerns about this decision. By kickoff it is too late. The dropped player scores 34 points.",
+              "detail": "The 3am Panic Dropper is a specific and well-documented OFC personality type who makes his worst decisions between midnight and 4am and his best decisions between 8am and noon, when it is too late to act on them. The gap between these two windows is where OFC seasons go to die. The Commissioner has considered implementing a late-night roster change cooling-off period. He has not implemented it. The content generated by 3am decisions is too valuable to the group chat.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "🏗️",
+              "title": "The Excuse Architect",
+              "desc": "Lost by six points. His tight end had a bye. His flex got hurt in the first quarter. His opponent's kicker went 4-for-4 from 50+. These are not excuses. They are a complete structural analysis of an outcome that had nothing to do with his decisions.",
+              "detail": "The Excuse Architect is a gifted storyteller who applies his talents exclusively to loss explanation. Every defeat has a narrative. The narrative is always external. The draft decisions, the waiver inaction, the 3am drop — these do not appear in the narrative. The narrative is about what happened to him, not what he did. We have heard every version of the narrative. He nods. He files it. He remembers the lineup decisions.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "🔮",
+              "title": "The Preseason Prophet",
+              "desc": "Made eight bold predictions in the group chat in August. It is now November. Six of the predictions are objectively wrong. He has not acknowledged this. He is doubling down on the remaining two. One of those two is also probably wrong.",
+              "detail": "The Preseason Prophet operates under a specific cognitive protection: he remembers the predictions that were right and experiences the wrong ones as aberrations caused by circumstances he could not have foreseen. The group chat has screenshots of everything. The OFC does not delete group chat history. The Preseason Prophet is aware of this. He has described the screenshot archive as 'a weapon.' The Commissioner has described it as 'a record.' Both are correct.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "📅",
+              "title": "The Schedule Blamer",
+              "desc": "Did not lose because of his picks. He lost because of the schedule. He faced the highest-scoring team in the league three times. His opponent this week happened to have their best game of the season. The schedule is broken. He is not.",
+              "detail": "The Schedule Blamer has correctly identified that the OFC schedule is not designed to be fair — it is random, and randomness produces inequity. He has applied this correct observation incorrectly, as a complete explanation for outcomes that also involved starting a wide receiver with a hamstring issue and leaving 22 points on the bench. We have noted that everyone plays the same schedule problem. Not everyone finishes where the Schedule Blamer finishes.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "📊",
+              "title": "The Points Don't Lie Guy",
+              "desc": "Finished fifth. Scored the second most points in the league. Missed the playoffs. Has not stopped talking about this. It has been three months. He brings it up at events that have nothing to do with the OFC.",
+              "detail": "The Points Don't Lie Guy has identified a genuine injustice — he was unlucky in his matchups, and bad luck contributed to his absence from the playoffs. This is true. It is also true that the OFC awards playoff spots based on wins, that wins are determined by matchups, and that matchups are the game. The Points Don't Lie Guy knows all of this. He does not accept it. The Commissioner has heard the points argument. He has acknowledged it each time with a short, respectful response. He has not changed the playoff format. He will not change the playoff format.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "🔄",
+              "title": "The Strategic Rebuilder",
+              "desc": "Finished last. This was not a failure. This was a calculated multi-year reconstruction designed to accumulate draft capital and position the franchise for sustained future success. He has been rebuilding for three years. The rebuild is ongoing.",
+              "detail": "The Strategic Rebuilder has reframed last place as a methodology. This is psychologically sophisticated and practically unverifiable, which is why it works as a self-narrative. The Commissioner has made no official ruling on whether finishing last constitutes a strategy. He has noted, privately and once semi-publicly, that a rebuild with no visible timeline is indistinguishable from a losing record. The Rebuilder responded that this is exactly what the competition wants him to think. There was no follow-up from the OFC.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "🎯",
+              "title": "The Sleeper Guy",
+              "desc": "Drafts exclusively based on upside. Has six players who were 'the best value in the draft' and are currently averaging four points per game. Describes each of them as 'one good week away from breaking out.' It is Week 13.",
+              "detail": "The Sleeper Guy is an optimist in a sport that punishes optimism. He identified value where others saw risk. The risk materialized. The value did not. He will be back next draft with new sleepers, new conviction, and a completely undiminished belief that this time the upside will arrive before the season ends. We respect the commitment to a philosophy. He does not share the philosophy. The standings explain his position.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
+            },
+            {
+              "icon": "😤",
+              "title": "The Moral Victory Collector",
+              "desc": "Lost by two points. But his team looked great doing it. The process was right. The execution was there. He played his best lineup. He just lost. He has collected four moral victories this season. He has two actual wins. He seems okay with this distribution.",
+              "detail": "The Moral Victory Collector has developed an alternative scoring system in which the quality of decision-making is awarded points separately from the outcome. This system is not recognized by the OFC. We have reviewed the concept of moral victories in fantasy football and issued a position paper in the form of a single group chat message that read: 'There are no moral victories in the standings.' The message was delivered without follow-up. It required none.",
+              "btnLabel": "",
+              "btnLinkType": "none",
+              "btnLinkUrl": "home",
+              "btnAnchorId": ""
             }
           ]
         },
@@ -2711,6 +2866,41 @@ const SITE_CONFIG = {
               "stars": "1",
               "text": "I went to my therapist to talk to him about my darkest thoughts as I fight through my fear and depression, but we spent the hour discussing his bracket choices and the elimination of 2 of his Final Four teams. Dudes got some serious BRC issues caused by the extreme trash talk and bullying from your insane league.",
               "meta": "Therapy • Lincoln, NE"
+            },
+            {
+              "name": "GourmetGreg88",
+              "initials": "GG",
+              "stars": "1",
+              "text": "I was looking for a recipe for slow-cooker carnitas and somehow ended up here. I clicked 'Join Now' thinking it was a mailing list for a spice rub. For the last three days I swear some dude in an OFL tactical vest has been following me. Confused and very intimidated.",
+              "meta": "Confused • Witness Protection USA"
+            },
+            {
+              "name": "Local_Historian",
+              "initials": "LH",
+              "stars": "1",
+              "text": "I am conducting a genealogical study on the Osborne family tree and stumbled upon this 'Hall of Records.' I requested access to the archives, but the 'Commissioner' replied that my bloodline hadn't been 'vetted for high-stakes bracketology' and blocked my IP address. I’m fairly certain this is a cult.",
+              "meta": "Bloodlines • Memphis, TN"
+            },
+            {
+              "name": "TechSupport_Terry",
+              "initials": "TT",
+              "stars": "0",
+              "text": "I was hired to fix a 'VBA Macro error' for a security service, but I think the client sent me the wrong link. I ended up in a secure portal for something called the 'Blue Ribbon Cup.' When I tried to debug the script, a pop-up window told me I was 'committing a federal basketball offense' and my webcam turned on by itself. My dog suddenly bolted out of the room. Now I’m too scared to close the tab.",
+              "meta": "Bad Link • Lake Charles, LA"
+            },
+            {
+              "name": "Yoga_Mom_99",
+              "initials": "YM",
+              "stars": "2",
+              "text": "I thought this was the registration page for the 'Ocala Fitness League.' I uploaded my medical history and a photo of my driver's license, and all I got back was an automated message saying: 'Your BMI is fine, but your trash-talk potential is sub-zero. Seek employment elsewhere.' I haven't been able to sleep since. Is 'OFL' a branch of the government?",
+              "meta": "Meditation • Reno, NV"
+            },
+            {
+              "name": "UFO_Hunter_X",
+              "initials": "UH",
+              "stars": "1",
+              "text": "Found it. This is clearly a front for a shadow government. If you look at the 'Member Services' page in dark mode, the coordinates lead to a suburb in Tennessee, not far from Oak Ridge. They claim to be playing 'fantasy football,' but no one has this much security just to trade wide receivers. I’ve been trying to join for months but they keep telling me my 'clearance' isn't high enough. One day I'll see the Monster Lombardi Trophy with my own eyes. THE TRUTH IS IN THE STANDINGS.",
+              "meta": "Member Services • Seattle, WA"
             }
           ]
         },
@@ -3538,7 +3728,7 @@ const SITE_CONFIG = {
       "background": "light",
       "anchorId": "",
       "heading": "Compliance & Dispute Resolution",
-      "subtitle": "We pride ourselves on an industry-leading 92% Commissioner Approval Rating. If you find yourself in the remaining 8%, please understand that this is a statistical anomaly caused by your own inability to comprehend the Commissioner's vision. Here are some recent visionary updates to the OFL Rules and Regulations documentation that the Commissioner personally introduced.",
+      "subtitle": "We pride ourselves on an industry-leading 92% Commissioner Approval Rating. If you find yourself in the remaining 8%, please understand that this is a statistical anomaly caused by your own inability to comprehend the Commissioner's vision. Here are some recent visionary amendments to the OFL Rules and Regulations documentation that the Commissioner personally introduced.",
       "items": [
         {
           "tag": "Article 16-23A",
@@ -3612,7 +3802,7 @@ const SITE_CONFIG = {
       "label": "",
       "background": "light",
       "anchorId": "",
-      "richContent": "<p>The OFL is not your neighborhood fantasy league. It is not the league your coworker started on ESPN with default settings and no trade deadline. It is something far more rarified — a brotherhood (and sisterhood) of the chosen few, united by blood ties, significant others who were strong-armed into joining, and an unyielding passion for the sport of kings.</p><p>Founded in 2005, the OFL has grown from a humble family tradition into an institution so elite it makes Augusta National look like a public golf course.</p>",
+      "richContent": "<p>The OFL is not your neighborhood fantasy league. It is not the league your coworker started on ESPN with default settings and no trade deadline. It is something far more rarified — a brotherhood and sisterhood of the chosen few, united by blood ties, significant others who were strong-armed into joining, and an unyielding passion for the sport of kings.</p><p>Founded in 2005, the OFL has grown from a humble family tradition into an institution so elite it makes Augusta National look like a public golf course.</p>",
       "imagePath": "",
       "imagePos": "none",
       "imageSize": "md",
@@ -3811,7 +4001,7 @@ const SITE_CONFIG = {
     }
   ],
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
-  "_savedAt": 1776956030267,
+  "_savedAt": 1776980545200,
   "animateStats": true,
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",
