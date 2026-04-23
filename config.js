@@ -474,7 +474,7 @@ const SITE_CONFIG = {
       "name": "Tim Cook",
       "initials": "TC",
       "stars": "2",
-      "text": "I built a 14-tab model projecting my impact on OFL competitive balance. I stress-tested it. I presented it clearly. Commissioner Spider's response was four sentences. The fourth sentence was 'the model is impressive.' The first three sentences were a rejection. I have since updated the model to include a variable I labeled 'Commissioner Discretion (Unknown).' It now accounts for 94% of the outcome variance. Two stars. The updated model has come to the proper conclusion, this model cannot help me gain admittance.",
+      "text": "I built a 14-tab model projecting my impact on OFL competitive balance. I stress-tested it. I presented it clearly. Commissioner Spider's response was four sentences. The fourth sentence was 'the model is impressive.' The first three sentences were a rejection. I have since updated the model to include a variable I labeled 'Commissioner Discretion (Unknown).' It now accounts for 94% of the outcome variance. The updated model has come to the proper conclusion, that my model cannot help me gain admittance.",
       "meta": "Acceptance • Silicon Valley, CA"
     },
     {
@@ -894,7 +894,7 @@ const SITE_CONFIG = {
               "anchorId": ""
             },
             {
-              "q": "Do you accept that Commissioner Spider's decisions are final?",
+              "q": "Do you accept that the Commissioner's decisions are final?",
               "a": "This is not optional. If your answer is anything other than an unambiguous yes, please do not submit this application. The OFL is not a democracy. It has never been a democracy. It will not become a democracy on your behalf.",
               "linkLabel": "",
               "linkType": "none",
@@ -2681,7 +2681,7 @@ const SITE_CONFIG = {
               "name": "Tim Cook",
               "initials": "TC",
               "stars": "2",
-              "text": "I built a 14-tab model projecting my impact on OFL competitive balance. I stress-tested it. I presented it clearly. Commissioner Spider's response was four sentences. The fourth sentence was 'the model is impressive.' The first three sentences were a rejection. I have since updated the model to include a variable I labeled 'Commissioner Discretion (Unknown).' It now accounts for 94% of the outcome variance. Two stars. The updated model has come to the proper conclusion, this model cannot help me gain admittance.",
+              "text": "I built a 14-tab model projecting my impact on OFL competitive balance. I stress-tested it. I presented it clearly. Commissioner Spider's response was four sentences. The fourth sentence was 'the model is impressive.' The first three sentences were a rejection. I have since updated the model to include a variable I labeled 'Commissioner Discretion (Unknown).' It now accounts for 94% of the outcome variance. The updated model has come to the proper conclusion, that my model cannot help me gain admittance.",
               "meta": "Acceptance • Silicon Valley, CA"
             },
             {
@@ -2741,7 +2741,7 @@ const SITE_CONFIG = {
       "slug": "page-sections",
       "navLabel": "Page Sections",
       "emoji": "📄",
-      "enabled": true,
+      "enabled": false,
       "sections": [
         {
           "type": "text",
@@ -3811,7 +3811,7 @@ const SITE_CONFIG = {
     }
   ],
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
-  "_savedAt": 1776921341256,
+  "_savedAt": 1776951259288,
   "animateStats": true,
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",
