@@ -3465,7 +3465,7 @@ const SITE_CONFIG = {
       "label": "",
       "background": "dark",
       "anchorId": "",
-      "richContent": "<p><span style=\"font-size: 17px;\">The Commissioner of the Osborne Fantasy League holds an office of supreme authority within the OFL ecosystem. This office was created in 2012 to govern the Blue Ribbon Cup after expansion had presented the league with new obstacles and disagreements. The Commissioners office, is the face of the organization and has the final say with all things Leaguey. This position is not meant to be a dictatorship, but to act as a mediator to help resolve league issues, disagreements, or just straight help competitors adjust their attitudes. To date, there have been zero successful attempts to remove, replace, or \"democratize\" the commissionership. One motion to the contrary was tabled in 2015. It is still tabled. It will remain tabled, until the commissioner deems it worthy of consideration.</span></p><p><span style=\"font-size: 17px;\">The Commissioner approaches his duties with the seriousness of a Supreme Court Justice and the confidence of someone who knows he cannot be fired. Lets just say, he's a badass!</span></p>",
+      "richContent": "<p><span style=\"font-size: 17px;\">The Commissioner of the Osborne Fantasy League holds an office of supreme authority within the OFL ecosystem. This office was created in 2012 to govern the Blue Ribbon Cup after expansion had presented the league with new obstacles and disagreements. The Commissioners office, is the face of the organization and has the final say with all things Leaguey. </span></p><p><span style=\"font-size: 17px;\">This position is not meant to be a dictatorship, but to act as a mediator to help resolve league issues, disagreements, or just straight help competitors adjust their attitudes. To date, there have been zero successful attempts to remove, replace, or \"democratize\" the commissionership. One motion to the contrary was tabled in 2015. It is still tabled. It will remain tabled, until the commissioner deems it worthy of consideration.</span></p><p><span style=\"font-size: 17px;\">The Commissioner approaches his duties with the seriousness of a Supreme Court Justice and the confidence of someone who knows he cannot be fired. Lets just say, he's a badass!</span></p>",
       "imagePath": "",
       "imagePos": "none",
       "imageSize": "md",
@@ -3538,7 +3538,7 @@ const SITE_CONFIG = {
       "background": "light",
       "anchorId": "",
       "heading": "Compliance & Dispute Resolution",
-      "subtitle": "We pride ourselves on an industry-leading 92% Commissioner Approval Rating. If you find yourself in the remaining 8%, please understand that this is a statistical anomaly caused by your own inability to comprehend the Commissioner's vision.",
+      "subtitle": "We pride ourselves on an industry-leading 92% Commissioner Approval Rating. If you find yourself in the remaining 8%, please understand that this is a statistical anomaly caused by your own inability to comprehend the Commissioner's vision. Here are some recent visionary updates to the OFL Rules and Regulations documentation that the Commissioner personally introduced.",
       "items": [
         {
           "tag": "Article 16-23A",
@@ -3811,7 +3811,7 @@ const SITE_CONFIG = {
     }
   ],
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
-  "_savedAt": 1776953199207,
+  "_savedAt": 1776956030267,
   "animateStats": true,
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",

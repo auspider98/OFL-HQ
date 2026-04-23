@@ -569,7 +569,8 @@ h2.section-title {
   font-size: clamp(15px, 1.5vw, 17px);
   color: var(--text-muted);
   line-height: 1.75;
-  max-width: 560px;
+  width: 100%;
+  max-width: 900px;
   margin-top: 16px;
 }
 .section-dark .section-subtitle { color: rgba(255,255,255,0.6); }
@@ -1097,7 +1098,7 @@ h2.section-title {
   font-size: 14px;
   line-height: 1.8;
   color: rgba(255,255,255,0.5);
-  max-width: 680px;
+  max-width: 900px;
   transition: color 0.3s;
 }
 .process-step.step-active .step-desc { color: rgba(255,255,255,0.75); }
@@ -1979,6 +1980,7 @@ footer {
   font-size: 14px;
   line-height: 1.8;
   color: var(--text-muted);
+  max-width: 900px;
 }
 .cps-timeline-date {
   font-size: 11px;
@@ -3142,7 +3144,7 @@ footer {
     </div>
   </div>
   <section id="privacy">
-    <div class="container" style="max-width:800px;padding-top:60px;padding-bottom:80px;">
+    <div class="container" style="max-width:900px;padding-top:60px;padding-bottom:80px;">
       <h2>Privacy Policy</h2>
       <p><em>Last updated: January 1, 2025</em></p>
       <h3>Information We Collect</h3>
@@ -4431,7 +4433,7 @@ function renderCustomSection(sec, idx, isFirst, allSections) {
     ? `page-banner-title${isDark ? ' page-banner-title-light' : ''}`
     : 'section-title';
   const subtitleStyle = isFirst
-    ? `font-size:clamp(15px,1.6vw,18px);color:${isDark ? 'rgba(255,255,255,0.65)' : 'var(--text-muted)'};line-height:1.7;max-width:600px;margin-top:14px;`
+    ? `font-size:clamp(15px,1.6vw,18px);color:${isDark ? 'rgba(255,255,255,0.65)' : 'var(--text-muted)'};line-height:1.7;max-width:900px;margin-top:14px;`
     : '';
 
   switch (sec.type) {
