@@ -575,6 +575,7 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
 /* Section type selector bar */
 .cp-add-section-bar {
   display: flex; align-items: center; gap: 10px;
+  flex-wrap: wrap;
   margin-top: 16px;
   padding: 14px 16px;
   background: rgba(201,168,76,0.06);
@@ -583,6 +584,7 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
 }
 .cp-add-section-bar select {
   flex: 1;
+  min-width: 140px;
   padding: 8px 12px;
   border: 1px solid var(--border);
   border-radius: 5px;
@@ -591,6 +593,9 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
   outline: none;
 }
 .cp-add-section-bar select:focus { border-color: var(--gold); }
+@media (max-width: 500px) {
+  .cp-add-section-bar select { flex: 1 1 100%; }
+}
 
 /* Section editor cards within a custom page */
 .cp-section-card {
@@ -5640,6 +5645,12 @@ function openSectionImport(pi) {
   document.getElementById('sectionImportError').style.display = 'none';
   const overlay = document.getElementById('sectionImportOverlay');
   overlay.style.display = 'flex';
+  // Auto-focus textarea so mobile paste menu appears on tap
+  setTimeout(() => {
+    const ta = document.getElementById('sectionImportJson');
+    ta.focus();
+    ta.click();
+  }, 100);
 }
 function closeSectionImport() {
   document.getElementById('sectionImportOverlay').style.display = 'none';
@@ -6758,7 +6769,16 @@ window.addEventListener('DOMContentLoaded', () => {
 <div id="sectionImportOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9000;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:10px;padding:28px;width:min(520px,90vw);box-shadow:0 8px 40px rgba(0,0,0,0.2);">
     <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px;">Import Section from JSON</div>
-    <div style="font-size:13px;color:var(--muted);margin-bottom:14px;">Paste the exported section JSON below. The section will be appended to the selected page.</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+      <div style="font-size:12px;color:var(--muted);">Paste JSON below, or tap the textarea and long-press to paste.</div>
+      <button class="btn btn-sm" onclick="
+        const ta = document.getElementById('sectionImportJson');
+        ta.focus();
+        navigator.clipboard.readText()
+          .then(t => { ta.value = t; document.getElementById('sectionImportError').style.display='none'; })
+          .catch(() => { ta.focus(); document.execCommand('paste'); });
+      ">📋 Paste</button>
+    </div>
     <textarea id="sectionImportJson" rows="10" style="width:100%;font-family:monospace;font-size:12px;border:1px solid #ddd;border-radius:6px;padding:10px;resize:vertical;" placeholder='{"type":"text","heading":"…"}'></textarea>
     <div id="sectionImportError" style="color:#c0392b;font-size:12px;margin-top:6px;display:none;"></div>
     <div style="display:flex;gap:10px;margin-top:16px;justify-content:flex-end;">
