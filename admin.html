@@ -765,6 +765,9 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
     </div>
     <div class="sidebar-section">
       <div class="sidebar-heading">Content</div>
+      <div class="sidebar-link" onclick="showSection('search')" data-section="search">
+        <span class="sidebar-link-icon">🔍</span> Search
+      </div>
       <div class="sidebar-link" onclick="showSection('homepage')" data-section="homepage">
         <span class="sidebar-link-icon">🏠</span> Home Page
       </div>
@@ -978,6 +981,54 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
     </div>
 
     <!-- ABOUT US -->
+    <div class="admin-section" id="section-search">
+      <div class="section-badge">🔍 Search</div>
+      <div class="page-section-title">Site Search</div>
+      <div class="page-section-sub">Configure the full-screen search experience for your visitors.</div>
+
+      <div class="panel open">
+        <div class="panel-header" onclick="togglePanel(this)">
+          <div class="panel-title"><span class="panel-title-icon">⚙️</span> Search Settings</div>
+          <span class="panel-chevron">▼</span>
+        </div>
+        <div class="panel-body">
+          <div class="field-group">
+            <label>Search Placeholder Text</label>
+            <input type="text" id="f_searchPlaceholder" placeholder="Search..."/>
+          </div>
+          <div class="field-group">
+            <label>No Results Message</label>
+            <input type="text" id="f_searchNoResults" placeholder="No results for '{query}'"/>
+            <div class="field-hint">Use {query} to insert the search term.</div>
+          </div>
+          <div class="field-group">
+            <label>No Results Subtext</label>
+            <input type="text" id="f_searchNoResultsSub" placeholder="Try a different search term."/>
+          </div>
+          <div class="field-group">
+            <label>Results Per Page</label>
+            <select id="f_searchResultsPerPage">
+              <option value="3">3</option>
+              <option value="5" selected>5</option>
+              <option value="8">8</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel open">
+        <div class="panel-header" onclick="togglePanel(this)">
+          <div class="panel-title"><span class="panel-title-icon">🚫</span> Excluded Pages</div>
+          <span class="panel-chevron">▼</span>
+        </div>
+        <div class="panel-body">
+          <div class="field-hint" style="margin-bottom:12px;">Toggle off any pages you don't want included in search results.</div>
+          <div id="search-excluded-pages-list"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="admin-section" id="section-attorney">
       <div class="section-badge">👥 About Us</div>
       <div class="page-section-title">About Us</div>
@@ -1634,6 +1685,14 @@ function loadForm() {
   setVal('f_contactPrivacyNote', DATA.contactPrivacyNote);
   setVal('f_contactSubmitLabel', DATA.contactSubmitLabel || '');
   setVal('f_contactSuccessMsg', DATA.contactSuccessMsg || '');
+  // Search settings
+  const srch = DATA.search || {};
+  setVal('f_searchPlaceholder',    srch.placeholder    || '');
+  setVal('f_searchNoResults',      srch.noResultsMessage || '');
+  setVal('f_searchNoResultsSub',   srch.noResultsSubtext || '');
+  const rppEl = document.getElementById('f_searchResultsPerPage');
+  if (rppEl) rppEl.value = srch.resultsPerPage || 5;
+  buildSearchExcludedPages();
   if (!Array.isArray(DATA.contactForm)) DATA.contactForm = [];
   buildContactFormFields();
   const pt = DATA.pageTitles||{};
@@ -2030,6 +2089,14 @@ function collectData() {
   DATA.contactPrivacyNote = getVal('f_contactPrivacyNote');
   DATA.contactSubmitLabel = getVal('f_contactSubmitLabel');
   DATA.contactSuccessMsg = getVal('f_contactSuccessMsg');
+  // Search settings
+  DATA.search = {
+    placeholder:       getVal('f_searchPlaceholder')    || 'Search...',
+    noResultsMessage:  getVal('f_searchNoResults')      || "No results for '{query}'",
+    noResultsSubtext:  getVal('f_searchNoResultsSub')   || 'Try a different search term.',
+    resultsPerPage:    parseInt(document.getElementById('f_searchResultsPerPage')?.value || '5', 10),
+    excludedPages:     collectSearchExcludedPages(),
+  };
   collectContactForm();
   DATA.pageTitles = {
     home:getVal('f_ptHome'), about:getVal('f_ptAbout'),
@@ -3497,22 +3564,24 @@ function collectHomeSections() {
   const container = document.getElementById('home-sections-list');
   if (!container) return DATA.homeSections || [];
   const sectionCards = container.querySelectorAll('.cp-section-card[data-pi="h"]');
-  return Array.from(sectionCards).map((secCard, si) => {
+  const sections = Array.from(sectionCards).map((secCard, si) => {
     const renderedSi = parseInt(secCard.dataset.si, 10);
     const existing = (DATA.homeSections || [])[renderedSi] || (DATA.homeSections || [])[si] || {};
     return collectHomeSingleSection(secCard, renderedSi, existing);
   });
+  return ensureAnchorIds(sections);
 }
 
 function collectAboutSections() {
   const container = document.getElementById('about-sections-list');
   if (!container) return DATA.aboutSections || [];
   const sectionCards = container.querySelectorAll('.cp-section-card[data-pi="a"]');
-  return Array.from(sectionCards).map((secCard, si) => {
+  const sections = Array.from(sectionCards).map((secCard, si) => {
     const renderedSi = parseInt(secCard.dataset.si, 10);
     const existing = (DATA.aboutSections || [])[renderedSi] || (DATA.aboutSections || [])[si] || {};
     return collectHomeSingleSection_forPi(secCard, 'a', renderedSi, existing);
   });
+  return ensureAnchorIds(sections);
 }
 
 function collectHomeSingleSection(secCard, si, existing) {
@@ -4080,7 +4149,7 @@ function buildCustomSectionHtml(sec, pi, si) {
       <span class="cp-section-type-badge">${typeLabel}${sec.label ? ' — ' + escHtml(sec.label) : ''}</span>
       ${!isAppendage && !isRichtext ? `<div class="cp-anchor-field" onclick="event.stopPropagation()">
         <label>#</label>
-        <input type="text" data-cp="${pi}" data-sec="${si}" data-field="anchorId" value="${escHtml(sec.anchorId||'')}" placeholder="anchor-id" title="Anchor ID — used for section links"/>
+        <input type="text" data-cp="${pi}" data-sec="${si}" data-field="anchorId" value="${escHtml(sec.anchorId||'')}" placeholder="auto-generated on save" title="Anchor ID — used for section links and search"/>
       </div>` : ''}
       <div class="cp-section-controls">
         <button class="cp-move-btn" onclick="moveCpSection(${typeof pi==='string'?("'"+pi+"'"):pi},${si},-1);event.stopPropagation();" title="Move up">↑</button>
@@ -4463,16 +4532,30 @@ function buildCpSectionTypeFields(sec, pi, si) {
       const modeOnDisplay  = showReviews ? '' : 'display:none;';
       const modeOffDisplay = showReviews ? 'display:none;' : '';
       const items = (sec.items||[]);
-      const rows = items.map((it,ii) => `<div class="cp-sub-item" data-sub-idx="${ii}">
-          ${cpSubItemHeader('Review #'+(ii+1), pi, si, 'items', ii)}
-          <div class="form-row-2" style="margin-bottom:8px;">
-            <div class="field-group" style="margin:0;"><label>Name</label><input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="name" value="${escHtml(it.name||'')}"/></div>
-            <div class="field-group" style="margin:0;"><label>Initials (2 letters)</label><input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="initials" value="${escHtml(it.initials||'')}" maxlength="2" style="max-width:80px;"/></div>
+      const rows = items.map((it,ii) => {
+        const label = it.name && it.name.trim() ? escHtml(it.name.trim()) : 'Review #' + (ii+1);
+        const piArg = typeof pi==='string' ? ("'"+pi+"'") : pi;
+        return `<div class="cp-sub-item" data-sub-idx="${ii}" style="margin-bottom:8px;border:1px solid #e8e3d8;border-radius:6px;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:rgba(0,0,0,0.02);cursor:pointer;" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'':'none';this.querySelector('.rev-chevron').textContent=this.nextElementSibling.style.display==='none'?'▸':'▾';">
+            <span style="font-size:13px;font-weight:600;color:var(--navy);">${label}</span>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <button class="arr-btn" style="padding:1px 5px;font-size:13px;" ${ii===0?'disabled':''} onclick="event.stopPropagation();moveCpSubItem(${piArg},${si},'items',${ii},-1)">↑</button>
+              <button class="arr-btn" style="padding:1px 5px;font-size:13px;" ${ii===items.length-1?'disabled':''} onclick="event.stopPropagation();moveCpSubItem(${piArg},${si},'items',${ii},1)">↓</button>
+              <button class="btn-remove" style="font-size:11px;" onclick="event.stopPropagation();removeCpSubItem(${piArg},${si},'items',${ii})">×</button>
+              <span class="rev-chevron" style="font-size:11px;color:var(--muted);">▾</span>
+            </div>
           </div>
-          <div class="field-group" style="margin-bottom:8px;"><label>Stars (1–5)</label><input type="number" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="stars" value="${escHtml(it.stars||'5')}" min="1" max="5" style="max-width:80px;"/></div>
-          <div class="field-group" style="margin-bottom:8px;"><label>Review Text</label><textarea data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="text" rows="3">${escHtml(it.text||'')}</textarea></div>
-          <div class="field-group" style="margin-bottom:4px;"><label>Meta (service type, city)</label><input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="meta" value="${escHtml(it.meta||'')}"/></div>
-        </div>`).join('');
+          <div style="padding:12px;">
+            <div class="form-row-2" style="margin-bottom:8px;">
+              <div class="field-group" style="margin:0;"><label>Name</label><input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="name" value="${escHtml(it.name||'')}"/></div>
+              <div class="field-group" style="margin:0;"><label>Initials (2 letters)</label><input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="initials" value="${escHtml(it.initials||'')}" maxlength="2" style="max-width:80px;"/></div>
+            </div>
+            <div class="field-group" style="margin-bottom:8px;"><label>Stars (1–5)</label><input type="number" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="stars" value="${escHtml(it.stars||'5')}" min="1" max="5" style="max-width:80px;"/></div>
+            <div class="field-group" style="margin-bottom:8px;"><label>Review Text</label><textarea data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="text" rows="3">${escHtml(it.text||'')}</textarea></div>
+            <div class="field-group" style="margin-bottom:4px;"><label>Meta (service type, city)</label><input type="text" data-cp="${pi}" data-sec="${si}" data-arr="items" data-idx="${ii}" data-field="meta" value="${escHtml(it.meta||'')}"/></div>
+          </div>
+        </div>`;
+      }).join('');
       return `
         <div class="form-row-2" style="margin-bottom:12px;">
           <div class="field-group"><label>Heading</label><input type="text" ${p} data-field="heading" value="${v('heading')}"/></div>
@@ -5618,9 +5701,72 @@ function cpSections(pi) {
   return DATA.customPages[pi]?.sections;
 }
 function rebuildAfterMutation(pi) {
+  // Snapshot collapsed section cards by data-si
+  const collapsedSis = new Set(
+    Array.from(document.querySelectorAll(`.cp-section-card[data-pi="${pi}"]:not(.open)`))
+      .map(el => el.dataset.si)
+  );
+
+  // Snapshot collapsed review cards: key = "si-subIdx"
+  const collapsedReviews = new Set();
+  document.querySelectorAll(`.cp-section-card[data-pi="${pi}"] .rev-chevron`).forEach(chev => {
+    const body = chev.closest('[onclick]')?.nextElementSibling;
+    if (body && body.style.display === 'none') {
+      const card = chev.closest('.cp-section-card');
+      const subItem = chev.closest('[data-sub-idx]');
+      if (card && subItem) collapsedReviews.add(card.dataset.si + '-' + subItem.dataset.subIdx);
+    }
+  });
+
+  // Snapshot collapsed tier feature lists: key = "si-ci" (card index within section)
+  const collapsedFeatures = new Set();
+  document.querySelectorAll(`.cp-section-card[data-pi="${pi}"] .tf-chevron`).forEach(chev => {
+    const body = chev.closest('[onclick]')?.nextElementSibling;
+    if (body && body.style.display === 'none') {
+      const card = chev.closest('.cp-section-card');
+      const subItem = chev.closest('[data-sub-idx]');
+      if (card && subItem) collapsedFeatures.add(card.dataset.si + '-' + subItem.dataset.subIdx);
+    }
+  });
+
   if (pi === 'h') buildHomeSectionsList();
   else if (pi === 'a') buildAboutSectionsList();
   else buildCustomPagesList();
+
+  // Restore collapsed section cards
+  if (collapsedSis.size) {
+    document.querySelectorAll(`.cp-section-card[data-pi="${pi}"]`).forEach(el => {
+      if (collapsedSis.has(el.dataset.si)) el.classList.remove('open');
+    });
+  }
+
+  // Restore collapsed review cards
+  if (collapsedReviews.size) {
+    document.querySelectorAll(`.cp-section-card[data-pi="${pi}"] .rev-chevron`).forEach(chev => {
+      const card = chev.closest('.cp-section-card');
+      const subItem = chev.closest('[data-sub-idx]');
+      if (!card || !subItem) return;
+      const key = card.dataset.si + '-' + subItem.dataset.subIdx;
+      if (collapsedReviews.has(key)) {
+        const body = chev.closest('[onclick]')?.nextElementSibling;
+        if (body) { body.style.display = 'none'; chev.textContent = '▸'; }
+      }
+    });
+  }
+
+  // Restore collapsed tier feature lists
+  if (collapsedFeatures.size) {
+    document.querySelectorAll(`.cp-section-card[data-pi="${pi}"] .tf-chevron`).forEach(chev => {
+      const card = chev.closest('.cp-section-card');
+      const subItem = chev.closest('[data-sub-idx]');
+      if (!card || !subItem) return;
+      const key = card.dataset.si + '-' + subItem.dataset.subIdx;
+      if (collapsedFeatures.has(key)) {
+        const body = chev.closest('[onclick]')?.nextElementSibling;
+        if (body) { body.style.display = 'none'; chev.textContent = '▸'; }
+      }
+    });
+  }
 }
 
 function exportCpSection(pi, si) {
@@ -5681,6 +5827,66 @@ function confirmSectionImport() {
   rebuildAfterMutation(_importTargetPi);
   autosave();
   toast('Section imported successfully');
+}
+
+function buildSearchExcludedPages() {
+  const container = document.getElementById('search-excluded-pages-list');
+  if (!container) return;
+  const excluded = (DATA.search || {}).excludedPages || [];
+  const pages = [
+    { key: 'home',  label: '🏠 Home Page' },
+    { key: 'about', label: '👥 About Us' },
+    ...(DATA.customPages || []).filter(p => p.enabled !== false).map((p, i) => ({
+      key: 'cp-' + i, label: (p.emoji || '📄') + ' ' + (p.navLabel || p.slug || 'Page ' + i)
+    }))
+  ];
+  container.innerHTML = pages.map(p => {
+    const checked = !excluded.includes(p.key);
+    return `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.06);">
+      <span style="font-size:13px;">${p.label}</span>
+      <label class="switch" style="margin:0;">
+        <input type="checkbox" data-page-key="${p.key}" ${checked ? 'checked' : ''}/>
+        <span class="switch-slider"></span>
+      </label>
+    </div>`;
+  }).join('');
+}
+
+function collectSearchExcludedPages() {
+  const container = document.getElementById('search-excluded-pages-list');
+  if (!container) return [];
+  return Array.from(container.querySelectorAll('input[data-page-key]'))
+    .filter(el => !el.checked)
+    .map(el => el.dataset.pageKey);
+}
+
+function slugify(str) {
+  return (str || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/[\s]+/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 60);
+}
+
+function ensureAnchorIds(sections) {
+  const used = new Set();
+  sections.forEach(sec => {
+    if (sec.anchorId && sec.anchorId.trim()) {
+      used.add(sec.anchorId.trim());
+      return;
+    }
+    // Generate from heading, label, or type
+    const base = slugify(sec.heading || sec.label || sec.type || 'section');
+    if (!base) return;
+    let candidate = base;
+    let n = 2;
+    while (used.has(candidate)) { candidate = base + '-' + n++; }
+    sec.anchorId = candidate;
+    used.add(candidate);
+  });
+  return sections;
 }
 
 function getCopyToOptions(currentPi) {
@@ -5757,7 +5963,25 @@ function moveCpSection(pi, si, dir) {
 }
 
 function toggleCpSection(header) {
-  header.closest('.cp-section-card').classList.toggle('open');
+  const card = header.closest('.cp-section-card');
+  const isOpening = !card.classList.contains('open');
+  card.classList.toggle('open');
+
+  // When collapsing a section card, collapse all inner collapsibles too
+  if (!isOpening) {
+    // Close copy-to picker if open
+    card.querySelectorAll('.cp-copyto-picker').forEach(p => p.style.display = 'none');
+    // Collapse review card bodies (rev-chevron pattern)
+    card.querySelectorAll('.rev-chevron').forEach(chev => {
+      const body = chev.closest('[onclick]')?.nextElementSibling;
+      if (body) { body.style.display = 'none'; chev.textContent = '▸'; }
+    });
+    // Collapse tier feature lists (tf-chevron pattern)
+    card.querySelectorAll('.tf-chevron').forEach(chev => {
+      const body = chev.closest('[onclick]')?.nextElementSibling;
+      if (body) { body.style.display = 'none'; chev.textContent = '▸'; }
+    });
+  }
 }
 
 function setCpSecBg(pi, si, val, el) {
@@ -5865,7 +6089,7 @@ function collectCustomPages() {
 
 function collectCpSections(card, pi, existingSections) {
   const sectionCards = card.querySelectorAll(`.cp-section-card[data-pi="${pi}"]`);
-  return Array.from(sectionCards).map((secCard, si) => {
+  return ensureAnchorIds(Array.from(sectionCards).map((secCard, si) => {
     // Use the rendered data-si (the index baked into field data-sec attributes at render time)
     const renderedSi = parseInt(secCard.dataset.si, 10);
     const existing = existingSections[renderedSi] || existingSections[si] || {};
@@ -6053,7 +6277,7 @@ function collectCpSections(card, pi, existingSections) {
       }
     }
     return sec;
-  });
+  }));
 }
 
 function collectCpSubItems(secCard, pi, si, fields) {
