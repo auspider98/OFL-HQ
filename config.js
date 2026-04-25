@@ -4001,7 +4001,7 @@ const SITE_CONFIG = {
     }
   ],
   "footerBio": "Where Legends Are Made & Legacies Are Settled",
-  "_savedAt": 1777077107534,
+  "_savedAt": 1777078453560,
   "animateStats": true,
   "contactSubmitLabel": "Request Free Abuse",
   "contactSuccessMsg": "Ugh...you're so unworthy.",
@@ -4123,7 +4123,7 @@ const SITE_CONFIG = {
       "name": "Belle",
       "pin": "9779",
       "emoji": "👱🏻‍♀️",
-      "avatarPath": "https://auspider98.github.io/OFL/assets/mugs/belle.png",
+      "avatarPath": "https://auspider98.github.io/OFL/assets/mugs/annabelle.png",
       "role": "member"
     },
     {
